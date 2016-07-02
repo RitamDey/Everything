@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+'''This Script is used to calculate total amount of a list of items .It can be from a file or from inputs'''
 from sys import argv
 
 def main():
