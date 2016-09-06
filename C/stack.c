@@ -1,10 +1,8 @@
 #include <stdio.h>
 
-struct st{
+typedef struct{
   int item[10],top;
-};
-
-typedef struct st stack;
+}stack;
 
 void push(stack *p){
   int num;

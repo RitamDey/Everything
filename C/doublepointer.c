@@ -1,7 +1,6 @@
 #include<stdio.h>
 
-int main()
-{
+int main(){
   char a="H";
   char *b=&a;
   //char *c=&b;

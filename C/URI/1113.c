@@ -1,11 +1,8 @@
 #include<stdio.h>
 
-int main()
-{
+int main(){
  int n1,n2;
- while(1)
- {
-  scanf("%i %i",&n1,&n2);
+ while(scanf("%i %i",&n1,&n2);){
   if(n1>n2)
    printf("Decrescente\n");
   else if(n1<n2)

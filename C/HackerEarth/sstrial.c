@@ -1,7 +1,6 @@
 #include<stdio.h>
 
-int main()
-{
+int main(){
   char *s="hello\0";
   for(;*s='\0';s++)
    printf("%s",*s);

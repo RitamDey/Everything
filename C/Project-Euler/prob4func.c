@@ -1,10 +1,8 @@
 #include<stdio.h>
 
-int palindrome(int n)
-{
+int palindrome(int n){
  int rev=0;
- while(n)
- {
+ while(n){
   int x=n%10;
   rev=rev*10+x;
   n/=10;

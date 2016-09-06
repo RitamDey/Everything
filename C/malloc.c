@@ -7,7 +7,7 @@ int main(int argc, char const *argv[]) {
     scanf("%i\n",&n );
     int *mem = (int *)malloc(n*sizeof(int));
     for (int count=1;count<=n;count++)
-        scanf("%i\n",(mem+count) );
+        scanf("%i",(mem+count) );
     for (int i=1; i<=n; i++)
         sum += *(mem+i);
     printf("%d\n",sum);

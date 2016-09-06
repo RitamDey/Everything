@@ -4,9 +4,13 @@ def rev(a):
      sn=sn*10+(a%10)
      a=int(a/10)
     return(sn)
+
+
 def count(s):
  for n in s:
   print("%s %s" %(n,s.count(n)))
+
+
 def prime(n):
      s=0
      for a in range(1,n+1):
@@ -16,6 +20,8 @@ def prime(n):
          return n
      else:
          return 0
+
+
 def composite(n):
      s=0
      for a in range(1,n+1):
