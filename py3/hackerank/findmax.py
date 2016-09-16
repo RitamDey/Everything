@@ -15,7 +15,10 @@ for _ in range(int(input())):
     if ins[0] == '1':
         new_value = int(ins[1])
         if data and new_value < data[-1]:
-            new_value = data[-1]
+            new_value = data[-1] 
+            '''The above can't be replace with continue because in case a integer in pushed a empty list and a smaller integer is
+             is given and a pop is done just after that it will ensure the maximum is still present once
+             If continue is used it will remove the max value as the smaller value was not added into the list'''
         data.append(new_value)
     elif ins[0] == '2':
         data.pop()
