@@ -1,3 +1,8 @@
+""""
+    The solution contains all the code I wrote and the stub code provided by the problem setter
+"""
+import sys
+
 class Solution:
   
   def __init__(self):
