@@ -28,5 +28,12 @@ class Node:
             self.node = None
             return tmp
 
-    def __delete__(self, instance):
-        pass
+    def push(self, data):
+        """
+        A smaller function to insert a new tail node
+        :param data: anything
+        """
+        if self.node:
+            self.node.push(data)
+        else:
+            self.node = Node(data, None)
