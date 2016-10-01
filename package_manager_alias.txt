@@ -1,5 +1,4 @@
 Alias for the apt manager:
-	
 	alias sync="sudo apt update"
 	alias upgrade="sudo apt upgrade -y"
 	alias dist_upgrade="sudo apt dist-upgrade"
@@ -9,9 +8,6 @@ Alias for the apt manager:
 
 
 Alias for the PacMan manager:
-	
-	      alias up="cd .."
-				alias up2="cd ../.."
         alias sync="sudo pacman -Syy"
         alias upgrade="sudo pacman -Syyu"
         alias search_repo="pacman -Ss "
