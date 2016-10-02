@@ -1,3 +1,2 @@
 # my-progs
-A GitHub backup for my programs <br>
-All my programs are run on Linux and may be (most likely ) incompatible with Windows
+These <b>repo</b> holds almost <i>all the programs</i> I wrote for myself since I had my laptop
