@@ -12,7 +12,7 @@ _**`alias add="git add "`<br>
 `alias push="git push"`<br>
 `alias history="git log"`<br>
 `alias get-diff="git diff "`<br>
-`alias pull="git pull"`
+`alias pull="git pull"`<br>
 `alias checkout="git checkout "`**_
 
 #Pacman aliases
