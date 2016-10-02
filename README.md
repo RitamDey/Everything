@@ -1,2 +1,2 @@
 # my-progs
-These <b>repo</b> holds almost <i>all the programs</i> I wrote for myself since I had my laptop
+These <b><i>repo</i></b> holds almost <i><b>all the programs</b></i> I wrote for myself since I had my laptop
