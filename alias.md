@@ -12,7 +12,8 @@ _**`alias add="git add "`<br>
 `alias push="git push"`<br>
 `alias history="git log"`<br>
 `alias get-diff="git diff "`<br>
-`alias pull="git pull"`**_
+`alias pull="git pull"`
+`alias checkout="git checkout "`**_
 
 #Pacman aliases
 _**`alias install="sudo pacman -S "`<br>
