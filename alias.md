@@ -21,8 +21,10 @@ _**`alias add="git add "`<br>
 
 #Pacman aliases
 _**`alias install="sudo pacman -S "`<br>
-`alias search="paman -Ss "`**_<br>
+`alias search="paman -Ss "`<br>
+`alias update="sudo pacman -Su"`**_
 
 #Yaourt aliases
 _**`alias install="yaourt -S "`<br>
-`alias search="yaourt -Ss "`**_<br>
+`alias search="yaourt -Ss "`<br>
+`alias update="yaourt -Su --aur"`**_
