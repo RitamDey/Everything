@@ -18,12 +18,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void magic(View view){
-        TextView msg = (TextView)findViewById(R.id.message);
-        EditText in = (EditText)findViewById(R.id.editText);
+        TextView msg = (TextView)findViewById(R.id.message); //Get reference to the TextView
+        EditText in = (EditText)findViewById(R.id.editText); //Get reference to the TextFeild
         CharSequence new_msg = "Hello "+in.getText()+"!!!";
-        msg.setText(new_msg);
-        Toast toast = Toast.makeText(this, new_msg, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
+        /*Create the message as a CharSequence as Strings are incompatible in .setText() and .makeText()*/
+        msg.setText(new_msg); //Set the text to the new message
+        Toast toast = Toast.makeText(this, new_msg, Toast.LENGTH_LONG); // Create a new Toast object
+        toast.setGravity(Gravity.CENTER, 0, 0); //Set its postition on screen
+        toast.show(); //Show It
     }
 }
