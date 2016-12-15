@@ -2,7 +2,7 @@
 '''This Script is used to calculate total amount of a list of items .It can be from a file or from inputs'''
 '''You must have Python 3.x installed . It comes with most Linux Distros check it by typing 'python3' in terminal'''
 
-from sys import argv
+from sys import argv, exit
 
 def main():
     sum=0.0
@@ -11,34 +11,17 @@ def main():
             if a!="\n":
                 sum+=float(a)
     elif argv[1]=="--input":
-        print("When you have ended type 'end'")
-        a="0"
-        while a!="end":
-            a=input()
-            if a!="end":
-                sum+=float(a)
+        print("Terminate by ctrl+D or ctrl+C")
+        try:
+            while True:
+                sum += float(input())
+        except (EOFError, KeyboardInterrupt):
+            return sum
+
     elif argv[1]=="--help":
-        sum="This script is used to calculate the amount of some amounts\nUsage:\n--file reads prices from a .txt file\n--input reads prices from your inputs\n--help lands you in this help menu"
-    else:
-        sum="Err!!!Option not found try with --help option"
-    return sum
+        return("This script is used to calculate the amount of some amounts\nUsage:\n--file reads prices from a .txt file\n--input reads prices from your inputs\n--help lands you in this help menu")
+
+if len(argv) < 2:
+    argv.append('--input')
 
 print(main())
-amts=1
-choice=str()
-while choice!="n":
- print("Use again? (y/n) ")
- choice=input()
- if choice == "y":
-     if argv[1]!="--input" or argv[1]!="--file":
-         print("Enter your option without the --")
-         argv[1]="--"+input()
-         if argv[1]=="--file":
-              print("Enter new .txt file name here")
-              argv.append(input())
-     print(main())
-     amts+=1
- elif choice == "n":
-    print("Used %i times\nThanks for using" %(amts))
- else:
-     print("Err! Wrong choice "+choice)
