@@ -14,3 +14,5 @@ zope.sqlalchemy
 Cythone
 ipython3
 ipython
+facebook-sdk
+numpy
