@@ -8,6 +8,7 @@ T div(T num1, T num2) {
 }
 
 int main(){
-    cout << div(5, 5) << endl;
-    cout << div(4,8)  << endl;
+    printf("%d\n", div(5,5));
+    printf("%f\n", div(4.0,8.0));
+    return 0;
 }
