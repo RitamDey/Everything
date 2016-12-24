@@ -26,9 +26,7 @@ pyramid-chameleon
 pyramid-debugtoolbar
 pyramid-jinja2
 pyramid-mako
-pyramid-team
 PySocks
-python-distutils-extra
 requests
 scipy
 Scrapy
