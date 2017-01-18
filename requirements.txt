@@ -4,8 +4,6 @@ bs4
 Cython
 Django
 facebook-sdk
-Flask
-Flask-SQLAlchemy
 gitdb
 gitdb2
 GitPython
@@ -21,11 +19,6 @@ pyftpdlib
 PyGithub
 pylint
 pyOpenSSL
-pyramid
-pyramid-chameleon
-pyramid-debugtoolbar
-pyramid-jinja2
-pyramid-mako
 PySocks
 requests
 scipy
@@ -36,6 +29,3 @@ urllib3
 virtualenv
 w3lib
 youtube-dl
-zope.deprecation
-zope.interface
-zope.sqlalchemy
