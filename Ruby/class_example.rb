@@ -4,9 +4,9 @@ This is a basic class declaration in Ruby
 
 class Car
     def start
-        # This is a basic method declarationin Ruby
+        # This is a basic method declaration in Ruby
         puts("Bhrummm.....")
-        # The `end` statment is used to end a block or 
+        # The `end` statement is used to end a block or 
         # method or class in Ruby
     end
     
@@ -23,7 +23,7 @@ Porshe.start()
 
 Nano = Car.new
 
-# Over-ridding a particular method without inherting the class
+# Overriding a particular method without inheriting the class
 # Also called Singleton class
 def Nano.start
     puts("Phattt Phatttt....")
@@ -37,3 +37,23 @@ end
 # Mainly used when the function or method doesn't require a parameter
 Nano.price
 Nano.start
+
+
+=begin
+Inherting classes
+=end
+
+class Ferrari < Car
+    def initialize(name)
+        @name = name
+        @@type = 'Ferrari'
+    end
+    
+    def stop()
+        puts "Stopping #{@@type} #{@name}"
+    end
+end
+
+enzo = Ferrari.new("Enzo")
+enzo.start()
+enzo.stop
