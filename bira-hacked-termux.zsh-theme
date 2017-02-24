@@ -9,7 +9,7 @@ local in='%{$terminfo[bold]%}in%{$reset_color%}'
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
 PROMPT="${user} ${at} ${host} ${in} ${current_dir}
-%B>>>%b "
+%B➜%b "
 RPS1="%B${git_branch}%b"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
