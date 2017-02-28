@@ -1,0 +1,17 @@
+--upgrade beautifulsoup4
+--upgrade bs4
+--upgrade Django
+--upgrade facebook-sdk
+--upgrade Jinja2
+--upgrade Mako
+--upgrade Markdown
+--upgrade MarkupSafe
+--upgrade pyftpdlib
+--upgrade PyGithub
+--upgrade pyOpenSSL
+--upgrade PySocks
+--upgrade requests
+--upgrade Scrapy
+--upgrade urllib3
+--upgrade w3lib
+--upgrade youtube-dl

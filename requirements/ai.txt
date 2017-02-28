@@ -1,0 +1,4 @@
+ipython
+nltk
+numpy
+scipy
