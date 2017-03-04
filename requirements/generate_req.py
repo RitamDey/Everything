@@ -10,6 +10,7 @@ def get_pkgs() -> list:
     for mod in get_installed_distributions():
         pkgs.append(mod.project_name)
     pkgs.sort()  # Because pip freeze returns in sorted order
+    print(len(pkgs))
     return pkgs
 
 
@@ -38,16 +39,18 @@ def get_files():
 
 
 # Iterate over the modules and format them to include
-# --upgrade <module> and write it to the opened file
+#<module> and write it to the opened file
 def process():
     fout = (yield)
     for module in get_pkgs():
-        print(f'--upgrade {module}', file=fout)
+        print(module, file=fout)
 
 
 if __name__ == '__main__':
     line_processor = process()
     next(line_processor)
     for fname in get_files():
-        line_processor.send(fname)
-
+        try:
+            line_processor.send(fname)
+        except StopIteration:
+            exit(0)
