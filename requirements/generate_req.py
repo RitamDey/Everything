@@ -68,7 +68,7 @@ def get_files():
 def process():
     fout = (yield)
     for module in get_pkgs():
-        print(f'pip install --upgrade {module}', file=fout)
+        print(module, file=fout)
 
 
 if __name__ == '__main__':
