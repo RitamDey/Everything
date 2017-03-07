@@ -3,19 +3,17 @@ import scrapy
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
-
-    def start_requests(self):
-        urls = [
+    start_urls = [
             'http://quotes.toscrape.com/page/1',
             'http://quotes.toscrape.com/page/2',
         ]
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
-        page = response.url.split("/")[-2]
-        filename = 'quotes-%s.html' %page
-        with open(filename, 'wb') as f:
-            f.write(response.body)
-        self.log('Saved %s' %filename)
+        for quote in response.css('div.quote'):
+                text = str(quote.css('span.text::text').extract_first())[1:-1],
+                author =  quote.css('span small::text').extract_first(),
+                # 'tags': quote.css('div.tags a.tag::text').extract(),
 
+                yield {
+                    'quote': f'{text[0]} \n by {author[0]}',
+                }
