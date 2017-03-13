@@ -26,13 +26,13 @@ class VM:
         # The order depends on the order of how they are pushed in the stack
         n1 = self.stack.pop()
         n2 = self.stack.pop()
-        self.stack.append(n1-n2)
+        self.stack.append(n2-n1)
 
     def DIVIDE(self):
         n1 = self.stack.pop()
         n2 = self.stack.pop()
         try:
-            res = n1/n2
+            res = n2/n1
         except ZeroDivisionError:
             res = 0
         self.stack.append(res)
