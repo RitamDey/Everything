@@ -24,7 +24,7 @@ def set_prefs(prefs):
     # useful when you have scripts inside your project.  Only files
     # ending with ``.py`` are considered to be python files by
     # default.
-    #prefs['python_files'] = ['*.py']
+    prefs['python_files'] = ['*.py']
 
     # Custom source folders:  By default rope searches the project
     # for finding source folders (folders that should be searched
@@ -95,7 +95,7 @@ def set_prefs(prefs):
     # If `True`, rope will sort imports alphabetically by module name
     # instead of alphabetically by import statement, with from imports
     # after normal imports.
-    prefs['sort_imports_alphabetically'] = False
+    prefs['sort_imports_alphabetically'] = True
 
 
 def project_opened(project):
