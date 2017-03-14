@@ -42,7 +42,6 @@ def vm_add_test():
     obj.run_it(bytecode)
 
 
-
 def vm_div_test():
     global obj
     bytecode = {
@@ -59,7 +58,26 @@ def vm_div_test():
     obj.run_it(bytecode)
 
 
+def vm_sub_test():
+    global obj
+
+    bytecode = {
+        'instructions': [
+            ('PUSH_VALUE', 0),
+            ('PUSH_VALUE', 1),
+            ('SUBSTRACT', None),
+            ('GET_RESULT', None),
+        ],
+
+        'values': [10, 5],
+    }
+
+    print('Running test for substraction for 10-5', end=" ")
+    obj.run_it(bytecode)
+
+
 if __name__ == '__main__':
     vm_add_test()
+    vm_sub_test()
     vm_mul_test()
     vm_div_test()
