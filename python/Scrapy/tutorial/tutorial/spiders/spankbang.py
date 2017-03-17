@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
+from scrapy.http.response.html import HtmlResponse
 
 
 class SpankbangSpider(scrapy.Spider):
@@ -7,5 +8,6 @@ class SpankbangSpider(scrapy.Spider):
     allowed_domains = ["spankbang.com"]
     start_urls = ['http://spankbang.com/']
 
-    def parse(self, response):
-        pass
+    def parse(self, response: HtmlResponse):
+        next_link = response.css('link::href')
+        print(next_link)
