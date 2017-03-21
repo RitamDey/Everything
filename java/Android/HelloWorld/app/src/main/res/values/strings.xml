@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Hello World</string>
-    <string name="action_settings">Settings</string>
-    <string name="button_text">Click to see the magic!!!</string>
-    <string name="message">Hello World!!!</string>
-    <string name="input">Enter you name</string>
-</resources>
