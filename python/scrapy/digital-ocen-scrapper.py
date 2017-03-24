@@ -4,6 +4,7 @@
    In this project we are crawling a site that sells products made of LEGO
 """
 import scrapy
+import threading
 
 
 class BrickSetSpider(scrapy.Spider):
@@ -36,6 +37,7 @@ class BrickSetSpider(scrapy.Spider):
             From where it selects the <a> element and gets the text inside the <a>
             """
             PIECES_SELECTOR = './/dl[dt/text() = "Pieces"]/dd/a/text()'
+
             """"
             In the MINIFIGS_SELECTOR, the xpath first looks for a <dl> element.
             If found then it looks for <dt> element.
@@ -45,11 +47,29 @@ class BrickSetSpider(scrapy.Spider):
             """
             MINIFIGS_SELECTOR = './/dl[dt/text() = "Minifigs"]/dd[2]/a/text()'
 
+            """
+            In the PRICE_SELECTOR, the xpath first looks for a <dl> element.
+            If found then it looks for <dt> element.
+            If that element is found, then it checks if the text inside of <dt> is equals to RRP or not.
+            If its equals to RRP, then it goes on and gets the fourth <dd> element
+            From where it gets the text inside which is the price printed in the page
+            """
+            PRICE_SELECTOR = './/dl[dt/text() = "RRP"]/dd[4]/text()'
+
+            """
+            Tricky extarction of next year's set.
+            First it uses css to get all div's with browselinks and then selects every div's with col class and then gets the second element.
+            After that it uses a simple xpath to select the inner <a>'s href attribute and extract()'s it's data
+            """
+            NEXT_YEAR = response.css('div.browselinks').css('div.col')[2].xpath('.//a/@href').extract()
+            print(NEXT_YEAR)
+
             yield {
                     'name': brickset.css(NAME_SELECTOR).extract_first(),
                     'pieces': brickset.xpath(PIECES_SELECTOR).extract_first(),
                     'minifigs': brickset.xpath(MINIFIGS_SELECTOR).extract_first(),
                     'image': brickset.css(IMAGE_SELECTOR).extract_first(),
+                    'price': brickset.xpath(PRICE_SELECTOR).extract_first()
             }
 
             # Using CSS, it selects every element that has the `next` css class
