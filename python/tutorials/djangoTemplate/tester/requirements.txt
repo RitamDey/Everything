@@ -1,0 +1,10 @@
+Django
+django-environ
+django-braces
+django-crispy-forms
+django-admin-bootstrapped
+django-authtools
+easy-thumbnails
+django-debug-toolbar
+Werkzeug
+psycopg2
