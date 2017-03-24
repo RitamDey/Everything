@@ -72,6 +72,8 @@ def process():
 
 
 if __name__ == '__main__':
+    if len(argv) == 1:
+        print("Usage generate_req.py [--dump] [--set-min] <output file name>\n\nOptions:\n--dump: Dump the requirements to stdout\n--set-min: Sets the current installed version as minimum for all packages\n")
     parse_arguments()
     line_processor = process()
     next(line_processor)
