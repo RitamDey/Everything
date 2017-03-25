@@ -2,3 +2,5 @@
 spiders/__pycache__
 __pycache__
 ../MyScrapers/.scrapy
+*.json
+*.txt
