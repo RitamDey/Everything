@@ -16,9 +16,25 @@ class BookspiderSpider(scrapy.Spider):
 
     # def parse_item(self, response):
     def parse(self, response):
-        book = BookItem()
-        BOOK_NAME_SELECTOR = ''
-
+        # All the selectors used in this scraper
+        BOOK_SELECTOR = '//article[@class="product_pod"]'
         NEXT_PAGE_SELECTOR = '//div/ul[@class="pager"]/li[@class="next"]/a/@href'
+
+        NAME_SELECTOR = './/h3/a/@title'
+        IMAGE_SELECTOR = './/div[@class="image_container"]/a/img[@class="thumbnail"]/@src'
+        BOOK_LINK_SELECTOR = './/div[@class="image_container"]/a/@href'
+        
+        book = BookItem()
+        
+        # All the top-level extractions in this page
+        products = response.xpath(BOOK_SELECTOR)
         next_page = response.xpath(NEXT_PAGE_SELECTOR).extract_first()
-        return scrapy.Request(response.urljoin(next_page))
+        
+        # The main loop for extraction of product information
+        for product in products:
+            book['name'] = product.xpath(NAME_SELECTOR).extract_first(),
+            book['picture'] = response.urljoin(product.xpath(IMAGE_SELECTOR).extract_first())
+            book['url'] = response.urljoin(product.xpath(BOOK_LINK_SELECTOR).extract_first())
+            yield book
+
+        # return scrapy.Request(response.urljoin(next_page))
