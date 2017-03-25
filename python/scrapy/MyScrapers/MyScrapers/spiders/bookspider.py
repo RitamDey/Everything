@@ -40,7 +40,8 @@ class BookspiderSpider(scrapy.Spider):
             yield book
         fout.close()
         
-        yield scrapy.Request(
-            response.urljoin(next_page), 
-            callback=self.parse
-            )
+        if next_page is not None:
+            yield scrapy.Request(
+                response.urljoin(next_page),
+                callback=self.parse
+                )
