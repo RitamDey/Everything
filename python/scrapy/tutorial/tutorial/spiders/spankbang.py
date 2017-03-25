@@ -13,5 +13,5 @@ class SpankbangSpider(scrapy.Spider):
         video_url = response.css('a.thumb').xpath('@href').extract()
         video_name = response.css('img.cover').xpath('@alt').extract()
         for vid_name, vid_url in zip(video_name, video_url):
-            print(f"Video {vid_name}: https://www.spankbang.com{vid_url}", sep='\n', file=fout)
+            print(f"Video {vid_name}: {response.urljoin(vid_url)}", sep='\n', file=fout)
         fout.close()
