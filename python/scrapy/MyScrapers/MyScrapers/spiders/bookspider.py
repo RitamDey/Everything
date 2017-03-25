@@ -25,6 +25,7 @@ class BookspiderSpider(scrapy.Spider):
         BOOK_LINK_SELECTOR = './/div[@class="image_container"]/a/@href'
         
         book = BookItem()
+        fout = open('to-scarpe.txt', 'w+')
         
         # All the top-level extractions in this page
         products = response.xpath(BOOK_SELECTOR)
@@ -35,6 +36,11 @@ class BookspiderSpider(scrapy.Spider):
             book['name'] = product.xpath(NAME_SELECTOR).extract_first(),
             book['picture'] = response.urljoin(product.xpath(IMAGE_SELECTOR).extract_first())
             book['url'] = response.urljoin(product.xpath(BOOK_LINK_SELECTOR).extract_first())
+            print(book['url'], file=fout)
             yield book
-
-        # return scrapy.Request(response.urljoin(next_page))
+        fout.close()
+        
+        yield scrapy.Request(
+            response.urljoin(next_page), 
+            callback=self.parse
+            )
