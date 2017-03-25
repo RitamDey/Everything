@@ -9,7 +9,12 @@ import scrapy
 
 
 class BookItem(scrapy.Item):
-    # define the fields for your item here like:
     name = scrapy.Field()
+    desc = scrapy.Field()
     url = scrapy.Field()
     picture = scrapy.Field()
+
+
+class DomainItem(scrapy.Item):
+    name = scrapy.Field()
+    url = scrapy.Field()
