@@ -43,6 +43,7 @@ ipython
 ipython-genutils
 lxml
 markdown2
+numpy
 oauthlib
 olefile
 packaging
@@ -68,6 +69,8 @@ pytz
 queuelib
 requests
 requests-oauthlib
+scikit-learn
+scipy
 service-identity
 setuptools
 simplegeneric
