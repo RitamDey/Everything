@@ -12,7 +12,8 @@ class BookItem(scrapy.Item):
     name = scrapy.Field()
     desc = scrapy.Field()
     url = scrapy.Field()
-    picture = scrapy.Field()
+    images = scrapy.Field()  # Needed to hold images
+    image_urls = scrapy.Field()  # Needed to hold image_urls
 
 
 class DomainItem(scrapy.Item):
