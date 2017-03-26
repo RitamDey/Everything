@@ -1,6 +1,7 @@
 .vscode
-spiders/__pycache__
 __pycache__
-../MyScrapers/.scrapy
+*/__pycache__
 *.json
 *.txt
+.idea/
+__pycache__/
