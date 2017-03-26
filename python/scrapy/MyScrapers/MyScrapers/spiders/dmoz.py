@@ -1,16 +1,23 @@
 # -*- coding: utf-8 -*-
+from json import loads
+
 import scrapy
+from scrapy.log import INFO
 
 from ..items import DomainItem
 
 
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
-    allowed_domains = ["http://dmoztools.net/Computers/Algorithms/"]
-    start_urls = [
-        'http://dmoztools.net/Computers/Algorithms/',
-        'http://dmoztools.net/Computers/Programming/Languages/Python/Books',
-    ]
+    allowed_domains = ["http://dmoztools.net/"]
+
+    def start_requests(self):
+        urls = loads(open('out.json', 'r').read())
+        urls = [url['url'] for url in urls]
+
+        for url in urls:
+            self.logger.log(INFO, url)
+            yield scrapy.Request(url, callback=self.parse)
 
     def parse(self, response):
         # All the top-level selectors
