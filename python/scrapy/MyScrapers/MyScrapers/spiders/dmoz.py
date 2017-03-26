@@ -38,5 +38,20 @@ class DmozIndexSpider(scrapy.Spider):
     allowed_domains = ["http://dmoztools.net/Computers/", ]
     start_urls = ['http://dmoztools.net/Computers/', ]
 
+    # ALl the selectors
+    section_css_selector = 'div.content'
+    section_xpath_selector = './div/section[2]/div'
+    sub_section_selector = 'section.children'
+    category_selecctor = './div/div'
+    topic_selector = './a/div'
+    topic_url_selector = './a/@href'
+
     def parse(self, response):
-        pass
+        sections = response.css(self.section_css_selector).xpath(self.section_xpath_selector)[0]
+
+        for section in sections.css(self.sub_section_selector):
+            for category in section.xpath(self.category_selecctor):
+                yield {
+                    'topic': category.xpath(self.topic_selector).extract()[0].split('\r\n')[2].strip(),
+                    'url': response.urljoin(category.xpath(self.topic_url_selector).extract_first())
+                }
