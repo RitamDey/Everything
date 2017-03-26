@@ -5,18 +5,24 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item, Field
 
 
-class BookItem(scrapy.Item):
-    name = scrapy.Field()
-    desc = scrapy.Field()
-    url = scrapy.Field()
-    images = scrapy.Field()  # Needed to hold images
-    image_urls = scrapy.Field()  # Needed to hold image_urls
+class BookItem(Item):
+    name = Field()
+    desc = Field()
+    url = Field()
+    images = Field()  # Needed to hold images
+    image_urls = Field()  # Needed to hold image_urls
 
 
-class DomainItem(scrapy.Item):
-    name = scrapy.Field()
-    desc = scrapy.Field()
-    url = scrapy.Field()
+class DomainItem(Item):
+    name = Field()
+    desc = Field()
+    url = Field()
+
+
+class QuotesItem(Item):
+    quote = Field()
+    author = Field()
+    url = Field()

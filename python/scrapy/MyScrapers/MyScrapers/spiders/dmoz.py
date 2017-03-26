@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from json import loads
-
 import scrapy
 from scrapy.log import INFO
-
 from ..items import DomainItem
 
 
