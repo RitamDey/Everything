@@ -6,7 +6,10 @@ from MyScrapers.items import DomainItem
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
     allowed_domains = ["http://dmoztools.net/Computers/Algorithms/"]
-    start_urls = ['http://dmoztools.net/Computers/Algorithms/']
+    start_urls = [
+        'http://dmoztools.net/Computers/Algorithms/',
+        'http://dmoztools.net/Computers/Programming/Languages/Python/Books',
+    ]
 
     def parse(self, response):
 
