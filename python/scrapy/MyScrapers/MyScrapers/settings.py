@@ -79,10 +79,11 @@ ITEM_PIPELINES = {
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 
-# Enable and configure HTTP caching (disabled by default)
-# See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-#HTTPCACHE_ENABLED = True
-#HTTPCACHE_EXPIRATION_SECS = 0
-#HTTPCACHE_DIR = 'httpcache'
-#HTTPCACHE_IGNORE_HTTP_CODES = []
-# HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# Place to store the scraped image
+IMAGES_STORE = '/home/stux/Codes/python/scrapy/MyScrapers/images'
+
+# 1 days of delay for files expiration
+FILES_EXPIRES = 1
+
+# 1 days of delay for images expiration
+IMAGES_EXPIRES = 1
