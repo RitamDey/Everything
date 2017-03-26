@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from MyScrapers.items import DomainItem
+
+from ..items import DomainItem
 
 
 class DmozSpider(scrapy.Spider):
@@ -12,7 +13,6 @@ class DmozSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-
         # All the top-level selectors
         NEXT_PAGE_SELECTOR = ''
         PAGE_XPATH_SELECTOR = '//div[@id="site-list-content"][@class="results browse-content"]'
@@ -31,3 +31,12 @@ class DmozSpider(scrapy.Spider):
             domain['desc'] = domain['desc'].replace('\r\n\t\t\t\r\n', '').strip()
             domain['url'] = site.xpath(PAGE_URL_SELECTOR).extract_first()
             yield domain
+
+
+class DmozIndexSpider(scrapy.Spider):
+    name = 'dmoz_index'
+    allowed_domains = ["http://dmoztools.net/Computers/", ]
+    start_urls = ['http://dmoztools.net/Computers/', ]
+
+    def parse(self, response):
+        pass
