@@ -17,4 +17,5 @@ class BookItem(scrapy.Item):
 
 class DomainItem(scrapy.Item):
     name = scrapy.Field()
+    desc = scrapy.Field()
     url = scrapy.Field()
