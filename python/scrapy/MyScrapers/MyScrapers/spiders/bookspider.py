@@ -30,7 +30,6 @@ class BookspiderSpider(scrapy.Spider):
             book['image_urls'] = [
                 f"http://books.toscrape.com{product.xpath(self.image_selector).extract_first()[2:]}", ]
             book['url'] = response.urljoin(product.xpath(self.book_link_selector).extract_first())
-            # print(book['image_urls'])
             yield book
 
         if next_page is not None:

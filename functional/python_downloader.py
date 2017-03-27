@@ -8,8 +8,6 @@ class PythonDownloaderSpider(scrapy.Spider):
     start_urls = ['http://www.python.org/downloads']
 
     def parse(self, response):
-        # Selectors
-
         # This selector selects the block where the main download buttons are located
         main_block_selector = '//div[@id="touchnav-wrapper"]\
                                 /header[@class="main-header"]\
