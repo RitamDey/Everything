@@ -62,7 +62,7 @@ pexpect
 phonenumberslite
 pickleshare
 pip
-pkg-resources
+# pkg-resources
 prompt-toolkit
 psycopg2
 ptyprocess
