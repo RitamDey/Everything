@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from json import loads
+from json.decoder import JSONDecodeError
 import scrapy
 from scrapy.log import INFO
 from ..items import DomainItem
@@ -10,8 +11,12 @@ class DmozSpider(scrapy.Spider):
     allowed_domains = ["http://dmoztools.net/"]
 
     def start_requests(self):
-        urls = loads(open('out.json', 'r').read())
-        urls = [url['url'] for url in urls]
+        try:
+            urls = loads(open('out.json', 'r').read())
+            urls = [url['url'] for url in urls]
+        except (FileNotFoundError, JSONDecodeError):
+            urls = open('urls.txt', 'r')
+            urls = [url for url in urls.read().split('\n')]
 
         for url in urls:
             self.logger.log(INFO, url)
@@ -42,6 +47,7 @@ class DmozIndexSpider(scrapy.Spider):
     name = 'dmoz_index'
     allowed_domains = ["http://dmoztools.net/Computers/", ]
     start_urls = ['http://dmoztools.net/Computers/', ]
+    # start_urls = ['http://dmoztools.net/']
 
     # ALl the selectors
     section_css_selector = 'div.content'
@@ -54,9 +60,13 @@ class DmozIndexSpider(scrapy.Spider):
     def parse(self, response):
         sections = response.css(self.section_css_selector).xpath(self.section_xpath_selector)[0]
 
+        urls = open('urls.txt', 'w+')
+
         for section in sections.css(self.sub_section_selector):
             for category in section.xpath(self.category_selecctor):
+                url = response.urljoin(category.xpath(self.topic_url_selector).extract_first())
                 yield {
                     'topic': category.xpath(self.topic_selector).extract()[0].split('\r\n')[2].strip(),
-                    'url': response.urljoin(category.xpath(self.topic_url_selector).extract_first())
+                    'url': url
                 }
+                print(url, file=urls)
