@@ -1,5 +1,0 @@
-ipython
-nltk
-numpy
-scipy
-# scikit-learn
