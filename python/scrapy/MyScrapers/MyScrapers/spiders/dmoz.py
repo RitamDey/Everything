@@ -2,7 +2,7 @@
 from json import loads
 from json.decoder import JSONDecodeError
 import scrapy
-from scrapy.log import INFO
+# from scrapy.log import INFO
 from ..items import DomainItem
 
 
