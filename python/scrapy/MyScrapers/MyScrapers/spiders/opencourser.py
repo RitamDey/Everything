@@ -3,19 +3,22 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
+class CourseExtractor():
+
+    def extract_links(self, response):
+        course_selector = ''
+        pass
+
 
 class OpencourserSpider(CrawlSpider):
     name = 'opencourser'
-    allowed_domains = ['http://opencourser.com/browse/?category=48']
+    allowed_domains = ['http://opencourser.com/']
     start_urls = ['http://http://opencourser.com/browse/?category=48/']
 
     rules = (
-        Rule(LinkExtractor(allow=r'Items/'), callback='parse_item', follow=True),
+        # Rule(LinkExtractor(allow=r'Items/'), callback='parse_item', follow=True),
+        Rule(CourseExtractor(), callback='parse_item', follow=True),
     )
 
     def parse_item(self, response):
-        i = {}
-        #i['domain_id'] = response.xpath('//input[@id="sid"]/@value').extract()
-        #i['name'] = response.xpath('//div[@id="name"]').extract()
-        #i['description'] = response.xpath('//div[@id="description"]').extract()
-        return i
+        pass
