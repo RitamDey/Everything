@@ -19,7 +19,7 @@ class DmozSpider(scrapy.Spider):
             urls = [url for url in urls.read().split('\n')]
 
         for url in urls:
-            self.logger.log(INFO, url)
+            # self.logger.log(INFO, url)
             yield scrapy.Request(url, callback=self.parse)
 
     def parse(self, response):
