@@ -18,6 +18,10 @@ NEWSPIDER_MODULE = 'MyScrapers.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+# Default output files
+FEED_URI = 'logs/%(name)s/%(time)s/%(name)s.json'
+FEED_FORMAT = 'json'
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
