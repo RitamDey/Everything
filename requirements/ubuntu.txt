@@ -7,6 +7,7 @@ PyDispatcher
 PyJWT
 Pygments
 Quandl
+SQLAlchemy
 Scrapy
 Twisted
 Werkzeug
@@ -62,7 +63,7 @@ pexpect
 phonenumberslite
 pickleshare
 pip
-# pkg-resources
+pkg-resources
 prompt-toolkit
 psycopg2
 ptyprocess
