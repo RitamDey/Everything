@@ -2,7 +2,7 @@
 
 local user='%{$terminfo[bold]$fg[cyan]%}sTux%{$reset_color%}'
 local host='%{$terminfo[bold]$fg[green]%}cmbox%{$reset_color%}'
-local current_dir='%{$terminfo[bold]$fg[blue]%} %~%{$reset_color%}'
+local current_dir='%{$terminfo[bold]$fg[blue]%}%%{$reset_color%}'
 local at='%{$terminfo[bold]$fg[red]%}at%{$reset_color%}'
 local in='%{$terminfo[bold]%}in%{$reset_color%}'
 
