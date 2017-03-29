@@ -36,6 +36,7 @@ int main(){
     int test;
     cin>>test;
 
+
     for(int x=1; x<=test; ++x){
         int data, pos;
         cin>>data>>pos;
