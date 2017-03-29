@@ -26,3 +26,4 @@ class QuotesItem(Item):
     quote = Field()
     author = Field()
     author_url = Field()
+    tags = Field()
