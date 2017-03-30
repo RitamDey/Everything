@@ -1,6 +1,9 @@
 from sys import argv, exit, stdout
 from pip import get_installed_distributions
 
+INCLUDE_PKGS = None
+USE_VERSION = False
+
 
 def parse_arguments():
     """
@@ -9,6 +12,7 @@ def parse_arguments():
     """
     global USE_VERSION
     global files
+    global INCLUDE_PKGS
     files = list()
     USE_VERSION = False
     if '--set-min' in argv:
@@ -17,6 +21,8 @@ def parse_arguments():
     if '--dump' in argv:
         files.append(stdout)
         argv.remove('--dump')
+    if '--include' in argv:
+        INCLUDE_PKGS = input('Enter main requirements file ')
     files.extend(argv[1:])
 
 
@@ -25,7 +31,10 @@ def get_pkgs() -> list:
     Get a list of names of modules installed
     """
     global USE_VERSION
+    global INCLUDE_PKGS
     pkgs = []
+    if INCLUDE_PKGS:
+        pkgs.append(f'-r {INCLUDE_PKGS}')
     for mod in get_installed_distributions():
         if USE_VERSION:
             pkgs.append(f'{mod.project_name}>={mod.parsed_version}')

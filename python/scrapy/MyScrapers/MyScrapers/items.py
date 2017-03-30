@@ -25,4 +25,5 @@ class DomainItem(Item):
 class QuotesItem(Item):
     quote = Field()
     author = Field()
-    url = Field()
+    author_url = Field()
+    tags = Field()

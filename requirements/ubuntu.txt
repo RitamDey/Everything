@@ -7,6 +7,7 @@ PyDispatcher
 PyJWT
 Pygments
 Quandl
+SQLAlchemy
 Scrapy
 Twisted
 Werkzeug
@@ -25,6 +26,7 @@ channels
 constantly
 cryptography
 cssselect
+cycler
 daphne
 decorator
 defusedxml
@@ -49,9 +51,11 @@ isort
 lazy-object-proxy
 lxml
 markdown2
+matplotlib
 mccabe
 more-itertools
 ndg-httpsclient
+nltk
 numpy
 oauthlib
 olefile
@@ -62,7 +66,7 @@ pexpect
 phonenumberslite
 pickleshare
 pip
-# pkg-resources
+pkg-resources
 prompt-toolkit
 psycopg2
 ptyprocess
