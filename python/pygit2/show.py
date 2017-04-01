@@ -1,5 +1,6 @@
 from datetime import tzinfo, timedelta, datetime, timezone
 import pygit2
+from sys import argv
 
 
 class FixedOffset(tzinfo):
@@ -22,7 +23,10 @@ class FixedOffset(tzinfo):
 
 
 repo = pygit2.Repository('/home/stux/Codes')
-commit = repo.revparse_single('6eeeb8f852a41c4617ce79b06e16aafb11934eed')
+try:
+    commit = repo.revparse_single(argv[1])
+except IndexError:
+    commit = repo.revparse_single('HEAD')
 
 message = commit.message
 hash = commit.hex
