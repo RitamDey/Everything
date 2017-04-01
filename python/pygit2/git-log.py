@@ -1,7 +1,7 @@
 import pygit2
 
 # Getting the head commit: git log -1
-repo = pygit2.Repository(path='C:/Users/sTux/Codes/')
+repo = pygit2.Repository(path='/home/stux/Codes/')
 
 commit = repo[repo.head.target]  # Get the commit head
 print(commit.message)
