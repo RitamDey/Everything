@@ -41,7 +41,8 @@ msg = '\n'.join(
             f'Author {commit.author.name} <{commit.author.email}>',
             f'Date {timestr}',
             '',
-            commit.message
+            commit.message,
+            diff.patch
          ]
                 )
 
