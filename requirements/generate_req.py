@@ -39,6 +39,8 @@ def get_pkgs() -> list:
         if USE_VERSION:
             pkgs.append(f'{mod.project_name}>={mod.parsed_version}')
         else:
+            if 'pkg-resources' == mod.project_name:
+                continue
             pkgs.append(mod.project_name)
     pkgs.sort()  # Because pip freeze returns in sorted order
     print(len(pkgs))
