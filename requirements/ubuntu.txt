@@ -67,7 +67,6 @@ phonenumberslite
 pickleshare
 pip
 prompt-toolkit
-psycopg2
 ptyprocess
 pyOpenSSL
 pyasn1

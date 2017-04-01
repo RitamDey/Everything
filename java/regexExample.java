@@ -4,16 +4,16 @@ import java.util.regex.Pattern;
 public class regexExample {
     public static void main(String[] args) {
 	String line = "This order was placed for QT3000! OK?";
-	String pattern = "(.*)(\\d+)(.*)";
+	String regex = "(.*)(\\d+)(.*)";
 
 	// Create a Pattern Object
-	Pattern r = Pattern.compile(pattern);
+	Pattern pattern = Pattern.compile(regex);
 
 	// Create a Matcher Object
-	Matcher m = r.matcher(line);
+	Matcher match = pattern.matcher(line);
 
-	if(m.find()){
-	    System.out.println("Found value: "+m.group(0)+"\nFound value: "+m.group(1)+"\nFound value: "+m.group(2));
+	if(match.find()){
+	    System.out.println("Found value: "+match.group(0)+"\nFound value: "+match.group(1)+"\nFound value: "+match.group(2));
 	}
 	else{
 	    System.out.println("Not found!!!!");
