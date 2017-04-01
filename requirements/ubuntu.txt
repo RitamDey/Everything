@@ -66,9 +66,7 @@ pexpect
 phonenumberslite
 pickleshare
 pip
-pkg-resources
 prompt-toolkit
-psycopg2
 ptyprocess
 pyOpenSSL
 pyasn1
