@@ -8,6 +8,9 @@ typedef enum {
 
 
 int main(int argc, char **argv){
+    /*
+    * git_clone() function can't work with https by default'
+    */
     git_repository *repo = NULL;  // Pointer to the cloned repo
     const char *url = "http://gitlab.com/GreenJoey/My-Simple-Programs.git";  // The repourl
     const char *repo_path = "/tmp/repo";  // Path of the cloned repo
