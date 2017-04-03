@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>
+            JQuery sample webpage
+        </title>
+    </head>
+
+    <body>
+        <h3>Just a heading</h3>
+        <p id="show">This is a paragraph</p>
+        <div></div>
+        <p id="hide">Another paragraph</p>
+
+        <script src="jquery.min.js"></script>
+        <script>
+            /**
+             * $(document).ready is the strating point of 
+             * every jQuery script. It takes a callback as
+             * an arguments
+             */
+            $(document).ready(function(){
+                /**
+                 * Select every element with has a id of hide
+                 * The .click is the event handler for clicks
+                 * and takes a callback for the event defination
+                */
+                $("#hide").click(function(){
+                    $("#show").show();  // Show every element with the hide id
+                    $(this).hide()  // Hide every element
+                });
+            });
+
+            $(document).ready(function(){
+                /**
+                 * Select every element with has a id of hide
+                 * The .click is the event handler for clicks
+                 * and takes a callback for the event defination
+                */
+                $("#show").click(function(){
+                    $("#hide").show();  // Show every element with the hide id
+                    $(this).hide(); // Hide itself
+                });
+            });
+
+            $(document).ready(function(){
+                /**
+                 * Select every h3 element
+                 * The .click is the event handler for clicks
+                 * and takes a callback for the event defination
+                */
+                $("h3").click(function(){
+                    $("#hide").show();
+                    $("#show").show();
+                })
+            })
+
+        </script>
+    </body>
+</html>
