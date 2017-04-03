@@ -13,20 +13,9 @@ module Person
             return "Sex #{@sex}"
         end
     end
-end
 
-module Hello
+
     def say_hello(name)
-        return "Hello, #{name}"
+        return "Hello #{name}"
     end
 end
-
-
-import Hello
-import Person
-
-puts Hello.say_hello("sTux")
-
-obj = Person.Person.new("sTux", "Male")
-puts obj.get_sex
-puts obj.hello()
