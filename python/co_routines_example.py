@@ -1,4 +1,6 @@
-"""Simple esample of co-routine using yield(), send() and exit()"""
+"""
+   * Simple esample of co-routine using yield(), send() and exit()
+"""
 
 
 def complain(substring: str) -> None:
