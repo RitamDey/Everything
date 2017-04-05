@@ -1,8 +1,8 @@
 /**
  * Created by sTux
  * Dated April 5, 2017
- * C Standard: C11
- * Compile FLages: -Wall -g -l pthreads
+ * C Standard: C11 with GNU extensions
+ * Compile Flags: -std=gnu11 -Wall -g -l pthreads
 **/
 
 #include <stdio.h>
