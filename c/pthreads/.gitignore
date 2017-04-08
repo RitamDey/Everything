@@ -1,3 +1,4 @@
 .idea/
 cmake-build-debug/
 test_*[.c/.cpp]
+*_test.[c/cpp]
