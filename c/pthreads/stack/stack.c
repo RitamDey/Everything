@@ -34,7 +34,7 @@ void pop(char **ret) {
     if(*ret == NULL)
         *ret = (char *)calloc(sizeof(char), strlen(head->data));
 
-    memcpy(*ret, head->data, strlen(head->data));
+    strcpy(*ret, head->data);
     free(head->data);
     stack_t *nxt = head->prev;
     free(head);
