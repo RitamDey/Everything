@@ -28,6 +28,10 @@ void consumer() {
     pthread_mutex_lock(&mutex);
     char *str = NULL;
     pop(&str);
-    printf("Poped %s\n", str);
+    printf("Popped %s\n", str);
     pthread_mutex_unlock(&mutex);
+}
+
+
+int main() {
 }
