@@ -12,8 +12,8 @@ static stack_t *head;
 
 void init(stack_t **stack, char *data) {
     *stack = (stack_t *)malloc(sizeof(stack_t));
-    (*stack)->data = (char *)malloc(strlen(data));
     memcpy((*stack)->data, data, strlen(data));
+    (*stack)->data = (char *)calloc(sizeof(char), strlen(data));
     (*stack)->next = (*stack)->prev = NULL;
     head = *stack;
 }
@@ -21,8 +21,8 @@ void init(stack_t **stack, char *data) {
 
 void push(stack_t **stack, char *data) {
     stack_t *tmp = (stack_t *)malloc(sizeof(stack_t));
-    tmp->data = (char *)malloc(strlen(data));
     memcpy(tmp->data, data, strlen(data));
+    tmp->data = (char *)calloc(sizeof(char), strlen(data));
     tmp->next = *stack;
     tmp->prev = NULL;
     (*stack)->prev = tmp;
@@ -32,7 +32,7 @@ void push(stack_t **stack, char *data) {
 
 void pop(char **ret) {
     if(*ret == NULL)
-        *ret = (char *)malloc(strlen(head->data));
+        *ret = (char *)calloc(sizeof(char), strlen(head->data));
 
     memcpy(*ret, head->data, strlen(head->data));
     free(head->data);
