@@ -2,7 +2,8 @@
  * Created by sTux
  * Dated April 5, 2017
  * C Standard: C11 with GNU extensions
- * Compile Flags: -std=gnu11 -Wall -g -l pthreads
+ * Compile Flags: -std=gnu11 -Wall -g -l pthread
+ * Topic Covered: Basic usage of pthreads and getting pid and tid
 **/
 
 #include <stdio.h>
