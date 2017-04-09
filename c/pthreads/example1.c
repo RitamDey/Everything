@@ -3,7 +3,7 @@
  * Dated April 5, 2017
  * C Standard: C11 with GNU extensions
  * Compile Flags: -std=gnu11 -Wall -g -l pthread
- * Topic Covered: Basic usage of pthreads and getting pid and tid
+ * Topic Covered: Basic usage of pthreads and getting pid and tid and pthread_exit()
 **/
 
 #include <stdio.h>
@@ -18,6 +18,7 @@ void *hello(void *id){
     pid_t pid = getpid();
 
     printf("Hello from Thread %u with Thread ID %u of Program %d\n", *(int *)id, tid, pid);
+    pthread_exit(0);
     return NULL;
 }
 
