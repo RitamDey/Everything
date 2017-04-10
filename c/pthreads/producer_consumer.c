@@ -11,11 +11,11 @@
 
 
 pthread_cond_t cond;
-pthread_mutex_t mutex;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 stack_t *stack;
 
 
-void producer() {
+void producer(void *arg) {
     pthread_mutex_lock(&mutex);
     char str[100];
     printf("%s", str);
@@ -24,7 +24,7 @@ void producer() {
 }
 
 
-void consumer() {
+void consumer(void *arg) {
     pthread_mutex_lock(&mutex);
     char *str = NULL;
     pop(&str);
@@ -34,4 +34,12 @@ void consumer() {
 
 
 int main() {
+    pthread_t producers[5], consumers[5];
+
+    for(int i=0; i<5; ++i) {
+        pthread_create(&producers[i], NULL, producer, NULL);
+        pthread_create(&consumers[i], NULL, consumer, NULL);
+    }
+
+    for()
 }
