@@ -3,9 +3,11 @@
 * EOF (End-Of-File) token is used to indicate that there is no more input left for 
 * lexical analysis
 """
+from string import whitespace
+import operator
 
 
-INTEGER, PLUS, EOF = 'INTEGER', 'PLUS', 'EOF'
+INTEGER, OPERATOR, EOF = 'INTEGER', 'OPERATOR', 'EOF'
 
 
 class Token:
@@ -55,37 +57,68 @@ class Interpreter:
         # input left to convert into tokens
         if self.pos > len(text) - 1:
             return Token(EOF, None)
-        
+
         # get a character at the position self.pos and decide
         # what token to create based on the single character
         current_char = text[self.pos]
-        
+
+        # See if the current character is a whitespace
+        if current_char in whitespace:
+            self.pos += 1
+            return self.get_next_token()
+
         # if the character is a digit then convert it to
         # integer, create an INTEGER token, increment self.pos
         # index to point to the next character after the digit,
         # and return the INTEGER token
         if current_char.isdigit():
-            token = Token(INTEGER, int(current_char))
-            self.pos += 1
+            num = 0
+            while current_char.isdigit():
+                num = num*10 + int(current_char)
+                self.pos += 1
+                try:
+                    current_char = text[self.pos]
+                except IndexError:
+                    break
+            token = Token(INTEGER, num)
             return token
-        
-        if current_char == '+':
-            token = Token(PLUS, current_char)
+        else:
+            token = Token(OPERATOR, current_char)
             self.pos += 1
+
+            if current_char == '+':
+                self.op = operator.add
+            
+            elif current_char == '-': 
+                self.op = operator.sub
+
+            elif current_char == '*':
+                self.op = operator.mul
+
+            elif current_char == '^':
+                self.op = operator.pow
+
+            else:
+                self.op = operator.truediv
+
             return token
-        
+            
+
         self.error()
-    
+
     def eat(self, token_type):
         # compare the current token type with the passed token
         # type and if they match then "eat" the current token
         # and assign the next token to the self.current_token,
         # otherwise raise an exception.
+        
         if self.current_token.type == token_type:
             self.current_token = self.get_next_token()
+            # print(self.current_token.type)
+            # return self.current_token.type == token_type
         else:
             self.error(ValueError, "Mismatched tokens")
-    
+
     def expr(self):
         # expr -> INTEGER PLUS INTEGER
         # set current token to the first token taken from the input
@@ -96,20 +129,23 @@ class Interpreter:
         left = self.current_token
         self.eat(INTEGER)
 
+
         # And now a PLUS 
         op = self.current_token
-        self.eat(PLUS)
+        self.eat(OPERATOR)
+
 
         # and finally the second one
         right = self.current_token
         self.eat(INTEGER)
+
         # after the above call the self.current_token is set to EOF token
 
         # at this point INTEGER PLUS INTEGER sequence of tokens
         # has been successfully found and the method can just
         # return the result of adding two integers, thus
         # effectively interpreting client input
-        result = left.value + right.value
+        result = self.op(left.value, right.value)
         return result
 
 
@@ -117,8 +153,12 @@ def main():
     while True:
         try:
             text = input("calc> ")
-        except EOFError as identifier:
+        except EOFError:
+            print("Exiting...")
             break
+        except KeyboardInterrupt:
+            print("")
+            continue
         if not text:
             continue
         
