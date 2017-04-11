@@ -41,6 +41,10 @@ static PyObject *chi2_chi2(PyObject *self, PyObject *args) {
     /* How many data points are there? */
     int N = (int)PyArray_DIM(x_array, 0);
 
+    /* Get pointers to the data as C-types. */
+        double *x = (double *)PyArray_DATA(x_array);
+        double *y = (double *)PyArray_DATA(y_array);
+        double *yerr = (double *)PyArray_DATA(yerr_array);
 
     /* Call the actual C function to compute the chi-squared. */
     double value = chi2(m, b, x, y, yerr, N);
