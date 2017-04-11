@@ -14,14 +14,29 @@ static PyMethodDef module_methods[] = {
 };
 
 
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    "_chi2",
+    module_docstring,
+    -1,
+    module_methods,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};
 
-PyMODINIT_FUNC init_chi2(void) {
-    PyObject *module = Py_InitModule("_chi2", module_methods, module_docstring);
-    if(module == NULL)
-        return;
+PyObject *PyInit__chi2(void) {
+    PyObject *module = PyModule_Create(&moduledef);
     
+    if(module == NULL)
+        return NULL;
+    
+    PyModule_AddStringConstant(module, "__author__","sTux");
     /* Load `numpy` functionality */
     import_array();
+
+    return module;
 }
 
 
