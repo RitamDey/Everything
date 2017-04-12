@@ -1,7 +1,7 @@
 # ZSH Theme - Preview: http://gyazo.com/8becc8a7ed5ab54a0262a470555c3eed.png
 
-local user='%{$terminfo[bold]$fg[cyan]%}sTux%{$reset_color%}'
-local host='%{$terminfo[bold]$fg[green]%}cmbox%{$reset_color%}'
+local user='%{$terminfo[bold]$fg[cyan]%}%n%{$reset_color%}'
+local host='%{$terminfo[bold]$fg[green]%}%m%{$reset_color%}'
 local current_dir='%{$terminfo[bold]$fg[blue]%}%c%{$reset_color%}'
 local at='%{$terminfo[bold]$fg[red]%}at%{$reset_color%}'
 local in='%{$terminfo[bold]%}in%{$reset_color%}'
