@@ -25,6 +25,13 @@ class Token:
     def __repr__(self):
         return self.__str__()
 
+    def __eq__(self, other):
+        if self.type == other:
+            return True
+        elif type(other) == Token and self.value == other.value:
+            return True
+        return False
+
 
 class Interpreter:
     def __init__(self, text):
