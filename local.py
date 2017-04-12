@@ -1,3 +1,5 @@
+from .common import *
+
 # A common CSRF token
 SECRET_KEY ='175a)y+adk=)$bd$*ala-**)3z-l64d)b0$mt4$*w90k1^yp(b'
 
@@ -5,12 +7,8 @@ SECRET_KEY ='175a)y+adk=)$bd$*ala-**)3z-l64d)b0$mt4$*w90k1^yp(b'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'website',
-            'USER': 'stux',
-            'PASSWORD': 'thisistux',
-            'HOST': 'localhost',
-            'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'database.db'),
         }
 }
 
