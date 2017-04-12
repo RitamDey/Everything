@@ -121,26 +121,29 @@ class Interpreter:
 
         self.current_token = self.get_next_token()
 
-        # We expect the current token to be a single-digit integer
-        left = self.current_token
-        self.eat(INTEGER)
+        final_result = 0
 
-        # And now a PLUS
-        op = self.current_token
-        self.eat(OPERATOR)
+        while not self.current_token == EOF:
+            # We expect a numeric token
+            left = self.current_token
+            self.eat(INTEGER)
 
-        # and finally the second one
-        right = self.current_token
-        self.eat(INTEGER)
+            # And now operator token
+            op = self.current_token
+            self.eat(OPERATOR)
 
-        # after the above call the self.current_token is set to EOF token
+            # and finally the second numeric token
+            right = self.current_token
+            self.eat(INTEGER)
 
-        # at this point INTEGER PLUS INTEGER sequence of tokens
-        # has been successfully found and the method can just
-        # return the result of adding two integers, thus
-        # effectively interpreting client input
-        result = self.op(left.value, right.value)
-        return result
+            # after the above call the self.current_token is set to EOF token
+
+            # at this point INTEGER OPERATOR INTEGER sequence of tokens
+            # has been successfully found and the method can just
+            # return the result of adding two integers, thus
+            # effectively interpreting client input
+            result = self.op(left.value, right.value)
+            return result
 
 
 if __name__ == '__main__':
