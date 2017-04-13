@@ -8,8 +8,8 @@ shoes = Counter(read())
 income = 0
 
 for _ in range(int(input())):
-    size,price = list(read())
-    if size in shoes and shoes[size] > 0:
+    size,price = read()
+    if shoes[size]:
         shoes[size] -= 1
         income += price
 
