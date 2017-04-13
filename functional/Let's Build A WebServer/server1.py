@@ -33,9 +33,9 @@ try:
 
         # A really basic response
         http_response = """\
-        HTTP/1.1 200 OK
+HTTP/1.1 200 OK
 
-        Hello World!
+Hello World!
         """
 
         # Here we send all the response to all the clients
