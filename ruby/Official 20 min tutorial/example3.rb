@@ -1,5 +1,6 @@
 =begin
-    Just a hello world method
+    Just a hello world method with 
+    different argument list
 rescue => exception
     
 =end
@@ -19,4 +20,13 @@ end
 
 
 hi("sTux")
-hi("Joe Green")
+hi "Joe Green"
+
+
+def hi(name="sTux")
+    puts "Hello #{name.capitalize}"
+end
+
+
+hi
+hi("Joey")
