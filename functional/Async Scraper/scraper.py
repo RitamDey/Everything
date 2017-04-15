@@ -1,12 +1,13 @@
 import socket
 from selectors import DefaultSelector, EVENT_WRITE, EVENT_READ
+import asyncio
 
 
 selector = DefaultSelector()
 
 
 def loop():
-    while True:
+    while not stopped:
         events = selector.select()
         for event_key, event_mask in events:
             callback = event_key.data
