@@ -43,7 +43,10 @@ class MegaGreeter
 end
 
 
-if __FILE__ == $0  # if __name__ == '__main__'
+# if __name__ == '__main__' but instead of using the current 
+# namespace the match is done between the current 
+# file name the running started and the file name (__FILE__) of this file
+if __FILE__ == $0
     mg = MegaGreeter.new
     mg.say_hi
     mg.say_bye
