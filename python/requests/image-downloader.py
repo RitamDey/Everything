@@ -7,7 +7,7 @@ from sys import argv
 
 parser = ArgumentParser()
 parser.add_argument('url', type=str)
-parser.add_argument('-o', '--out', default="image.jpeg", action="store_true")
+parser.add_argument('-o', '--out', default="image.jpeg", action="store")
 args = parser.parse_args()
 
 if len(args.url) <= 7:
