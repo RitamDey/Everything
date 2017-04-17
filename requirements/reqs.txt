@@ -106,7 +106,6 @@ traitlets
 txaio
 ufw
 urllib3
-usb-creator
 virtualenv
 w3lib
 wadllib
