@@ -17,8 +17,10 @@ lives = $stdin.gets.chomp
 puts "What kind of computer do you have? ", prompt  # a comma for puts is like using it twice
 computer = $stdin.gets.chomp
 
-puts """
+$stdout.puts """
 Alright, so you said #{likes} about liking me.
 You live in #{lives}.  Not sure where that is.
 And you have a #{computer} computer.  Nice.
 """
+
+$stderr.puts $stdin.class
