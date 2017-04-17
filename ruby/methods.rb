@@ -17,6 +17,5 @@ end
     puts adder(x,y)
   else
     puts multiply(x,y)
-    # puts cover(multiply, x,y)
   end
 end
