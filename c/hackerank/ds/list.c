@@ -25,3 +25,29 @@ void print(Node *list) {
     }
     printf("NULL\n");
 }
+
+
+void append(Node *list, int data) {
+    while(list->next)
+        list = list->next;
+    list->next = (Node *)malloc(sizeof(Node));
+    list->next->data = data;
+    list->next->next = NULL;
+}
+
+
+bool has_cycle(Node *list) {
+    Node *addr[100];
+    int top = -1;
+
+    while(list) {
+        for(int i=0; i<top; ++i) {
+            if(addr[i] == list)
+                return true;
+        }
+        addr[++top] = list;
+        list = list->next;
+    }
+
+    return false;
+}
