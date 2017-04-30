@@ -41,9 +41,14 @@ void pre_order(bst_t *tree) {
 
 
 void find_subtree(bst_t *tree, long long int data) {
-    if(data == 0)
+    if(data == 0 || data == tree->data) {
         pre_order(tree);
-
+        return;
+    }
+    if(tree->data >= data)
+        find_subtree(tree->left, data);
+    else
+        find_subtree(tree->right, data);
 }
 
 
@@ -57,7 +62,8 @@ int main() {
         append(&tree, d);
     }
 
-    pre_order(tree);
+    scanf("%lld", &n);
+    find_subtree(tree, n);
 
     return 0;
 }
