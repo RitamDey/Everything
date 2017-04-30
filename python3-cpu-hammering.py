@@ -19,7 +19,7 @@ def fact(n):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', type=str, default="fib")
+    parser.add_argument('-c', type=str, default="fib", help="fibonacci or factorial")
     parser.add_argument('number', type=int, default=50)
     args = parser.parse_args()
 
