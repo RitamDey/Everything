@@ -1,6 +1,7 @@
 from make_client import make_client
 from tweepy import Cursor
 from sys import argv
+import tweepy
 
 
 try:
