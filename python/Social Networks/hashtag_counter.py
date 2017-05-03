@@ -15,19 +15,23 @@ def get_hashtags(tweet: dict) -> list:
     return ["#"+tag['text'] for tag in hashtags]
 
 
-if __name__ == '__main__':
+def main:
     hashtags = Counter()
     args = ArgumentParser()
     args.add_argument("username")
     args = args.parse_args()
-    
-    
+
+
     client = make_client()
     curr = Cursor(client.user_timeline, screen_name=args.username, count=10)
-    
+
     for page in curr.pages(10):
         for tweet in page:
             hashtags.update(get_hashtags(tweet._json))
 
     print(hashtags.most_common(20))
+
+
+if __name__ == "__main__":
+    main()
 
