@@ -23,10 +23,11 @@ def main():
         "username",
         help="username of the profile to parse"
     )
+    args.add_argument("-c", "--count", type=int, help="Number of tweets")
     args = args.parse_args()
 
     client = make_client()
-    curr = Cursor(client.user_timeline, screen_name=args.username, count=10)
+    curr = Cursor(client.user_timeline, screen_name=args.username, count=args.count)
 
     for page in curr.pages(10):
         for tweet in page:
