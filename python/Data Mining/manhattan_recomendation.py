@@ -6,10 +6,24 @@ def manhattan(rating1, rating2):
     """
 
     distance = 0
-    for key in rating1:  # Get each band name
-        if key in rating2:  # If the band is in the second ratings
-            distance += abs(rating1[key] - rating2[key])
+    for rating in rating1:  # Get each band name
+        if rating in rating2:  # If the band is in the second ratings
+            distance += abs(rating1[rating] - rating2[rating])
     return distance
+
+
+def minikowski(rating1, rating2, users_count):
+    """
+    Computes the Manhattan distance. Both rating1 and rating2 are
+    dictionaries of the form
+    {'The Strokes': 3.0, 'Slightly Stoopid': 2.5 ...
+    """
+
+    distance = 0
+    for rating in rating1:  # Get each band name
+        if rating in rating2:  # If the band is in the second ratings
+            distance += abs(rating1[rating] - rating2[rating])**users_count
+    return distance**1 / users_count
 
 
 def computeNearestNeighbor(username, users):
@@ -22,7 +36,8 @@ def computeNearestNeighbor(username, users):
     for user in users:  # Get all the user name from the passed dict
         if user != username:
             # Get the distance based on ratings
-            distance = manhattan(users[user], users[username])
+            # manhattan(users[user], users[username]),
+            distance = minikowski(user[user], users[username], 2)
             distances.append((distance, user))
 
     # sort based on distance -- closet first
