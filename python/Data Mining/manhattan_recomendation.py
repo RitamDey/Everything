@@ -6,8 +6,8 @@ def manhattan(rating1, rating2):
     """
 
     distance = 0
-    for key in rating1:
-        if key in rating2:
+    for key in rating1:  # Get each band name
+        if key in rating2:  # If the band is in the second ratings
             distance += abs(rating1[key] - rating2[key])
     return distance
 
@@ -19,10 +19,12 @@ def computeNearestNeighbor(username, users):
     """
 
     distances = []
-    for user in users:
+    for user in users:  # Get all the user name from the passed dict
         if user != username:
+            # Get the distance based on ratings
             distance = manhattan(users[user], users[username])
             distances.append((distance, user))
+
     # sort based on distance -- closet first
     distances.sort()
     return distances
@@ -41,6 +43,7 @@ def recommend(username, users):
             recommendations.append((artist, neighborRatings[artist]))
 
     # using the fn sorted for variety - sort is more efficient
+    # sort using the ratings
     return sorted(recommendations,
                   key=lambda artistTuple: artistTuple[1],
                   reverse=True)
