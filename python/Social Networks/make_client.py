@@ -21,7 +21,7 @@ def make_client(auth_client=False):
         client,
         compression=True,
         wait_on_rate_limit=True,
-        wait_on_rate_limit_notifyy=True
+        wait_on_rate_limit_notify=True
     )
 
     # Return it
