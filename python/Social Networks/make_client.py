@@ -17,7 +17,12 @@ def make_client(auth_client=False):
         return client
 
     # Get the client using the OAuth handle created
-    client = API(client)
+    client = API(
+        client,
+        compression=True,
+        wait_on_rate_limit=True,
+        wait_on_rate_limit_notifyy=True
+    )
 
     # Return it
     return client
