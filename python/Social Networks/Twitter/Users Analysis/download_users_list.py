@@ -43,17 +43,17 @@ if __name__ == "__main__":
         exit(1)
 
     # get followers for a given user
-    # fname = "users/{}_followers.json".format(screen_name)
-    # with open(fname, 'w') as f:
-    #     for followers in Cursor(client.followers_ids, screen_name=screen_name).pages(max_pages):
-    #         for chunk in paginate(followers, 100):
-    #             users = client.lookup_users(user_ids=chunk)
-    #             for user in users:
-    #                 print("Getting {}".format(user.name))
-    #                 f.write(json.dumps(user._json) + "\n")
-    #         if len(followers) == 5000:
-    #             print("Sleeping for 60 seconds.")
-    #             time.sleep(60)
+    fname = "users/{}_followers.json".format(screen_name)
+    with open(fname, 'w') as f:
+        for followers in Cursor(client.followers_ids, screen_name=screen_name).pages(max_pages):
+            for chunk in paginate(followers, 100):
+                users = client.lookup_users(user_ids=chunk)
+                for user in users:
+                    print("Getting {}".format(user.name))
+                    f.write(json.dumps(user._json) + "\n")
+            if len(followers) == 5000:
+                print("Sleeping for 60 seconds.")
+                time.sleep(60)
 
     # gets friends for a given user
     fname = "users/{}_friends.json".format(screen_name)
