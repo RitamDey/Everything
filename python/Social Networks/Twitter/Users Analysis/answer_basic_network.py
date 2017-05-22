@@ -17,21 +17,18 @@ if __name__ == '__main__':
     friends_file = 'users/{}_friends.json'.format(screen_name)
 
     with open(followers_file) as f1, open(friends_file) as f2:
-        followers = []
-        friends = []
+        followers = set()
+        friends = set()
         for line in f1:
             profile = json.loads(line)
-            followers.append(profile['screen_name'])
+            followers.add(profile['screen_name'])
         for line in f2:
             profile = json.loads(line)
-            friends.append(profile['screen_name'])
+            friends.add(profile['screen_name'])
 
-    mutual_friends = [user for user in friends
-                      if user in followers]
-    followers_not_following = [user for user in followers
-                               if user not in friends]
-    friends_not_following = [user for user in friends
-                             if user not in followers]
+    mutual_friends = friends.intersection(followers)
+    followers_not_following = followers.difference(friends)
+    friends_not_following = friends.difference(followers)
 
     print("{} has {} followers".format(screen_name,
                                        len(followers)))
