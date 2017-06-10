@@ -11,3 +11,15 @@ $stdout.puts "\nLength of #{msg}: msg.size"
 $stdout.puts "\nVowels: #{msg.count("aeiou")}"
 $stdout.puts "\nConsonants: #{msg.count("^aeiou")}"
 
+
+# Case magics
+$stdout.puts "Going to upper case: #{msg.upcase}"
+$stdout.puts "Going to lower case: #{msg.downcase}"
+$stdout.puts "Swapping case: #{msg.swapcase}"
+
+msg = "          "+msg+"         "
+# Stripping spaces
+$stdout.puts msg.lstrip
+$stdout.puts msg.rstrip
+msg = "   "+msg+"   "
+$stdout.puts msg.strip
