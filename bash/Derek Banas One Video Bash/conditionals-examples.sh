@@ -31,3 +31,16 @@ if (( ((num % 2)) == 0 )); then
 else
     echo "It is odd"
 fi
+
+
+if (( ((num > 0)) && ((num < 11)) ));
+then
+    echo "$num is between 1 and 10"
+fi
+
+
+
+touch sample.file && vim sample.file
+
+
+[ -d samp_dir ] || mkdir samp_dir  # the first check means sees if the dir exists
