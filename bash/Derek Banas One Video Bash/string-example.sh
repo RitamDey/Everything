@@ -23,8 +23,5 @@ fi
 if [ "$str2" > "$str3" ]; then
     echo "$str2 is greater than $str3"
 elif [ "$str2" < "$str3" ]; then
-    echo "
+    echo "$str2 is less than $str3"
 fi
-
-
-
