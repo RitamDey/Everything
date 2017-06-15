@@ -18,3 +18,13 @@ if [ "$str2" == "$str3" ]; then
 elif [ "$str2" != "$str3" ]; then
     echo "$str2 is not equal to $str3"
 fi
+
+
+if [ "$str2" > "$str3" ]; then
+    echo "$str2 is greater than $str3"
+elif [ "$str2" < "$str3" ]; then
+    echo "
+fi
+
+
+
