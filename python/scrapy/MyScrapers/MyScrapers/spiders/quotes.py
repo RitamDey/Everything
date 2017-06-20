@@ -13,7 +13,7 @@ class QuotesSpider(Spider):
         quotes_selector = '//div[@class="container"]/div[@class="row"]/div[@class="col-md-8"]/div[@class="quote"]'
         quote_selector = './span[@class="text"]/text()'
         author_selector = './span[2]/small[@class="author"]/text()'
-        author_url_selector = './span[2]/a/@href'
+        # author_url_selector = './span[2]/a/@href'
         tags = './div[@class="tags"]/a[@class="tag"]'
 
         quote_item = QuotesItem()
@@ -21,7 +21,6 @@ class QuotesSpider(Spider):
         for quote in response.xpath(quotes_selector):
             quote_item['quote'] = quote.xpath(quote_selector).extract_first()[1:-1]
             quote_item['author'] = quote.xpath(author_selector).extract_first()
-            quote_item['author_url'] = response.urljoin(quote.xpath(author_url_selector).extract_first())
 
             quote_item['tags'] = [
                 tag.xpath('./text()').extract_first().capitalize() \
