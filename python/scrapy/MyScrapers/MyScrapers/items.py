@@ -26,3 +26,9 @@ class QuotesItem(Item):
     quote = Field()
     author = Field()
     tags = Field()
+
+
+class OceanTutorialsItem(Item):
+    name = Field()
+    url = Field()
+    author = Field()
