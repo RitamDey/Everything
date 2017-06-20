@@ -19,6 +19,21 @@ if [ -e "$file1" ]; then
     if [ -w "$file1" ]; then
         echo "$file1 is writable"
     fi
+
+    # The -x tests if file is executable
+    if [ -x "$file1" ]; then
+        echo "$file1 is executable"
+    fi
+
+    # -d checks if file is directory
+    if [ -d "$file1" ]; then
+        echo "$file1 is a directory"
+    fi
+
+    # -L checks if file is a link
+    if [ -L "$file1" ]; then
+        echo "$file1 is a symbolic link"
+    fi
 else
     echo "$file1 doesn't exists"
 fi
