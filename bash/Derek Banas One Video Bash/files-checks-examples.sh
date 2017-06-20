@@ -34,6 +34,24 @@ if [ -e "$file1" ]; then
     if [ -L "$file1" ]; then
         echo "$file1 is a symbolic link"
     fi
-else
-    echo "$file1 doesn't exists"
+
+    # -p checks if file is a named pipe
+    if [ -p "$file1" ]; then
+        echo "$file1 is a named pipe"
+    fi
+
+    # -S checks if file is a network socket
+    if [ -S "$file1" ]; then
+        echo "$file1 is a network socket"
+    fi
+
+    # -G checks if file is owned by same group
+    if [ -G "$file1" ]; then
+        echo "$file1 is owned by same group"
+    fi
+
+    # -O checks if file is owned by user
+    if [ -O $file1 ]; then
+        echo "$file1 is owned by user"
+    fi
 fi
