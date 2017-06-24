@@ -49,6 +49,22 @@ class ArrayStructure {
         }
     }
 
+    public void insertionSort() {
+        for(int i=1; i<9; ++i) {
+            int j = i;
+
+            int toInsert = array[i];
+
+            while ((j>0) && (array[j-1] > toInsert)) {
+                array[j] = array[j-1];
+                --j;
+            }
+
+            array[j] =  toInsert;
+            printArray();
+        }
+    }
+
     public void binarySearch(int value) {
         // Indicates the start of the subarray that needs to be searched
         int lowIndex = 0;
@@ -77,8 +93,8 @@ class ArrayStructure {
         ArrayStructure arr = new ArrayStructure();
         arr.populate();
         // arr.bubbleSort();
-        // arr.binarySearch(11);
-        arr.selectionSort();
+        // arr.selectionSort();
+        arr.insertionSort();
     }
 }
 
