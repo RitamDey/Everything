@@ -1,17 +1,17 @@
 import java.util.Arrays;
 
 
-class QuickSort {
+class Partitioning {
     private static int[] array;
     private static int size;
 
 
     public static void main(String[] args) {
-        QuickSort sort = new QuickSort(10);
+        Partitioning partion = new Partitioning(10);
         System.out.println(Arrays.toString(partion.array));
 
-        sort.partition(35);
-        System.out.println(Arrays.toString(sort.array));
+        partion.partition(35);
+        System.out.println(Arrays.toString(partion.array));
     }
 
 
@@ -49,9 +49,14 @@ class QuickSort {
     }
 
 
-    QuickSort(int size) {
+    Partitioning(int size) {
         this.size = size;
         this.array = new int[size];
         this.generate();
     }
+}
+
+
+class QuickSort {
+    
 }
