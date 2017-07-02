@@ -1,0 +1,11 @@
+ipython[all]
+numpy
+pandas
+scikit-learn
+scipy
+requests
+Scrapy
+tweepy
+youtube-dl
+autopep8
+textblob

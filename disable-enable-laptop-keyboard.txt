@@ -1,0 +1,10 @@
+To disable or enable the laptop's keyboard to these
+
+To disable it:
+1. Type `xinput list` to get a list of input devices
+2. Find `AT Translated Set 2 keyboard` and take not of the id and [slave keyboard (#num)] too.
+3. Enter `xinput float <id>`.
+
+
+To re-enable it:
+1. Type `xinput reattach <id> (#num)` to reattach the device
