@@ -9,3 +9,4 @@ tweepy
 youtube-dl
 autopep8
 textblob
+Cython
