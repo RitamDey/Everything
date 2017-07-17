@@ -22,7 +22,7 @@ class ForkedClient():
         print("Sent: %d characters" % sent_data_length)
 
         response = self.socket.recv(BUF_SIZE)
-        print("PID %s recieved %s" % (current_process_id, response[5:]))
+        print("PID %s recieved %s" % (current_process_id, response))
 
     def shutdown(self):
         self.socket.close()
