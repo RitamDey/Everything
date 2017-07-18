@@ -1,6 +1,5 @@
 """ Bar Charts """
 import matplotlib.pyplot as plt
-from numpy.random import randint
 
 x = [2, 4, 6, 8, 10]
 y = [6, 7, 8, 2, 4]
