@@ -61,4 +61,3 @@ class ChatServer:
         for output in self.outputs:
             output.close()
         self.server.close()
-    
