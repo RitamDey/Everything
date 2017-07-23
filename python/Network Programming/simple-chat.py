@@ -4,6 +4,7 @@ import signal
 import pickle
 import struct
 import argparse
+import sys
 
 
 SERVER_HOST = 'localhost'
@@ -61,3 +62,20 @@ class ChatServer:
         for output in self.outputs:
             output.close()
         self.server.close()
+
+    def get_client_name(self, client):
+        """ Return the name of the client """
+        info = self.clientmap[client]
+        host, name = info[0][0], info[1]
+        return '@'.join((name, host))
+
+    def run(self):
+        inputs = [self.server, sys.stdin]
+        self.outputs = []
+        running = True
+        while running:
+            try:
+                readable, writable, exceptional = select.select(
+                    inputs, self.outputs, [])
+            except select.error as e:
+                break

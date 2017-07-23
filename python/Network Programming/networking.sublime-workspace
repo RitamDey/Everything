@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"e",
+				"error\tclass"
+			],
+			[
+				"in",
+				"inputs"
+			],
+			[
+				"sel",
+				"select"
+			],
+			[
+				"outpu",
+				"output"
+			],
+			[
+				"SIGI",
+				"SIGINT\tinstance"
+			],
+			[
+				"se",
+				"self\tparam"
+			],
+			[
+				"du",
+				"dumps\tfunction"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"tr",
+				"try\tTry/Except"
+			],
+			[
+				"b",
+				"buffer"
+			],
+			[
+				"str",
+				"struct"
+			],
+			[
 				"ser",
 				"server_thread"
 			],
@@ -38,10 +82,6 @@
 			[
 				"cla",
 				"class\tkeyword"
-			],
-			[
-				"re",
-				"recv"
 			],
 			[
 				"sco",
@@ -104,10 +144,6 @@
 				"ForkingMixIn\tclass"
 			],
 			[
-				"se",
-				"send"
-			],
-			[
 				"Ba",
 				"BaseRequestHandler\tclass"
 			],
@@ -152,9 +188,11 @@
 	"buffers":
 	[
 		{
+			"file": "simple-chat.py",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 2069,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -195,9 +233,11 @@
 	},
 	"expanded_folders":
 	[
+		"/home/stux/Codes/CodesCollections/python/Network Programming"
 	],
 	"file_history":
 	[
+		"/home/stux/Codes/CodesCollections/python/Network Programming/networking.sublime-project",
 		"/home/stux/Codes/CodesCollections/python/Network Programming/echo_server_threading.py",
 		"/home/stux/Codes/CodesCollections/python/Network Programming/echo_server.py",
 		"/home/stux/Codes/CodesCollections/python/Network Programming/echo_server_thrwading.py",
@@ -247,27 +287,43 @@
 			[
 				{
 					"buffer": 0,
+					"file": "simple-chat.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 2069,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								2068,
+								2068
 							]
 						],
 						"settings":
 						{
-							"default_dir": "/home/stux/Codes/CodesCollections/python/Network Programming",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 855.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -352,7 +408,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 150.0,
 	"status_bar_visible": true,
 	"template_settings":
