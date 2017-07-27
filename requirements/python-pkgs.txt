@@ -12,3 +12,4 @@ autopep8
 textblob
 Cython
 matplotlib
+quandl

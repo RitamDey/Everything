@@ -1,8 +1,8 @@
 # import pandas as pd
-import Quandl
+import quandl
 from math import ceil
 
-df = Quandl.get('WIKI/GOOGL')
+df = quandl.get('WIKI/GOOGL')
 
 df = df[['Adj. Open', 'Adj. High', 'Adj. Low', 'Adj. Close', 'Adj. Volume']]
 
