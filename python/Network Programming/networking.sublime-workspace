@@ -4,12 +4,100 @@
 		"selected_items":
 		[
 			[
-				"e",
-				"error\tclass"
+				"has",
+				"hashtable\tstatement"
+			],
+			[
+				"wor",
+				"wordToFind"
+			],
+			[
+				"Ha",
+				"HashFunction"
+			],
+			[
+				"wo",
+				"wordToFind"
+			],
+			[
+				"n",
+				"not"
+			],
+			[
+				"is",
+				"is\tkeyword"
+			],
+			[
+				"ne",
+				"next"
+			],
+			[
+				"hahs",
+				"hashKey"
+			],
+			[
+				"the",
+				"theWord\tparam"
+			],
+			[
+				"th",
+				"theWord"
+			],
+			[
+				"new",
+				"newWord"
+			],
+			[
+				"def",
+				"definition"
+			],
+			[
+				"Wo",
+				"Word\tclass"
+			],
+			[
+				"to",
+				"tofind"
+			],
+			[
+				"str",
+				"stringHash\tfunction"
+			],
+			[
+				"hash",
+				"hashKey"
+			],
+			[
+				"ele",
+				"elementsToAdd\tstatement"
+			],
+			[
+				"a",
+				"arr\tstatement"
+			],
+			[
+				"No",
+				"None\tinstance"
+			],
+			[
+				"re",
+				"return\t(simple-chat.py)"
+			],
+			[
+				"cha",
+				"charCode"
 			],
 			[
 				"in",
-				"inputs"
+				"int"
+			],
+			[
+				"le",
+				"len\t(simple-chat.py)"
+			],
+			[
+				"e",
+				"error\tclass"
 			],
 			[
 				"sel",
@@ -32,20 +120,12 @@
 				"dumps\tfunction"
 			],
 			[
-				"re",
-				"return"
-			],
-			[
 				"tr",
 				"try\tTry/Except"
 			],
 			[
 				"b",
 				"buffer"
-			],
-			[
-				"str",
-				"struct"
 			],
 			[
 				"ser",
@@ -188,10 +268,13 @@
 	"buffers":
 	[
 		{
+			"contents": "import select\nimport socket\nimport signal\nimport pickle\nimport struct\nimport argparse\nimport sys\n\n\nSERVER_HOST = 'localhost'\nCHAT_SERVER_NAME = 'server'\n\n\n# Some utilities\ndef send(channel, *args):\n    buffer = pickle.dumps(args)\n    value = socket.htonl(len(buffer))\n    size = struct.pack(\"L\", value)\n    channel.send(size)\n    channel.send(buffer)\n\n\ndef recieve(channel):\n    size = struct.calcsize(\"L\")\n    size = channel.recv(size)\n\n    try:\n        size = socket.ntohl(struct.unpack(\"L\", size)[0])\n    except struct.error as e:\n        return ''\n\n    buf = b''\n\n    while len(buf) < size:\n        buf = channel.recv(size - len(buf))\n    return pickle.loads(buf)[0]\n\n\nclass ChatServer:\n    \"\"\" An example chat server using select \"\"\"\n\n    def __init__(self, port, backlog=5):\n        self.clients = 0\n        self.clientmap = {}\n        self.outputs = []  # list output sockets\n        self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n\n        # Enable re-run of the socket\n        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n        self.server.bind((SERVER_HOST, port))\n        print(f\"Listening on {port}\")\n        self.server.listen(backlog)\n\n        # Catch keyboard interrupts\n        signal.signal(signal.SIGINT, self.sighandler)\n\n    def sighandler(self, signum, frame):\n        \"\"\" Clean up client outputs \"\"\"\n        # Clost the server\n        print('Closing')\n        # Close existing client sockets\n        for output in self.outputs:\n            output.close()\n        self.server.close()\n\n    def get_client_name(self, client):\n        \"\"\" Return the name of the client \"\"\"\n        info = self.clientmap[client]\n        host, name = info[0][0], info[1]\n        return '@'.join((name, host))\n\n    def run(self):\n        inputs = [self.server, sys.stdin]\n        self.outputs = []\n        running = True\n        while running:\n            try:\n                readable, writable, exceptional = select.select(\n                    inputs, self.outputs, [])\n            except select.error as e:\n                break \n",
 			"file": "simple-chat.py",
+			"file_size": 2069,
+			"file_write_time": 131452908985433205,
 			"settings":
 			{
-				"buffer_size": 2069,
+				"buffer_size": 2070,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -237,6 +320,8 @@
 	],
 	"file_history":
 	[
+		"/home/stux/Codes/AlgoDS/Python/Hash-Table-3.py",
+		"/home/stux/Codes/untitled.py",
 		"/home/stux/Codes/CodesCollections/python/Network Programming/networking.sublime-project",
 		"/home/stux/Codes/CodesCollections/python/Network Programming/echo_server_threading.py",
 		"/home/stux/Codes/CodesCollections/python/Network Programming/echo_server.py",
@@ -291,15 +376,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2069,
+						"buffer_size": 2070,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2068,
-								2068
+								2069,
+								2069
 							]
 						],
 						"settings":
@@ -323,7 +408,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 855.0,
+						"translation.y": 572.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
