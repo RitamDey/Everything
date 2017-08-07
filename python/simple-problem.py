@@ -18,12 +18,11 @@ Example:
 
 arr = list(map(int, input().split()))
 l = len(arr)
+sol = None
 
 
 for j in range(0, l):
-    subs = None
     for i in range(0, l):
-        print(j-i, end=" ")
         if arr[j] > arr[i]:
             x = j-i
             try:
@@ -31,7 +30,6 @@ for j in range(0, l):
                     sol = j-i
             except:
                 sol = j-i
-    print("\n")
 
 
 print(sol)
