@@ -275,7 +275,17 @@
 			"settings":
 			{
 				"buffer_size": 2070,
-				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\"\"\"\nGiven an array arr[], find the maximum j - i such that arr[j] > arr[i]\n\nExample:\n    Input: [34, 8, 10, 3, 2, 80, 30, 33, 1]\n    Output: 6 (j = 7, i = 1)\n\n    Input: [9, 2, 3, 4, 5, 6, 7, 8, 18, 0]\n    Output: 8 (j = 8, i = 0)\n\n    Input: [1, 2, 3, 4, 5, 6]\n    Output: 5 (j = 5, i = 0)\n\n    Input: [6, 5, 4, 3, 2, 1]\n    Output: -1\n\"\"\"\n\n\narr = list(map(int, input().split()))\nl = len(arr)\nmax_ =  None\n\n\nfor  i in range(0, l):\n    subs = iNone\n    for j in range(0, l):\n        print(j-i, end=\" \")\n        if arr[j] > arr[i]:\n            try:\n                if j-i > max_:\n                    max_ = j-i\n            except:\n                max_ = j-i\n    print(\"\\n\")\n\n\nprint()\n",
+			"file": "/home/stux/Codes/CodesCollections/python/simple-problem.py",
+			"file_size": 675,
+			"file_write_time": 131465925117325854,
+			"settings":
+			{
+				"buffer_size": 683,
 				"line_ending": "Unix"
 			}
 		}
@@ -367,7 +377,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -409,6 +419,45 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 572.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/stux/Codes/CodesCollections/python/simple-problem.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 683,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								681,
+								681
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
