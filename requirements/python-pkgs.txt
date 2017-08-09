@@ -13,3 +13,5 @@ textblob
 Cython
 matplotlib
 quandl
+Scapy-python3
+
