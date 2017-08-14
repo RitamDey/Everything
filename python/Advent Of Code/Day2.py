@@ -31,7 +31,7 @@ def move(instruction, pos):
 
 
 if __name__ == '__main__':
-    instructions = open('input.txt').read().split('\n')[0:-1]
+    instructions = open('Day2_Input.txt').read().split('\n')[0:-1]
     pos = {'row': 1, 'col': 1}
     for i in instructions:
         pos, r = move(i, pos)
