@@ -8,7 +8,7 @@
 import scrapy
 
 
-class AdvancedscrapyItem(scrapy.Item):
+class AdvancedscrapingItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
