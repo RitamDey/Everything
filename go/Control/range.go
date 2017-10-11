@@ -22,4 +22,18 @@ func main() {
     for index, value := range list {
         fmt.Printf("Index %v has Value %v\n", index, value)
     }
+
+    /**
+     * You can also use range on strings directly.
+     * Then it will break out the individual Unicode characters 6 Mostly,
+     * when people talk about characters, they mean 8 bit characters.
+     * As UTF-8 characters may be up to 32 bits the word rune is used.
+     * In this case the type of char is rune. and their start position,
+     * by parsing the UTF-8.
+     * The loop:
+    **/
+
+    for pos, char := range "Gő!" {
+        fmt.Printf("Character '%c' starts at position %d\n", char, pos)
+    }
 }
