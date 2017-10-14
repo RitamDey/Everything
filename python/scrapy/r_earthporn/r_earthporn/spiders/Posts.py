@@ -23,16 +23,17 @@ class PostsSpider(scrapy.Spider):
             if link.find("/r/") != -1:
                 yield Request(url=response.urljoin(link), callback=self.parse_post)
 
-        # yield Request(url=next_page, callback=self.parse)
+        yield Request(url=next_page, callback=self.parse)
 
     def parse_post(self, response):
         title_xpath = "//div[@class='top-matter']/p[@class='title']/a/text()"
         picture_xpath = "//div[@class='media-preview-content']/a/@href"
 
-        picture = response.xpath(picture_xpath).extract_first()
+        picture = response.xpath(picture_xpath).extract()
         title = response.xpath(title_xpath).extract_first()
 
-        yield {
-                "title": title,
-                "picture": picture
-        }
+        image = ImageItem()
+        image["name"] = title
+        image["image_urls"] = picture
+
+        yield image
