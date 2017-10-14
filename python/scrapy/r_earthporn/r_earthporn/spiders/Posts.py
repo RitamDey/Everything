@@ -5,7 +5,6 @@ from r_earthporn.items import ImageItem
 
 class PostsSpider(scrapy.Spider):
     name = 'Posts'
-    allowed_domains = ['https://www.reddit.com/r/EarthPorn/']
     start_urls = ['https://www.reddit.com/r/EarthPorn/']
 
     def parse(self, response):
