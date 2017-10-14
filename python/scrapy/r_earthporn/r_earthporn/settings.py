@@ -64,9 +64,15 @@ DOWNLOAD_DELAY = 5
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'r_earthporn.pipelines.REarthpornPipeline': 300,
-#}
+ITEM_PIPELINES = {
+        'scrapy.pipelines.images.ImagesPipeline': 1
+}
+
+# Image settings
+IMAGES_STORE = '/home/stux/EarthPorn'
+IMAGES_EXPIRES = None
+MEDIA_ALLOW_REDIRECTS = True
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
