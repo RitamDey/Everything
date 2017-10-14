@@ -21,3 +21,14 @@ class PostsSpider(scrapy.Spider):
                 yield Request(url=response.urljoin(link), callback=self.parse_post)
 
 
+    def parse_post(self, response):
+        title_xpath = "//div[@class='top-matter']/p[@class='title']/a/text()"
+        picture_xpath = "//div[@class='media-preview-content']/a/@href"
+
+        picture = response.xpath(picture_xpath).extract_first()
+        title = response.xpath(title_xpath).extract_first()
+
+        yield {
+                "title": title,
+                "picture": picture
+        }
