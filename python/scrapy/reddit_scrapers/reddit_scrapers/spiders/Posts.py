@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy.http import Request
-from reddit_scrappers.items import ImageItem
+from reddit_scrapers.items import ImageItem
 
 
 class PostsSpider(scrapy.Spider):
