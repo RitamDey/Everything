@@ -24,13 +24,13 @@ class PostsSpider(scrapy.Spider):
             title = title.extract()
             if link.find("/r/") != -1:
                 yield Request(url=response.urljoin(link), callback=self.parse_post)
-            else:
-                yield {
-                        "title": title,
-                        "link": link
-                    }
+            elif link.find("cdnb.artstation.com") != -1 or link.find("cdna.artstation.com") or link.find("i.imgur.com") != -1:
+                image = ImageItem()
+                image["name"] = title
+                image["image_urls"] = [link,]
+                yield image
 
-        #yield Request(url=next_page, callback=self.parse)
+        yield Request(url=next_page, callback=self.parse)
 
     def parse_post(self, response):
         title_xpath = "//div[@class='top-matter']/p[@class='title']/a/text()"
