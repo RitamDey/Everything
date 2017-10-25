@@ -12,7 +12,7 @@ class Account:
 
     @property
     def balance(self):
-        return self.amount + sum(self._transaction)
+        return self.amount + sum(self._transactions)
 
     def __init__(self, owner, amount=0):
 
@@ -22,7 +22,7 @@ class Account:
         """
         self.owner = owner
         self.amount = amount
-        self._transaction = []
+        self._transactions = []
 
     def __str__(self):
         """
@@ -67,6 +67,18 @@ class Account:
             acc.add_transaction(t)
         return acc
 
+    def __call__(self):
+        """
+        One can made a python class callable by using
+        `__call__` method.
+        """
+        print(f"Balance for", self.owner)
+        print(f'Start amount: {self.amount}')
+        print("Transactions:")
+        for tran in self:
+            print(tran)
+        print(f"Balance: {self.balance}")
+
 
 if __name__ == '__main__':
     acc = Account('bob', 10)
@@ -97,3 +109,7 @@ if __name__ == '__main__':
     acc3 = acc + acc2
     print(acc3.amount)
     print(acc3.balance)
+
+    acc()
+    acc2()
+    acc3()
