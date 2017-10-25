@@ -79,6 +79,39 @@ class Account:
             print(tran)
         print(f"Balance: {self.balance}")
 
+    """
+    A context manager is a simple “protocol” (or interface) that your
+    object needs to follow so it can be used with the with statement.
+    Basically all you need to do is add __enter__ and __exit__ methods to
+    an object if you want it to function as a context manager.
+    """
+    def __enter__(self):
+        print("ENTER WITH: Making backup of transactions for rollback")
+        self._copy_transactions = list(self._transactions)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print('EXIT WITH:', end=' ')
+        if exc_type:
+            self._transactions = self._copy_transactions
+            print("Rolling back")
+            print('Transaction resulted in {} ({})'.format(
+                                                exc_type.__name__,
+                                                exc_val
+                                                ))
+        else:
+            print('Transaction OK')
+
+
+def validate_transaction(acc, amount_to_add):
+    with acc as a:
+        print('Adding {} to amount'.format(amount_to_add))
+        a.add_transaction(amount_to_add)
+        print('New balance {}'.format(a.balance))
+
+        if a.balance < 0:
+            raise ValueError('can\'t go to debt')
+
 
 if __name__ == '__main__':
     acc = Account('bob', 10)
@@ -113,3 +146,16 @@ if __name__ == '__main__':
     acc()
     acc2()
     acc3()
+
+    acc4 = Account('sue', 10)
+    print('Balance start: {}'.format(acc4.balance))
+    validate_transaction(acc4, 20)
+    print('Balance end: {}'.format(acc4.balance))
+
+    try:
+        validate_transaction(acc4, -50)
+    except ValueError as exc:
+        print(exc)
+
+    print('Balance end {}'.format(acc4.balance))
+
