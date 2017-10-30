@@ -4,6 +4,7 @@ pandas
 scikit-learn
 scipy
 statsmodels
+sympy
 requests
 Scrapy
 tweepy
@@ -15,4 +16,3 @@ Cython
 matplotlib
 quandl
 Scapy-python3
-pygit2 < 0.26
