@@ -7,7 +7,6 @@ statsmodels
 requests
 Scrapy
 tweepy
-twilio~=6.0.0
 facebook-sdk
 youtube-dl
 autopep8
