@@ -9,14 +9,16 @@ typedef struct node {
 } node;
 
 
+node **tail = NULL;
+
+
 void append(node **list, long int data) {
-    if(*list)
-        append(&(*list)->next, data);
-    else {
-        *list = (node *)malloc(sizeof(node));
-        (*list)->data = data;
-        (*list)->next = NULL;
-    }
+        node *n = (node *)malloc(sizeof(node));
+        n->data = data;
+        n->next = NULL;
+
+        *tail = n;
+        tail = &(*tail)->next;
 }
 
 
@@ -24,12 +26,13 @@ void delete_friend(node **list) {
     node **tmp = list, *x;
     bool deleted = false;
 
-    while((*tmp)->next) {
+    while(*tmp && (*tmp)->next != NULL) {
         if((*tmp)->data < (*tmp)->next->data) {
             x = (*tmp)->next;
             free(*tmp);
             *tmp = x;
             deleted = true;
+            break;
         }
 
         tmp = &(*tmp)->next;
@@ -46,6 +49,7 @@ int main() {
     
     for(int x=1; x<=cases; ++x) {
         node *list = NULL;
+        tail = &list;
         scanf("%d %d", &n_friends, &n_dels);
         
         for(int i=1; i<=n_friends; ++i) {
@@ -53,7 +57,7 @@ int main() {
             append(&list, tmp);
         }
         
-        for(int i=1; i<=n_dels; ++i)
+        for(; n_dels >= 1; n_dels--)
             delete_friend(&list);
         
         while(list) {
