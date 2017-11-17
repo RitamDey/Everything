@@ -2,7 +2,7 @@ class Trie:
     class Node:
         def __init__(self):
             self.is_end = False
-            self.children = [None,]*26
+            self.children = [None] * 26
             self.count = 0
 
     def __init__(self):
@@ -34,6 +34,8 @@ class Trie:
             curr = curr.children[pos]
 
         if curr is not None:
+            if curr.is_end:
+                return curr.count+1
             return curr.count
 
 
