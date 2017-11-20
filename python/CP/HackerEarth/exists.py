@@ -11,7 +11,12 @@ for _ in range(int(input())):
 
 
     for _ in range(int(input())):
-        key = input()
-        pos = (hash(key) // l) % l
-        print("Yes" if arr[pos] and key in arr[pos] else "No")
+        key = input().split()
+        if length == 1:
+            pos = (hash(key) // l) % l
+            print("Yes" if arr[pos] and key in arr[pos] else "No")
+        else:
+            for k in key:
+                pos = (hash(k) // l) % l
+                print("Yes" if arr[pos] and k in arr[pos] else "No")
 
