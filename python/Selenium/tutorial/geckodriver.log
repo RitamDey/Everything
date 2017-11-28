@@ -1,0 +1,32 @@
+1511280943358	geckodriver	INFO	geckodriver 0.19.1
+1511280943364	geckodriver	INFO	Listening on 127.0.0.1:51221
+1511280944540	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.oUoEjejHMoTU"
+1511280945355	Marionette	INFO	Enabled via --marionette
+1511280948127	Marionette	INFO	Listening on port 45177
+1511280948163	Marionette	WARN	TLS certificate errors will be ignored for this session
+1511280948245	Marionette	DEBUG	Register listener.js for window 2147483649
+1511280948334	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1511280949109	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1511280949109	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1511280949422	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://www.google.co.in/?gws_rd=ssl"
+1511280955567	Marionette	DEBUG	Received DOM event "pageshow" for "https://www.google.co.in/?gws_rd=ssl"
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1511280988443	geckodriver	INFO	geckodriver 0.19.1
+1511280988448	geckodriver	INFO	Listening on 127.0.0.1:42081
+1511280989618	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.jIU8Kb82M2Qo"
+1511280990471	Marionette	INFO	Enabled via --marionette
+1511280993102	Marionette	INFO	Listening on port 38615
+1511280993140	Marionette	WARN	TLS certificate errors will be ignored for this session
+1511280993231	Marionette	DEBUG	Register listener.js for window 2147483649
+1511280993304	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1511280994368	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1511280994369	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1511280994558	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://www.google.co.in/?gws_rd=ssl"
+1511280995538	Marionette	DEBUG	Received DOM event "pageshow" for "https://www.google.co.in/?gws_rd=ssl"
+1511280995670	Marionette	DEBUG	Received DOM event "beforeunload" for "https://www.google.co.in/?gws_rd=ssl"
+1511280995825	Marionette	DEBUG	Received DOM event "pagehide" for "https://www.google.co.in/?gws_rd=ssl"
+1511280995828	Marionette	DEBUG	Received DOM event "unload" for "https://www.google.co.in/?gws_rd=ssl"
+1511280996408	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://www.google.co.in/search?source=hp&ei=YlEUWrfjD8H4vASx8rrIBA&q=Selenium&oq=Selenium&gs_l=psy-ab.12...798.824.0.858.8.1.0.0.0.0.0.0..0.0....0...1c.1.64.psy-ab..8.0.0....0.wbzIpUkG2i4"
+1511280996973	Marionette	DEBUG	Received DOM event "pageshow" for "https://www.google.co.in/search?source=hp&ei=YlEUWrfjD8H4vASx8rrIBA&q=Selenium&oq=Selenium&gs_l=psy-ab.12...798.824.0.858.8.1.0.0.0.0.0.0..0.0....0...1c.1.64.psy-ab..8.0.0....0.wbzIpUkG2i4"
+[Child 7190, Chrome_ChildThread] WARNING: pipe error (19): Connection reset by peer: file /build/firefox-3UIrRa/firefox-57.0+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 7190, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-3UIrRa/firefox-57.0+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
