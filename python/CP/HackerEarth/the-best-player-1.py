@@ -1,15 +1,14 @@
-fans, n_fans = map(int, input().split())
-fans_dict = [input().split() for _ in range(fans)]
+class user_dict(dict):
+    def __missing__(self, key):
+        self[key] = []
+        return self[key]
 
 
-sorted = False
-while not sorted:
-    for i in range(fans-1):
-        sorted = True
-        if fans_dict[i][1] < fans_dict[i+1][1]:
-            fans_dict[i], fans_dict[i+1] = fans_dict[i+1], fans_dict[i]
-            sorted = False
+n_fans, can_meet = map(int, input().split())
+fans_dict = user_dict()
+fans_list = []
 
 
-for x in range(n_fans):
-    print(fans_dict[x][0])
+for _ in range(n_fans):
+    x = input().split()
+
