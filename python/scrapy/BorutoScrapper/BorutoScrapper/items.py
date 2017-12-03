@@ -12,3 +12,4 @@ class BorutoscrapperItem(scrapy.Item):
     # define the fields for your item here like:
     folder_path = scrapy.Field()
     image_urls = scrapy.Field()
+    source_url = scrapy.Field()
