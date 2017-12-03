@@ -1,15 +1,9 @@
 # -*- coding: utf-8 -*-
-
-# Define here the models for your scraped items
-#
-# See documentation in:
-# http://doc.scrapy.org/en/latest/topics/items.html
-
-import scrapy
+from scrapy import Item, Field
 
 
-class BorutoscrapperItem(scrapy.Item):
+class BorutoscrapperItem(Item):
     # define the fields for your item here like:
-    folder_path = scrapy.Field()
-    image_urls = scrapy.Field()
-    source_url = scrapy.Field()
+    folder_path = Field()
+    image_urls = Field()
+    source_url = Field()
