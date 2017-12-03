@@ -18,4 +18,5 @@ class CrawlSpider(CrawlSpider):
         image = BorutoscrapperItem()
         image['image_urls'] = response.xpath('//div[@id="imgholder"]/a/img/@src').extract()
         image['folder_path'] = image['image_urls'][0].split("/")[-2]
+        image['source_url'] = response.url
         return image
