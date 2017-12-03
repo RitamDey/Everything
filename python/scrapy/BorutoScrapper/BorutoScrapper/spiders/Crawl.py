@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import scrapy
+# import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from ..items import BorutoscrapperItem
@@ -11,7 +11,11 @@ class CrawlSpider(CrawlSpider):
     start_urls = ['http://www.mangapanda.com/boruto/1']
 
     rules = (
-        Rule(LinkExtractor(restrict_xpaths=("//div[@id='navi']/div[@class='prevnext']/span[@class='next']/a")), callback="parse_item", follow=True),
+            Rule(
+                LinkExtractor(restrict_xpaths=("//div[@id='navi']/div[@class='prevnext']/span[@class='next']/a")),
+                callback="parse_item",
+                follow=True
+            ),
     )
 
     def parse_item(self, response):
