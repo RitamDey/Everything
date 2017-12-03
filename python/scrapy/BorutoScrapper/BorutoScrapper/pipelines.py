@@ -3,10 +3,6 @@ from scrapy.pipelines.images import ImagesPipeline
 from .settings import IMAGES_STORE
 import os
 from shutil import move
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
 class BorutoscrapperPipeline(ImagesPipeline):
