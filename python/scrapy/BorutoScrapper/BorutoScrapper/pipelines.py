@@ -20,7 +20,6 @@ class BorutoscrapperPipeline(ImagesPipeline):
             print(os.path.isdir(target_path), os.path.isdir(path))
 
             # try to move the file and raise exception if not possible
-            # if not os.rename(path, target_path):
             if not move(path, target_path):
                 raise ImageException("Could not move image to target folder")
 
