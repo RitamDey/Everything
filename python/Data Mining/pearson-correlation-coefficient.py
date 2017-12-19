@@ -17,13 +17,14 @@ def calc_coeff(rating1, rating2):
             sum_num += x * y
             sum_x += x
             sum_y += y
-            sum_x2 += pow(x, 2)
-            sum_y2 += pow(y, 2)
+            sum_x2 += x**2
+            sum_y2 += y**2
 
     if n == 0:
         return 0
 
-    deno = sqrt(sum_x2 - (sum_x**2) / n) * sqrt(sum_y2 - (sum_y2**2) / n)
+    deno = sqrt(sum_x2 - (sum_x**2) / n) *\
+           sqrt(sum_y2 - (sum_y**2) / n)
 
     if deno == 0:
         return 0
