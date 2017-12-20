@@ -30,3 +30,29 @@ If the result is non-zero then the ith bit is set
 n = 20 # (10100) in binary
 print("Is the 2nd bit in 20 set?", (n & (1 << 2)) != 0)
 
+
+def possibleSubsets(arr, length):
+    for i in range(1<<length):
+        for j in range(length):
+            if i&(1<<j):
+                print(arr[j], end=" ")
+        print("")
+
+
+print("Possible subsets of ['a', 'b', 'c']:", end='')
+possibleSubsets(["a", "b", "c"], 3)
+print("Possible subsets of [1, 2, 3, 4, 5]:", end='')
+possibleSubsets([1, 2, 3,  4, 5], 5)
+
+
+
+def CountSetBits(n):
+    count = 0
+    while n:
+        n = n&(n-1)  # x-1 flips the rightmost 1 and the bits right to it
+        count += 1
+    return count
+
+
+print("Set bits in 4", CountSetBits(4))
+print("Set bits in 10:", CountSetBits(10))
