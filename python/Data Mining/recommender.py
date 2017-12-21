@@ -57,6 +57,10 @@ class recommender:
         self.metric = metric
         if self.metric == 'pearson':
             self.fn = self.pearson
+        elif self.metric == 'manhattan':
+            self.fn = self.manhattan
+        elif self.metric == 'euclid':
+            self.fn = self.euclid
         #
         # if data is dictionary set recommender data to it
         #
@@ -149,10 +153,28 @@ class recommender:
         f.close()
         print(i)
 
+    def loadMovieDB(self, path):
+        db = codecs.open(path+"Movie_Ratings.csv", 'r', encoding='utf-8')
+        self.data = {}
+        for name in db.readline().strip().split(","):
+            if name:
+                self.data[name.strip('"')] = {}
+        names = self.data.keys()
+        
+        for line in db.readlines():
+            line = line.strip().split(",")
+            movie = line[0].strip('"')
+            for person,rating in zip(names, line[1:]):
+                if rating:
+                    self.data[person][movie] = int(rating)
+
+        print(self.data)
+        db.close()
+        
     def pearson(self, rating1, rating2):
         sum_xy = 0
-        sum_x = 0
-        sum_y = 0
+        sum_x  = 0
+        sum_y  = 0
         sum_x2 = 0
         sum_y2 = 0
         n = 0
@@ -162,8 +184,8 @@ class recommender:
                 x = rating1[key]
                 y = rating2[key]
                 sum_xy += x * y
-                sum_x += x
-                sum_y += y
+                sum_x  += x
+                sum_y  += y
                 sum_x2 += pow(x, 2)
                 sum_y2 += pow(y, 2)
 
@@ -179,6 +201,13 @@ class recommender:
             return 0
         else:
             return (sum_xy - (sum_x * sum_y) / n) / denominator
+
+    def manhattan(self, rating1, rating2):
+        distance = 0
+        for rating in rating1:
+            if rating in rating2:
+                distance += abs(rating1[rating] - rating2[rating])
+        return distance
 
     def computeNearestNeighbor(self, username):
         """creates a sorted list of users based on their distance to
@@ -222,7 +251,7 @@ class recommender:
 
             for artist in neighborRatings:
                 if artist not in userRatings:
-                    if artist not in recommendations:``
+                    if artist not in recommendations:
                         recommendations[artist] = (
                             neighborRatings[artist] * weight
                         )
