@@ -7,13 +7,13 @@
 
 
 typedef struct _tree {
-    long long int data;
+    unsigned long long int data;
     struct _tree *left;
     struct _tree *right;
 } Tree;
 
 
-void append(Tree **tree, long long int data) {
+void append(Tree **tree, unsigned long long int data) {
     if(*tree is NULL) {
         *tree = (Tree *)malloc(sizeof(Tree));
         (*tree)->data = data;
@@ -29,7 +29,7 @@ void append(Tree **tree, long long int data) {
 }
 
 
-bool contains(Tree *tree, long long int data) {
+bool contains(Tree *tree, unsigned long long int data) {
     if(tree is NULL)
         return false;
     if(tree != NULL and tree->data == data)
@@ -52,14 +52,14 @@ int main() {
         scanf("%d %d", &init_studs_len, &rem_studs_len);
 
         for(int j=1; j<=init_studs_len; ++j) {
-            int x;
-            scanf("%d", &x);
+            unsigned long long int x;
+            scanf("%llu", &x);
             append(&studs, x);
         }
 
         for(int j=1; j<=rem_studs_len; ++j) {
-            int x;
-            scanf("%d", &x);
+            unsigned long long int x;
+            scanf("%llu", &x);
 
             if(contains(studs, x))
                 puts("YES");
@@ -69,4 +69,5 @@ int main() {
             }
         }
     }
+    return 0;
 }
