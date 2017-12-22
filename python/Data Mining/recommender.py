@@ -209,6 +209,13 @@ class recommender:
                 distance += abs(rating1[rating] - rating2[rating])
         return distance
 
+    def euclid(self, rating1, rating2):
+        distance = 0
+        for rating in rating1:
+            if rating in rating2:
+                distance += (rating1[rating]-rating2[rating])**2
+        return sqrt(distance)
+
     def computeNearestNeighbor(self, username):
         """creates a sorted list of users based on their distance to
         username"""
