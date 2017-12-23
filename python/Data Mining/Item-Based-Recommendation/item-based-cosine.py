@@ -55,9 +55,14 @@ def cosine(users: dict, item1: str, item2: str) -> float:
             num += (x*y)
             dem1 += (x**2)
             dem2 += (y**2)
-    return round((num/(sqrt(dem1)*sqrt(dem2))),4)
+    return num/(sqrt(dem1)*sqrt(dem2))
 
 
 if __name__ == '__main__':
-    print("Similarity of Imagine Dragons and Kacey Musgraves", cosine(user, "Kacey Musgraves", "Imagine Dragons"))
-    print("Similarity of Kacey Musgraves and Fall Out Boy", cosine(user, "Kacey Musgraves", "Fall Out Boy"))
+    bands = ["Kacey Musgraves", "Imagine Dragons", "Daft Punk", "Lorde", "Fall Out Boy"]
+
+    for band in bands:
+        print("Similarity with "+band+":")
+        for i in range(len(bands)):
+            if bands[i] != band:
+                print("\t", bands[i], "%.4f" %cosine(user, band, bands[i]))
