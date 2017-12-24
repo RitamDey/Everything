@@ -1,4 +1,10 @@
 def slope_one(item1, item2):
+    """
+    Formulae for calculatng devation b/w item1 and item2
+    ∑               u i − u j
+                    -----------------
+    u∈S i.j ( X ) card(S i, j (X))
+    """
     card = 0
     num = 0
 
