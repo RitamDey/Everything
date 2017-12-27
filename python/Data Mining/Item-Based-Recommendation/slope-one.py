@@ -35,8 +35,6 @@ if __name__ == '__main__':
         }
     }
 
-    # print("Deviation Taylor Swift->PSY",
-    #       slope_one(data["Taylor Swift"], data["PSY"]))
     items = ["Taylor Swift", "PSY", "Whitney Houston"]
     for item1 in items:
         for item2 in items:
