@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from ..items import BorutoscrapperItem
+from ..LinkExtractor import Extractor
 
 
 class CrawlSpider(CrawlSpider):
@@ -11,7 +11,7 @@ class CrawlSpider(CrawlSpider):
 
     rules = (
             Rule(
-                LinkExtractor(restrict_xpaths=("//div[@id='navi']/div[@class='prevnext']/span[@class='next']/a")),
+                Extractor(restrict_xpaths=("//div[@id='navi']/div[@class='prevnext']/span[@class='next']/a")),
                 callback="parse_item",
                 follow=True
             ),
