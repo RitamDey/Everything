@@ -1,0 +1,16 @@
+1514440613026	geckodriver	INFO	geckodriver 0.19.1
+1514440613032	geckodriver	INFO	Listening on 127.0.0.1:35393
+1514440613380	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.xRIbFzEK3jzu"
+1514440616580	Marionette	INFO	Enabled via --marionette
+1514440620704	Marionette	INFO	Listening on port 43093
+1514440620717	Marionette	WARN	TLS certificate errors will be ignored for this session
+1514440620807	Marionette	DEBUG	Register listener.js for window 2147483649
+1514440683543	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1514440684845	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1514440684845	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1514440686960	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://www.erome.com/a/KwLsaJqa"
+1514440688260	Marionette	DEBUG	Received DOM event "pageshow" for "https://www.erome.com/a/KwLsaJqa"
+1514440787190	Marionette	DEBUG	Received DOM event "beforeunload" for "https://www.erome.com/a/KwLsaJqa"
+1514440788568	Marionette	DEBUG	Received DOM event "pagehide" for "https://www.erome.com/a/KwLsaJqa"
+1514440788568	Marionette	DEBUG	Received DOM event "unload" for "https://www.erome.com/a/KwLsaJqa"
+1514440794023	Marionette	DEBUG	Received DOM event "pageshow" for "https://s1.erome.com/30/KwLsaJqa/J9vr9NpS_480p.mp4"
