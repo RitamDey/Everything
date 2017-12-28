@@ -4,6 +4,6 @@ This _**`repo`**_ holds almost _**`all the programs`**_ I wrote for myself since
 
 ## Folder Description
 ### [Functional](https://github.com/GreenJoey/My-Simple-Programs/tree/master/functional)
-This folder contains codes for **Real life applications** that I __built__ or followed as __examples in any tutorial__
+This folder contains codes for **Real life applications** that I __built__ or followed as <i>examples in any tutorial</i>
 
 
