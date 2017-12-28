@@ -303,3 +303,32 @@ class recommender:
                              reverse=True)
         # Return the first n items
         return recommendations[:self.n]
+
+    def slopeOneRecommendations(self, userRatings):
+        recommendations = {}
+        frequencies = {}
+
+        # for every item and rating in the user's recommendations
+        for (userItem, userRating) in userRatings.items():
+            # for every item in dataset that user didn't rate
+            for (diffItem, diffRatings) in self.deviations.items():
+                if diffItem not in userRatings and userItem i self.deviations[diffItem]:
+                    freq = self.frequencies[diffItem][userItem]
+                    recommendations.setdefault(diffItem, 0.0)
+                    frequencies.setdefault(diffItem, 0)
+                    # add to the running sum representing in the numerator
+                    # of the formula
+                    recommendations[diffItem] += (diffItem[userItem]+
+                                                  userRating) *freq
+                    # keep a running sum of the freqency of diffitem
+                    frequencies[diffItem] += freq
+
+        recommendations = [(self.convertProductID2name(k),
+                            v/frequencies[k])
+                            for (k,v) in recommendations.items()]
+
+        # finally sort and return
+        recommendations.sort(key=lambda t: t[1],
+                            reverse=True)
+
+        return recommendations
