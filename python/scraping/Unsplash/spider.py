@@ -17,8 +17,7 @@ logging.basicConfig(
         )
 
 
-start_url = "https://unsplash.com/napi/feeds/home"
-next_page = start_url
+next_page = "https://unsplash.com/napi/feeds/home"
 with open("/home/stux/headers.json") as fout:
     headers = load(fout)
 
