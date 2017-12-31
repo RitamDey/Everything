@@ -2,7 +2,7 @@ import scrapy
 
 
 class SpidyQuotesViewStateSpider(scrapy.Spider):
-    name = "spidyquotes-viewstate"
+    name = "spidyquotesViewstate"
     start_urls = ["http://quotes.toscrape.com/search.aspx",]
     download_delay = 1.5
 
