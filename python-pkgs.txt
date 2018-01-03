@@ -16,3 +16,4 @@ Cython
 matplotlib
 quandl
 Scapy-python3
+mutagen
