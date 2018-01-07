@@ -120,7 +120,7 @@ def main():
 
     start = datetime.datetime.now()
 
-    sockets = list(map(connect, addresses))
+    sockets = list(map(connect, addresses))  # Connect to all the address
 
     poems = get_poetry(sockets)
 
@@ -134,3 +134,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
