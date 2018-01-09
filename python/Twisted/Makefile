@@ -6,3 +6,9 @@ blocking-server:
 
 client:
 	python3.6 $(CLIENT) 8000 8001 8002
+
+
+all:
+	make blocking-server -B
+	make client CLIENT=$(CLIENT)
+
