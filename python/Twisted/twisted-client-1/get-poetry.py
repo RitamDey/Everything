@@ -101,7 +101,8 @@ class PoetrySocket:
                 # then check if the operation would cause socket blocking
                 if e.args[0] == errno.EWOULDBLOCK:
                     break
-                # If not then just return saying connection is lost
+                # If not then just return a Twisted error saying 
+                # connection of the socket has lost
                 return main.CONNECTION_LOST
 
         if not read_bytes:
@@ -109,7 +110,7 @@ class PoetrySocket:
             # sending data, just print the task number and return saying
             # the connecton purpose has been served
             print("Task %d finished" %(self.task_num))
-            return main.CONNECTION_DONE
+            return main.CONNECTION_DONE  # Indicate connection completed
         else:
             msg = "Task %d: got %d bytes of poetry from %s"
             print(msg %(self.task_num, len(read_bytes), self.format_addr()))
@@ -117,6 +118,8 @@ class PoetrySocket:
         self.poem += read_bytes  # If we are here, just append the data
 
     def logPrefix(self):
+        # Method implemented for the ILoggingContext Interface
+        # @return: The prefix for the logger system
         return "poetry"
 
     def format_addr(self):
