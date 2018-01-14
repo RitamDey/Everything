@@ -26,7 +26,7 @@ class EromeSpider(CrawlSpider):
         for video in response.xpath(videos):
             i['video_id'] = video.xpath(video_id).extract_first()
             i['url'] = video.xpath(video_url).extract_first()
-            i['title'] = video.xpath(video_title).extract_first()
-            if i['title'] == check_video_title:
+            title = video.xpath(video_title).extract_first()
+            if title in ["mirandacollins [f] - Camsgram.com/mirandacollins", "amy_on_fire [f] - Camsgram.com/amy_on_fire", "amirabelle4u [f] - Camsgram.com/amirabelle4u", "eileen_rose [f] - Camsgram.com/eileen_rose"]:
                 yield i
 
