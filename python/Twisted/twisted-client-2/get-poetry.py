@@ -62,6 +62,9 @@ class PoetryProtocol(Protocol):
         self.poemRecevied(self.poem)
 
     def poemRecevied(self, poem):
+        # This the final method called when the protocol is signalled to close
+        # This method calls the factory's `.poem_finished` method
+        # Passing the the protocol's task id and the content of poem
         self.factory.poem_finished(self.task_num, poem)
 
 
@@ -89,13 +92,17 @@ class PoetryClientFactory(ClientFactory):
         return proto  # Return the built protocol
 
     def poem_finished(self, task_num=None, poem=None):
+        # Called when a proocol finishes downloading data from server
         if task_num is not None:
+            # Use the passed task id to populate the poem it fetched
             self.poems[task_num] = poem
 
-        self.poetry_count -= 1
+        self.poetry_count -= 1  # Decrement the count of active tasks
 
-        if self.poetry_count == 0:
+        if self.poetry_count == 0:  # Case used when all tasks are finished
             self.report()
+            # Call the Twisted's reactor and stop it since all the
+            # newtworking task has been finished
             from twisted.internet import reactor
             reactor.stop()
 
