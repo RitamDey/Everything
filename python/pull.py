@@ -4,7 +4,7 @@ from json import loads
 import time
 
 
-video_list = loads(open("vids.json").read())
+video_list = loads(open("/home/stux/vids.json").read())
 driver = Firefox()
 
 
@@ -15,4 +15,5 @@ for video in video_list:
     print(url)
     subprocess.run(["wget", "-O", video["video_id"]+".mp4", url])
     time.sleep(5)
+driver.close()
 
