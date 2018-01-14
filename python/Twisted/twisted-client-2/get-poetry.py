@@ -111,7 +111,22 @@ class PoetryClientFactory(ClientFactory):
             print("Task %d: %d bytes of poetry" %(i, len(self.poems[i])))
 
     def clientConnectionFailed(self, connector, reason):
-        print("Failed to connect to:", connector.getDestination())
+        # This method is called when the object fails to connect to the server
+        # This method is called with a connector object representing the 
+        # connection's protocol type (here TCP) and a reason object
+
+        # Use the connector's `.getDestination` object to get the destination
+        # address repesented in the correspoing IPv4/IPv6 object
+        dest = connector.getDestination()
+        # Get the host and port number from it
+        print("Failed to connect to: %s:%s" %(dest.host, dest.port))
+
+        # Use the reason object to get the actual error object
+        # and the actual error message
+        # Since multiple error can error, they are passed in a typle object
+        print("Reason is:", *reason.args[0].args)
+
+        # Call the `.poem_finished` since the client has terminated
         self.poem_finished()
 
 
