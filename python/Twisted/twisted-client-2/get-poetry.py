@@ -47,8 +47,12 @@ class PoetryProtocol(Protocol):
     def dataReceived(self, data):
         # Called whenever data is recieved from the transport
         self.poem += data
-        msg = "Task %d: got %d bytes of poetry from %s"
-        print(msg %(self.task_num, len(data), self.transport.getPeer()))
+        msg = "Task %d: got %d bytes of poetry from %s:%s"
+
+        # The `.transport` is the network transporter object that the Protocol is using
+        # The `.transport.getPeer()` return a object of the connected IP Address <class twisted.internet.address.IPv4Address>
+        # The returned object has two fields `.host` and `.port` contains the connected host IP and port number
+        print(msg %(self.task_num, len(data), self.transport.getPeer().host, self.transport.getPeer().port))
 
     def connectionLost(self, reason):
         self.poemRecevied(self.poem)
