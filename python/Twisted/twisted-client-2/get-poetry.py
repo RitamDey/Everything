@@ -55,6 +55,10 @@ class PoetryProtocol(Protocol):
         print(msg %(self.task_num, len(data), self.transport.getPeer().host, self.transport.getPeer().port))
 
     def connectionLost(self, reason):
+        # Called when the connected host closes the connection on the socket
+        # Twisted reactor calls this method with a reason
+        # Here it is called with reason twisted.internet.error.ConnectionDone
+        # Indicating the connection finished gracefully
         self.poemRecevied(self.poem)
 
     def poemRecevied(self, poem):
@@ -67,7 +71,7 @@ class PoetryClientFactory(ClientFactory):
 
     def __init__(self, poetry_count):
         self.poetry_count = poetry_count
-        self.poems = {}  # task_num -> poem
+        self.poems = {}  # task_num -> poem content
 
     def buildProtocol(self, address):
         # Create a object of the Protocol
