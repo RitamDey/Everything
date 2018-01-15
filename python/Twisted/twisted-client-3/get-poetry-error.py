@@ -1,5 +1,6 @@
 # This is the Twisted Get Poetry Now! client, version 3.0.
 import optparse
+import sys
 from twisted.internet.protocol import Protocol, ClientFactory
 
 
@@ -63,11 +64,17 @@ class PoetryProtocol(Protocol):
 class PoetryClientFactory(ClientFactory):
     protocol = PoetryProtocol
 
-    def __init__(self, callback):
+    def __init__(self, callback, errback):
         self.callback = callback
+        self.errback = errback  # Failure handling callback
 
     def poem_finished(self, poem):
+        # Called when the the client has finished downloading
         self.callback(poem)
+
+    def clientConnectionFailed(self, connector, reason):
+        # Called when the client has encountered some error
+        self.errback(reason)
 
 
 def get_poetry(host, port, callback):
@@ -78,9 +85,9 @@ def get_poetry(host, port, callback):
 
     when the poem is complete. If there is a failure, invoke
 
-    callback(None)
+    callback(err)
 
-    instead.
+    instead, where err is a twisted.python.failure.Failure instance.
     """
     from twisted.internet import reactor
     factory = PoetryClientFactory(callback)
@@ -92,12 +99,20 @@ if __name__ == '__main__':
 
     from twisted.internet import reactor
     poems = []
+    errors = []
 
     def got_poem(poem):
         poems.append(poem)
+        peom_done()
 
-        if len(poems) == len(addresses):
+    def poem_done():
+        if len(poems) + len(errors) == len(addresses):
             reactor.stop()
+
+    def poem_failed(err):
+        print('Poem failed:', err, file=sys.stderr)
+        errors.append(err)
+        poem_done()
 
     for address in addresses:
         host, port = address
