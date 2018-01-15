@@ -68,7 +68,7 @@ def serve(listen_socket, poetry_file, num_bytes, delay):
     while True:
         sock, addr = listen_socket.accept()
 
-        print("Somebody at %s wants poetry!" %(addr,))
+        print("Somebody at %s:%s wants poetry!" %(addr[0], addr[1]))
 
         send_poetry(sock, poetry_file, num_bytes, delay)
 
