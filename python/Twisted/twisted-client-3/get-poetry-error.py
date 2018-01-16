@@ -77,7 +77,7 @@ class PoetryClientFactory(ClientFactory):
         self.errback(reason)
 
 
-def get_poetry(host, port, callback):
+def get_poetry(host, port, callback, errback):
     """
     Downnload a poem from the given host and port and invoke
 
@@ -90,7 +90,7 @@ def get_poetry(host, port, callback):
     instead, where err is a twisted.python.failure.Failure instance.
     """
     from twisted.internet import reactor
-    factory = PoetryClientFactory(callback)
+    factory = PoetryClientFactory(callback, errback)
     reactor.connectTCP(host, port, factory)
 
 
@@ -103,7 +103,7 @@ if __name__ == '__main__':
 
     def got_poem(poem):
         poems.append(poem)
-        peom_done()
+        poem_done()
 
     def poem_done():
         if len(poems) + len(errors) == len(addresses):
@@ -116,7 +116,7 @@ if __name__ == '__main__':
 
     for address in addresses:
         host, port = address
-        get_poetry(host, port, got_poem)
+        get_poetry(host, port, got_poem, poem_failed)
 
     reactor.run()
 
