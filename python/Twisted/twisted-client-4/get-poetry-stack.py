@@ -98,8 +98,8 @@ if __name__ == '__main__':
         os._exit(0)
 
     def poem_failed(err):
-        print("Poem failed:", err, file=sys.stderr)
-        errors.append(err)
+        traceback.print_stack()
+        os._exit(0)
 
     def poem_done(_):
         if len(poems)+len(errors) == len(addresses):
