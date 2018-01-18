@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
     if (file == NULL)
         return -1;
 
-    fwrite(vertices, sizeof(Vertex)+sizeof(Color), 4, file);
+    fwrite(vertices, sizeof(Vertex), 4, file);
     fclose(file);
 
     return 0;
