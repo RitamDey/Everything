@@ -1,6 +1,7 @@
 import optparse
 import sys
 from twisted.internet import defer
+from twisted.internet.error import ConnectionAborted
 from twisted.internet.protocol import Protocol, ClientFactory
 
 
@@ -42,11 +43,21 @@ def parse_args():
 
 class PoetryProtocol(Protocol):
     poem = ""
+    cancel = None
+
+    def makeConnection(self, transport):
+        super().makeConnection(transport)
+
+        from twisted.internet import reactor
+        self.cancel = reactor.callLater(120, self.transport.abortConnection)
 
     def dataReceived(self, data: bytes):
         self.poem += data.decode("utf-8")
 
     def connectionLost(self, reason):
+        if isinstance(reason.args[0], ConnectionAborted):
+            self.factory.deferred.errback((self.transport, reason.args[0]))
+            return
         self.poemReceived(self.poem)
 
     def poemReceived(self, poem):
@@ -96,7 +107,8 @@ if __name__ == '__main__':
 
     def poem_failed(err):
         print("Poem failed:", err, file=sys.stderr)
-        errors.append(err)
+        print(dir(err[0]))
+        errors.append(err[1])
 
     def poem_done(_):
         if len(poems)+len(errors) == len(addresses):
