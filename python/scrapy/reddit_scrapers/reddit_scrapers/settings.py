@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from pathlib import Path
 
 # Scrapy settings for r_earthporn project
 #
@@ -69,7 +70,7 @@ ITEM_PIPELINES = {
 }
 
 # Image settings
-IMAGES_STORE = '/home/stux/EarthPorn'
+IMAGES_STORE = str(Path.home())+'/EarthPorn'
 IMAGES_EXPIRES = None
 MEDIA_ALLOW_REDIRECTS = True
 
