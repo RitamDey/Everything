@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Get the elements with demo ID from the DOM
+                $("#demo").submit(function(event) {
+                    // Attach a submit event listner with the element
+                    alert("Hello " + $("#name").val() + "!");
+                    event.preventDefault();  // Prevent the default action
+                });
+            });
+        </script>
+        <title>dom2</title>
+
+        <body>
+            <form id="demo">
+                <input id="name" placeholder="Name" type="text"/>
+                <input type="submit"/>
+        </body>
+</html>
