@@ -52,9 +52,10 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'steam_scrapper.middlewares.SteamScrapperDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'steam_scrapper.middlewares.AgeRestrictMiddleware': 543,
+    'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': None
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
