@@ -2,6 +2,7 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
+from scrapy.http import Request
 
 
 class SteamSpider(CrawlSpider):
@@ -27,8 +28,10 @@ class SteamSpider(CrawlSpider):
         #)
     )
 
+
     def parse_item(self, response):
         i = {}
 
         i['title'] = response.css(".details_block").xpath("./text()")[1].extract()
+
         return i
