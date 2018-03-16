@@ -1,1 +1,0 @@
-/home/stux/Codes/AllCodes/c-sharp/SoloLearn/SoloLearn/SoloLearn/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
