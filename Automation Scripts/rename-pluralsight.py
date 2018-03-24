@@ -11,7 +11,7 @@ if len(argv) < 2:
 
 def move(direc):
     for vid in os.listdir(direc):
-        mod_chap = findall(r"m\d+\-?\w*\-\d+\.\w{3}", vid)
+        mod_chap = findall(r"mo?d?\d+\-?\w*\-\d+\.\w{3}", vid)
         if mod_chap:
             print(f"Moving {vid} -> {mod_chap}")
             shutil.move(direc+"/"+vid, direc+"/"+mod_chap[0])
