@@ -22,6 +22,12 @@ class PostsSpider(scrapy.Spider):
             link = link.extract()
             if link.find("/r/") != -1:
                 yield Request(url=response.urljoin(link), callback=self.parse_post)
+            elif link.find("jpg") != -1:
+                image = ImageItem()
+                image['name'] = link
+                image['image_urls'] = [link,]
+
+                yield image
 
         yield Request(url=next_page, callback=self.parse)
 
