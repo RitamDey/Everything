@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cad60b46-5210-4439-a67b-7e8211b140c6" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../../../Constructor-Chaining-And-Blocks.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/description.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/project-template.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Streams.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/text.txt" />
-      <change beforePath="$PROJECT_DIR$/../../Hello/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Hello/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/../../../../python/scrapy/reddit_scrapers/reddit_scrapers/spiders/Posts.py" afterPath="$PROJECT_DIR$/../../../../python/scrapy/reddit_scrapers/reddit_scrapers/spiders/Posts.py" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,8 +18,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="80" column="19" lean-forward="true" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+            <state relative-caret-position="493">
+              <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -201,12 +193,12 @@
       <option name="presentableId" value="Default" />
       <updated>1522593125200</updated>
       <workItem from="1522593131373" duration="3619000" />
-      <workItem from="1522849715542" duration="1157000" />
+      <workItem from="1522849715542" duration="1342000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4776000" />
+    <option name="totallyTimeSpent" value="4961000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1366" height="768" extended-state="6" />
@@ -323,8 +315,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="80" column="19" lean-forward="true" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+        <state relative-caret-position="493">
+          <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
