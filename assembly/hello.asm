@@ -1,5 +1,5 @@
 section .data
-    msg db          "Hello World"
+    msg db          "Hello World", 10  ; The `10` represents the newline character in Assembly
 
 
 section .text
