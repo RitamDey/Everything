@@ -28,9 +28,9 @@ public class LinkedList {
       // Execute until the last element
       while(curr.next() != null) {
         /**
-         * If the current's next element is the element to remove
-         * Then set the current element's next to be next element of the node to be deleted
-         * And set the flag to indicate that the element was found in the middle
+        * If the current's next element is the element to remove
+        * Then set the current element's next to be next element of the node to be deleted
+        * And set the flag to indicate that the element was found in the middle
         */ 
         if(curr.next().data().equals(elemToRemove)) {
           curr.setNext(curr.next().next());
@@ -42,9 +42,11 @@ public class LinkedList {
         curr = curr.next();
       }
 
-      // If the flag is false then the removed element was the last element in the list
-      // And the current now points to the last element in the list.
-      // So update the tail pointer accordingly.
+      /**
+      * If the flag is false then the removed element was the last element in the list
+      * And the current now points to the last element in the list.
+      * So update the tail pointer accordingly.
+      */
       if(broke == false)
         this.tail = curr;
     }
@@ -58,10 +60,12 @@ public class LinkedList {
 
       // Iterate until we are at the tail node
       while(curr.next() != null) {
-        // If the next node's data is the same as the element we want to remove
-        // then update the current node's next pointer to point to the next node's next
-        // Also here we only move to next node when any removals have not been performed
-        // becuase the new node placed can also be the node to be removed next
+        /**
+        * If the next node's data is the same as the element we want to remove
+        * then update the current node's next pointer to point to the next node's next
+        * Also here we only move to next node when any removals have not been performed
+        * becuase the new node placed can also be the node to be removed next
+        */
         if(curr.next().data().equals(elemToRemove))
           curr.setNext(curr.next().next());
         else
@@ -69,8 +73,10 @@ public class LinkedList {
           curr = curr.next();
       }
 
-      // When we return here, the curr already points to the tail node
-      // So update the tail pointer with the curr value
+      /**
+      * When we return here, the curr already points to the tail node
+      * So update the tail pointer with the curr value
+      */
       this.tail = curr;
     }
 
@@ -86,17 +92,21 @@ public class LinkedList {
       // Iterate the whole list and look for matching elements and update toRemove reference
       while(curr.next() != null) {
         
-        // If the current's next node's value is same as the element we wish to remove
-        // Then update the toRemove with the reference
+        /**
+        * If the current's next node's value is same as the element we wish to remove
+        * Then update the toRemove with the reference
+        */
         if(curr.next().data().equals(elemToRemove))
           toRemove = curr;
         
         curr = curr.next();  // Move to the next node
       }
 
-      // When the node to be removed is the tail node itself
-      // Then we first perform the removal and update the tail pointer
-      // If not then we leave the tail as it is because it was not touched
+      /**
+      * When the node to be removed is the tail node itself
+      * Then we first perform the removal and update the tail pointer
+      * If not then we leave the tail as it is because it was not touched
+      */
       if(curr == toRemove.next()) {
         toRemove.setNext(null);  // Perform the removal
         // The update the tail pointer with the same reference as the toRemove
