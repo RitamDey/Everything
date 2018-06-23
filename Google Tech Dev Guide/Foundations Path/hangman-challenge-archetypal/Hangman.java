@@ -36,7 +36,10 @@ public class Hangman {
   void display() {
     System.out.print("The word now looks like this: ");
     System.out.println(Arrays.toString(this.guess));
-    System.out.printf("You have %d guesses left\n", this.retries);
+    if (this.retries == 1)
+      System.out.println("You have only one guess left.");
+    else
+      System.out.printf("You have %d guesses left\n", this.retries);
     System.out.print("Your guess: ");
   }
 
@@ -99,6 +102,7 @@ public class Hangman {
 
     // If we reach here then the player hasn't guessed the word
     // Indicate he lost the game
+    System.out.println("You're completely hung.");
     System.out.print("The word was: ");
     System.out.println(Arrays.toString(this.word));
     System.out.println("You lose.");
