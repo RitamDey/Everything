@@ -6,6 +6,9 @@ import java.util.Random;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import sun.misc.Signal;
+import sun.misc.SignalHandler;
+
 
 public class Hangman {
   HangmanLexicon lexicon = new HangmanLexicon();
@@ -113,6 +116,13 @@ public class Hangman {
 class Game {
   public static void main(String[] args) {
     Hangman game = new Hangman();
+
+    Signal.handle(new Signal("INT"), new SignalHandler() {
+      public void handle(Signal sig) {
+        System.out.println("\nExiting Game");
+        System.exit(0);
+      }
+    });
 
     while (true) {
       game.run();
