@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Scarne\'s Dice</string>
+    <string name="player_message">Your score:</string>
+    <string name="computer_message">Computer score:</string>
+    <string name="roll_text">Roll</string>
+    <string name="hold_text">Hold</string>
+    <string name="reset_text">Reset</string>
+    <string name="dice_content">The dice face</string>
 </resources>
