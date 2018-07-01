@@ -62,26 +62,27 @@
         android:contentDescription="@string/dice_content" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/hold_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:text="@string/hold_text"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button2"
+        android:onClick="hold_click"
+        app:layout_constraintBaseline_toBaselineOf="@+id/roll_button"
         app:layout_constraintEnd_toStartOf="@+id/reset_button"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintStart_toEndOf="@+id/roll_button"
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/roll_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="372dp"
         android:text="@string/roll_text"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/hold_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -94,9 +95,21 @@
         android:layout_height="45dp"
         android:layout_marginEnd="32dp"
         android:text="@string/reset_text"
-        android:onClick="roll_click"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button"
+        android:onClick="reset_click"
+        app:layout_constraintBaseline_toBaselineOf="@+id/hold_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/hold_button" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/modeSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:backgroundTint="?attr/actionModeSplitBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add" />
 </android.support.constraint.ConstraintLayout>
