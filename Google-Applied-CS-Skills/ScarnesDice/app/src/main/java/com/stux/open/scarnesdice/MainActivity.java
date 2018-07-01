@@ -5,6 +5,8 @@ import android.os.LocaleList;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ((TextView)findViewById(R.id.player_score)).setText("0");
-        ((TextView)findViewById(R.id.computer_score)).setText("0");
-
         FloatingActionButton switcher = findViewById(R.id.modeSwitch);
 
         switcher.setOnClickListener( new View.OnClickListener() {
@@ -40,6 +39,35 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("com.stux.open.scarnesdice.FAB", "Floating button clicked");
             }
         });
+
+        TextView player = findViewById(R.id.player_score);
+        TextView computer = findViewById(R.id.computer_score);
+
+
+        TextWatcher score_watcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (Integer.parseInt(s.toString()) >= 100) {
+                    findViewById(R.id.hold_button).setClickable(false);
+                    findViewById(R.id.roll_button).setClickable(false);
+                }
+            }
+        };
+
+        player.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
+        computer.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
+
+        player.addTextChangedListener(score_watcher);
+        computer.addTextChangedListener(score_watcher);
+
     }
 
     private void SetDice(Integer value) {
@@ -114,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hold_click(View view) {
+        if (!findViewById(R.id.roll_button).isClickable())  // The game was finished. So ignore the Hold requests
+            return;
+
         this.user_score += this.user_turn_score;
         this.user_turn_score = 0;
 
@@ -134,9 +165,11 @@ public class MainActivity extends AppCompatActivity {
         this.user_score = 0;
 
         TextView user_score = findViewById(R.id.player_score);
-        user_score.setText("0");
+        user_score.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
 
         TextView computer_score = findViewById(R.id.computer_score);
-        computer_score.setText("0");
+        computer_score.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
+
+        findViewById(R.id.roll_button).setClickable(true);
     }
 }
