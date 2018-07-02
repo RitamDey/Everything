@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         switcher.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // TODO: Use the FAB to take user to 2-dice mode
                 Log.i("com.stux.open.scarnesdice.FAB", "Floating button clicked");
             }
         });
@@ -44,24 +45,36 @@ public class MainActivity extends AppCompatActivity {
         TextView computer = findViewById(R.id.computer_score);
 
 
+        // `TextWatcher` objects are attached to objects of type `Editable`.
+        // They are called when the text in the `Editable` object changes
         TextWatcher score_watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Called to notify that somewhere within s, text is being changed
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Called just after old text within `s` has been replaced
+                // starting from `start` and had length `before`
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                // Called to notify that somewhere within s, text has changed
                 if (Integer.parseInt(s.toString()) >= 100) {
+                    // Convert the `Editable` to `Integer` and check whether it's
+                    // greater than or equal to 100. If so the game has ended.
+                    // Disable the `Roll` and `Hold` button
                     findViewById(R.id.hold_button).setClickable(false);
                     findViewById(R.id.roll_button).setClickable(false);
                 }
             }
         };
 
+        // Set the score board to 0 and then add text change listeners
+        // Do it before adding listeners to avoid useless calls to listeners
+        // even before any actual update to game score has been done.
         player.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
         computer.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
 
