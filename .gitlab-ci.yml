@@ -20,10 +20,11 @@ before_script:
   - echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-m2repository
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
-  - chmod +x ./gradlew
+  - chmod +x Google-Applied-CS-Skills/ScarnesDice/gradlew
 
 stages:
   - build
+  - test
 
 build:
   stage: build
