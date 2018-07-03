@@ -6,4 +6,6 @@
     <string name="hold_text">Hold</string>
     <string name="reset_text">Reset</string>
     <string name="dice_content">The dice face</string>
+    <string name="two_dice_desc_1">The first dice face</string>
+    <string name="two_dice_desc_2">The second dice face</string>
 </resources>
