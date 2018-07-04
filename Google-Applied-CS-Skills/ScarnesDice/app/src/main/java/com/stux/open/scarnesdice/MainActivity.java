@@ -1,6 +1,7 @@
 package com.stux.open.scarnesdice;
 
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.os.LocaleList;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -133,12 +134,64 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void computerTurn() {
-        // TODO: Complete the documentation along with `Handler` documentation
+
+        /*
+         * This method is responsible for playing the computer's turn which includes "rolling" the
+         * dice and performing housekeeping operations required after turn expires.
+         * It accomplishes it using Android OS's `Handler` class which executes a `Runnable`.
+         *
+         * This method starts by disabling the Roll and Hold button, then goes on to declare a
+         * `Handler` class with a `Runnable` callback and immediately scheduling it to start the
+         * computer's turn
+         */
+
         findViewById(R.id.hold_button).setClickable(false);
         findViewById(R.id.reset_button).setClickable(false);
 
+        /*
+         * A `Handler` allows you to send and process `Message` and `Runnable` objects associated
+         * with a thread's `MessageQueue`. Each Handler instance is associated with a single thread
+         * and that thread's message queue. When you create a new Handler,
+         * it is bound to the thread / message queue of the thread that is creating it
+         * -- from that point on, it will deliver messages and runnables to that message queue and
+         * execute them as they come out of the message queue.
+         */
+        final Handler handler = new Handler();
 
+        // Implement the `Runnable` interface and use te `Handler` to add it to the queue
+        handler.postDelayed(new Runnable() {
+            /**
+             * This callback is the main logic behind the computer. The only method defined/overridden
+             * here is the the `run()` method.
+             *
+             * It first gets a random integer which represents the computer's roll, logs it and sets
+             * the diceface view to the corresponding dice face. Now if the roll was for a 1, the it
+             * zero's the computer turn score, does some housekeeping for computer and exits. If the
+             * roll was not one, then it adds it to the computer turn score, now if the turn score is
+             * less than 20, it uses `postDelayed` method which would run this callback again after
+             * 200 milliseconds, otherwise it completes the housekeeping and score updating for the
+             * computer
+             */
+            @Override
+            public void run() {
+                Integer score = random.nextInt(6) + 1;
+                Log.i("com.stux.open.scarnesdice.ComputerTurn", String.valueOf(score));
+                SetDice(score);
 
+                if (score == 1) {
+                    computer_turn_score = 0;
+                    computerUpdate();
+                }
+                else {
+                    computer_turn_score += score;
+
+                    if (computer_turn_score < 20)
+                        handler.postDelayed(this, 200);
+                    else
+                        computerUpdate();
+                }
+            }
+        }, 0);  // Run this callback right now, i.e, wait for 0 millisecond
     }
 
     public void roll_click(View view) {
