@@ -9,12 +9,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Random;
 
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,9 +43,11 @@ public class MainActivity extends AppCompatActivity {
         TextView player = findViewById(R.id.player_score);
         TextView computer = findViewById(R.id.computer_score);
 
-
-        // `TextWatcher` objects are attached to objects of type `Editable`.
-        // They are called when the text in the `Editable` object changes
+        /*
+         * `TextWatcher` objects are attached to objects of type `Editable`.
+         * They are called when the text in the `Editable` object changes. Use them here to watch the
+         * score views and terminate the game when either the player or computer scores >= 100
+         */
         TextWatcher score_watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -55,26 +56,32 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Called just after old text within `s` has been replaced
-                // starting from `start` and had length `before`
+                /*
+                 * Called just after old text within `s` has been replaced
+                 * starting from `start` and had length `before`
+                */
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 // Called to notify that somewhere within s, text has changed
                 if (Integer.parseInt(s.toString()) >= 100) {
-                    // Convert the `Editable` to `Integer` and check whether it's
-                    // greater than or equal to 100. If so the game has ended.
-                    // Disable the `Roll` and `Hold` button
+                    /*
+                     * Convert the `Editable` to `Integer` and check whether it's
+                     * greater than or equal to 100. If so the game has ended.
+                     * Disable the `Roll` and `Hold` button
+                    */
                     findViewById(R.id.hold_button).setClickable(false);
                     findViewById(R.id.roll_button).setClickable(false);
                 }
             }
         };
 
-        // Set the score board to 0 and then add text change listeners
-        // Do it before adding listeners to avoid useless calls to listeners
-        // even before any actual update to game score has been done.
+        /*
+         * Set the score board to 0 and then add text change listeners
+         * Do it before adding listeners to avoid useless calls to listeners
+         * even before any actual update to game score has been done.
+        */
         player.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
         computer.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
 
@@ -105,73 +112,98 @@ public class MainActivity extends AppCompatActivity {
         dice_view.setImageDrawable(dice);
     }
 
-    public void computerTurn() {
-        // We can't enable or disable a button on runtime but we can make
-        // it clickable or non-clickable using the `setClickable` API
-        Button hold = findViewById(R.id.hold_button);
-        hold.setClickable(false);
+    private void computerUpdate() {
+        this.computer_score += this.computer_turn_score;
+        this.computer_turn_score = 0;
 
-        Button reset = findViewById(R.id.reset_button);
-        reset.setClickable(false);
-        Integer score;
-
-        while (this.computer_turn_score < 20) {
-            score = this.random.nextInt(6);
-
-            this.SetDice(score);
-            Log.i("com.stux.open.scarnesdice.ComputerTurn", String.valueOf(score));
-
-            if (score == 1) {
-                this.computer_turn_score = 0;
-                break;
-            }
-
-            this.computer_turn_score += score;
-
-        }
-
-        this.computer_score += computer_turn_score;
-
+        /*
+          * Here we first get the `TextView`, then we set the Hold to clickable.
+          * This is important because if the Hold button is turned after update to the `TextView`
+          * then it turns the Hold button clickable again thus partially defeating the purpose of the
+          * Text Watchers of the `TextView`
+         */
         TextView computer_score = findViewById(R.id.computer_score);
+
+        findViewById(R.id.hold_button).setClickable(true);
+
         computer_score.setText(String.format(LocaleList.getDefault().get(0), "%d", this.computer_score));
 
-        hold.setClickable(true);
-        reset.setClickable(true);
+        findViewById(R.id.reset_button).setClickable(true);
+    }
+
+
+    private void computerTurn() {
+        // TODO: Complete the documentation along with `Handler` documentation
+        findViewById(R.id.hold_button).setClickable(false);
+        findViewById(R.id.reset_button).setClickable(false);
+
+
+
     }
 
     public void roll_click(View view) {
+        /*
+         * This method handles the Roll button click event for single dice mode
+         * It starts by getting a random number representing the the user's dice roll score. The it
+         * checks if the rolled dice score is equals to 1 or not. If it's one, the terminate the user
+         * turn, 0 the player's turn score and let the computer have its turn. If not then add the
+         * roll score to the user's turn score.
+         * Finally to set the dice face view to the appropriate dice face image
+         */
+
         Integer turn_score = this.random.nextInt(6) + 1;
 
         Log.println(Log.INFO,"com.stux.open.scarnesdice.roll_click", turn_score.toString());
 
+        this.SetDice(turn_score);
+
         if (turn_score == 1) {
             this.user_turn_score = 0;
+            try {
+                // Sleep just for the user to notice he/she rolled a 1
+                Thread.sleep(1700);
+            } catch (InterruptedException ignored) {}
+
             this.computerTurn();
         }
         else
             this.user_turn_score += turn_score;
 
-        this.SetDice(turn_score);
     }
 
     public void hold_click(View view) {
-        if (!findViewById(R.id.roll_button).isClickable())  // The game was finished. So ignore the Hold requests
-            return;
+        /*
+         * Handles the Hold button click event for the single dice mode.
+         * It starts by adding the player's current turn score to his total game score
+         * Then goes on to update the required `TextView` by converting the `Integer` score to
+         * `String` using `.format()` method with the locale set to the system's first default locale
+         * And then it invokes the computer's turn
+         */
 
         this.user_score += this.user_turn_score;
         this.user_turn_score = 0;
 
         TextView user_score = findViewById(R.id.player_score);
 
-        // Starting from Android 7.0 API 24, due to increased support for more Locale
-        // Android exposes the LocaleList.getDefault() API which return a list of languages
-        // the user has selected.
+        /*
+         * Starting from Android 7.0 API 24, due to increased support for more Locale
+         * Android exposes the LocaleList.getDefault() API which return a list of languages
+         * the user has selected.
+        */
         user_score.setText(String.format(LocaleList.getDefault().get(0), "%d", this.user_score));
 
         this.computerTurn();
     }
 
     public void reset_click(View View) {
+        /*
+         * Handles the Reset button click event for the single dice mode
+         * It starts by 0-ing the scores of player and computer and then moves to updating the
+         * score `TextView`s
+         * After that it moves to set Roll button and Hold button clickable again.
+         * Then it moves to update the dice face `ImageView` to display the dice face 1
+         */
+
         this.computer_score = 0;
         this.computer_turn_score = 0;
         this.user_turn_score = 0;
@@ -184,5 +216,8 @@ public class MainActivity extends AppCompatActivity {
         computer_score.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
 
         findViewById(R.id.roll_button).setClickable(true);
+        findViewById(R.id.hold_button).setClickable(true);
+
+        ((ImageView)findViewById(R.id.dice_view)).setImageDrawable(getDrawable(R.drawable.d1));
     }
 }
