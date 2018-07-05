@@ -245,7 +245,9 @@ public class MainActivity extends AppCompatActivity {
         */
         user_score.setText(String.format(LocaleList.getDefault().get(0), "%d", this.user_score));
 
-        this.computerTurn();
+        // Start a computer turn only if the user's score is less than 100
+        if (this.user_score < 100)
+            this.computerTurn();
     }
 
     public void reset_click(View View) {
