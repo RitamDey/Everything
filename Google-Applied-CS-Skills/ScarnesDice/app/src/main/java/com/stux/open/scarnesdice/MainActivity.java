@@ -129,20 +129,28 @@ public class MainActivity extends AppCompatActivity {
         ImageView dice_view = findViewById(R.id.dice_view);
 
         Log.println(Log.INFO, "com.stux.open.scarnesdice.SetDice", String.valueOf(value));
-        Drawable dice;
+        Drawable dice = null;
 
-        if (value == 1)
-            dice = getResources().getDrawable(R.drawable.d1, getApplicationContext().getTheme());
-        else if(value == 2)
-            dice = getResources().getDrawable(R.drawable.d2, getApplicationContext().getTheme());
-        else if (value == 3)
-            dice = getResources().getDrawable(R.drawable.d3, getApplicationContext().getTheme());
-        else if (value == 4)
-            dice = getResources().getDrawable(R.drawable.d4, getApplicationContext().getTheme());
-        else if (value == 5)
-            dice = getResources().getDrawable(R.drawable.d5, getApplicationContext().getTheme());
-        else
-            dice = getResources().getDrawable(R.drawable.d6, getApplicationContext().getTheme());
+        switch (value) {
+            case 1:
+                dice = getResources().getDrawable(R.drawable.d1, getApplicationContext().getTheme());
+                break;
+            case 2:
+                dice = getResources().getDrawable(R.drawable.d2, getApplicationContext().getTheme());
+                break;
+            case 3:
+                dice = getResources().getDrawable(R.drawable.d3, getApplicationContext().getTheme());
+                break;
+            case 4:
+                dice = getResources().getDrawable(R.drawable.d4, getApplicationContext().getTheme());
+                break;
+            case 5:
+                dice = getResources().getDrawable(R.drawable.d5, getApplicationContext().getTheme());
+                break;
+            case 6:
+                dice = getResources().getDrawable(R.drawable.d6, getApplicationContext().getTheme());
+                break;
+        }
 
         dice_view.setImageDrawable(dice);
     }
