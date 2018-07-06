@@ -1,5 +1,6 @@
 package com.stux.open.scarnesdice;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.LocaleList;
@@ -10,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
     private final Random random = new Random();
 
+    private final View.OnClickListener hold_btn_restore = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            hold_click(v);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +46,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Use the FAB to take user to 2-dice mode
-                Log.i("com.stux.open.scarnesdice.FAB", "Floating button clicked");
+                Log.i("com.stux.open.scarnesdice.FAB", "Starting Two Dice Mode");
+
+                // Create a new intent to launch the 2 dice mode with the current activity context
+                // and once done actually launch the activity
+                Intent intent = new Intent(getApplicationContext(), TwoDiceActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -89,6 +103,26 @@ public class MainActivity extends AppCompatActivity {
         player.addTextChangedListener(score_watcher);
         computer.addTextChangedListener(score_watcher);
 
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO: Save the score and register a onclick listener that restores them correctly
+        super.onPause();
+
+        findViewById(R.id.roll_button).setClickable(false);
+        Button hold_btn = findViewById(R.id.hold_button);
+        hold_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Save scores and restore the them here
+                ((Button)v).setOnClickListener(hold_btn_restore);
+                ((Button)v).setText(R.string.hold_text);
+                findViewById(R.id.roll_button).setClickable(true);
+            }
+        });
+
+        hold_btn.setText(R.string.resume_button);
     }
 
     private void SetDice(Integer value) {
@@ -271,7 +305,11 @@ public class MainActivity extends AppCompatActivity {
         computer_score.setText(String.format(LocaleList.getDefault().get(0), "%d", 0));
 
         findViewById(R.id.roll_button).setClickable(true);
-        findViewById(R.id.hold_button).setClickable(true);
+
+        Button hold_btn = findViewById(R.id.hold_button);
+        hold_btn.setClickable(true);
+        hold_btn.setOnClickListener(this.hold_btn_restore);
+        hold_btn.setText(R.string.hold_text);
 
         ((ImageView)findViewById(R.id.dice_view)).setImageDrawable(getDrawable(R.drawable.d1));
     }
