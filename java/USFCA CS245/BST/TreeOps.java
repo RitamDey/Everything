@@ -10,6 +10,13 @@ class TreeOps {
         return y;
     }
 
+    public static int MIN(int x, int y) {
+      if (x < y)
+        return x;
+      else
+        return y;
+    }
+
     public static int height(Node tree) {
       if (tree == null)
         return 0;
@@ -39,7 +46,13 @@ class TreeOps {
     /* Input:  A binary tree  */
     /* Output: The number of leaves in the tree */
     public static int numLeaves(Node tree) {
-	return -1;
+      if (tree == null)
+        return 0;
+
+      if (tree.left() == null && tree.right() == null)
+        return 1;
+
+      return numLeaves(tree.right()) + numLeaves(tree.left());
     }
 
     /* Input: a Binary Tree 
@@ -52,7 +65,7 @@ class TreeOps {
            x   x
           / \
          x   x
-  
+
         would return 1, while shallowestLeaf on:
              x
               \
@@ -61,12 +74,24 @@ class TreeOps {
               x
                \
                 x
-		would return 3  */
+        would return 3  */
     public static int shallowestLeaf(Node tree) {
-	return -1;
+      if (tree == null)
+        return -1;
+
+      if (tree.left() == null && tree.right() == null)
+        return 1;
+
+      int leftDist = shallowestLeaf(tree.left());
+      int rightDist = shallowestLeaf(tree.right());
+
+      if (leftDist == -1)
+        return 1 + rightDist;
+      else if (rightDist == -1)
+        return 1 + leftDist;
+      else
+        return 1 + MIN(leftDist, rightDist);
     }
-				      
-    
 
 
     public static void main(String args[]) throws IOException {
