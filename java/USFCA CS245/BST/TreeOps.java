@@ -80,7 +80,7 @@ class TreeOps {
         return -1;
 
       if (tree.left() == null && tree.right() == null)
-        return 1;
+        return 0;
 
       int leftDist = shallowestLeaf(tree.left());
       int rightDist = shallowestLeaf(tree.right());
