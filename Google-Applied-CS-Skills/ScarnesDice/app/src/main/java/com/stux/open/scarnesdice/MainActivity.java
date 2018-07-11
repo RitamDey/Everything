@@ -28,13 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final Random random = new Random();
 
-    private final View.OnClickListener hold_btn_restore = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            hold_click(v);
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         switcher.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Use the FAB to take user to 2-dice mode
                 Log.i("com.stux.open.scarnesdice.FAB", "Starting Two Dice Mode");
 
                 // Create a new intent to launch the 2 dice mode with the current activity context
@@ -106,23 +98,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        // TODO: Save the score and register a onclick listener that restores them correctly
-        super.onPause();
+    public void onSaveInstanceState(Bundle outState) {
+        /**
+         * Called when the current activity is being paused or destroyed to saved simple UI data
+         */
+        super.onSaveInstanceState(outState);
 
-        findViewById(R.id.roll_button).setClickable(false);
-        Button hold_btn = findViewById(R.id.hold_button);
-        hold_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Save scores and restore the them here
-                ((Button)v).setOnClickListener(hold_btn_restore);
-                ((Button)v).setText(R.string.hold_text);
-                findViewById(R.id.roll_button).setClickable(true);
-            }
-        });
+        Log.i(MainActivity.class.toString() + ".onSaveInstanceState", "Backing up scores");
 
-        hold_btn.setText(R.string.resume_button);
+        outState.putInt("computer_score", this.computer_score);
+        outState.putInt("player_score", this.user_score);
+
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        /**
+         * Called when the Activity is being reinitialized after being temporarily destroyed
+         *
+         * In my case, called only when screen orientation changes
+         */
+
+        Log.i(MainActivity.class.toString() + ".onRestoreInstanceState", "Restoring scores");
+
+        this.computer_score = savedInstanceState.getInt("computer_score", 0);
+        this.user_score = savedInstanceState.getInt("player_score", 0);
+
+        ((TextView)findViewById(R.id.computer_score)).setText(
+                String.format(LocaleList.getDefault().get(0), "%d", this.computer_score));
+
+        ((TextView)findViewById(R.id.player_score)).setText(
+                String.format(LocaleList.getDefault().get(0), "%d", this.user_score));
+
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     private void SetDice(Integer value) {
@@ -167,7 +175,9 @@ public class MainActivity extends AppCompatActivity {
          */
         TextView computer_score = findViewById(R.id.computer_score);
 
+        findViewById(R.id.roll_button).setClickable(true);
         findViewById(R.id.hold_button).setClickable(true);
+        findViewById(R.id.modeSwitch).setClickable(true);
 
         computer_score.setText(String.format(LocaleList.getDefault().get(0), "%d", this.computer_score));
 
@@ -187,8 +197,10 @@ public class MainActivity extends AppCompatActivity {
          * computer's turn
          */
 
+        findViewById(R.id.roll_button).setClickable(false);
         findViewById(R.id.hold_button).setClickable(false);
         findViewById(R.id.reset_button).setClickable(false);
+        findViewById(R.id.modeSwitch).setClickable(false);
 
         /*
          * A `Handler` allows you to send and process `Message` and `Runnable` objects associated
@@ -316,7 +328,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button hold_btn = findViewById(R.id.hold_button);
         hold_btn.setClickable(true);
-        hold_btn.setOnClickListener(this.hold_btn_restore);
         hold_btn.setText(R.string.hold_text);
 
         ((ImageView)findViewById(R.id.dice_view)).setImageDrawable(getDrawable(R.drawable.d1));

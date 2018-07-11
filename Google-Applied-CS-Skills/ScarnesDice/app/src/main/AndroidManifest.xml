@@ -17,7 +17,8 @@
         </activity>
 
         <activity android:name=".TwoDiceActivity"
-                  android:parentActivityName=".MainActivity">
+                  android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <!-- In Android lower than version v4.1, the `android:parentActivityName` is not available
                  So to properly navigate Back or Up, we use the `<meta-data>` tag along with the Support library -->
             <meta-data
