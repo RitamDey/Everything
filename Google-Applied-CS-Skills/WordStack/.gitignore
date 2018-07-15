@@ -3,3 +3,4 @@ app/build
 .idea/libraries
 build/
 .idea/caches
+*jar
