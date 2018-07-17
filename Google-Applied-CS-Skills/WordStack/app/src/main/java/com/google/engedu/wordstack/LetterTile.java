@@ -28,7 +28,7 @@ import android.widget.TextView;
 public class LetterTile extends TextView {
 
     public static final int TILE_SIZE = 150;
-    private Character letter;
+    public Character letter;
     private boolean frozen;
 
     public LetterTile(Context context, Character letter) {
@@ -68,11 +68,11 @@ public class LetterTile extends TextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        /*
+         *
+         *  YOUR CODE GOES HERE
+         *
+         */
         return super.onTouchEvent(motionEvent);
     }
 }

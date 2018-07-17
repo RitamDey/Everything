@@ -23,27 +23,30 @@ import java.util.Stack;
 
 public class StackedLayout extends LinearLayout {
 
-    private Stack<View> tiles = new Stack();
+    private Stack<View> tiles = new Stack<>();
 
     public StackedLayout(Context context) {
         super(context);
     }
 
     public void push(View tile) {
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        if (!this.tiles.empty())
+            this.removeView(this.tiles.peek());
+        this.tiles.push(tile);
+        this.addView(tile);
     }
 
     public View pop() {
         View popped = null;
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+
+        if (!this.tiles.empty()) {
+            popped = this.tiles.pop();
+            this.removeView(popped);
+
+            if (!this.tiles.empty())
+                this.addView(this.tiles.peek());
+        }
+
         return popped;
     }
 
@@ -56,10 +59,17 @@ public class StackedLayout extends LinearLayout {
     }
 
     public void clear() {
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        /*
+         *
+         *  YOUR CODE GOES HERE
+         *
+         */
+    }
+
+    @Override
+    public String toString() {
+        return "StackedLayout{" +
+                "tiles=" + tiles.toString() +
+                '}';
     }
 }

@@ -15,10 +15,11 @@
 
 package com.google.engedu.wordstack;
 
+import android.app.Activity;
 import android.content.res.AssetManager;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private static final int WORD_LENGTH = 5;
     public static final int LIGHT_BLUE = Color.rgb(176, 200, 255);
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private Random random = new Random();
     private StackedLayout stackedLayout;
     private String word1, word2;
+    private Stack<LetterTile> letterTileStack = new Stack<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +58,9 @@ public class MainActivity extends AppCompatActivity {
             String line = null;
             while((line = in.readLine()) != null) {
                 String word = line.trim();
-                /**
-                 **
-                 **  YOUR CODE GOES HERE
-                 **
-                 **/
+
+                if (word.length() == MainActivity.WORD_LENGTH)
+                    words.add(word);
             }
         } catch (IOException e) {
             Toast toast = Toast.makeText(this, "Could not load dictionary", Toast.LENGTH_LONG);
@@ -84,16 +84,14 @@ public class MainActivity extends AppCompatActivity {
         public boolean onTouch(View v, MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_DOWN && !stackedLayout.empty()) {
                 LetterTile tile = (LetterTile) stackedLayout.peek();
+                Log.i(TouchListener.class.getSimpleName(), tile.letter.toString());
                 tile.moveToViewGroup((ViewGroup) v);
                 if (stackedLayout.empty()) {
                     TextView messageBox = (TextView) findViewById(R.id.message_box);
-                    messageBox.setText(word1 + " " + word2);
+                    messageBox.setText(String.format("%s %s", word1, word2));
                 }
-                /**
-                 **
-                 **  YOUR CODE GOES HERE
-                 **
-                 **/
+
+                letterTileStack.push(tile);
                 return true;
             }
             return false;
@@ -127,13 +125,13 @@ public class MainActivity extends AppCompatActivity {
                     tile.moveToViewGroup((ViewGroup) v);
                     if (stackedLayout.empty()) {
                         TextView messageBox = (TextView) findViewById(R.id.message_box);
-                        messageBox.setText(word1 + " " + word2);
+                        messageBox.setText(String.format("%s %s", word1, word2));
                     }
-                    /**
-                     **
-                     **  YOUR CODE GOES HERE
-                     **
-                     **/
+                    /*
+                     *
+                     *  YOUR CODE GOES HERE
+                     *
+                     */
                     return true;
             }
             return false;
@@ -141,22 +139,68 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean onStartGame(View view) {
+        this.stackedLayout.clear();
+        ((LinearLayout)findViewById(R.id.word1)).removeAllViews();
+        ((LinearLayout)findViewById(R.id.word2)).removeAllViews();
+
         TextView messageBox = (TextView) findViewById(R.id.message_box);
-        messageBox.setText("Game started");
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        messageBox.setText(R.string.game_started);
+        StringBuilder random = new StringBuilder();
+
+        int word1_count = 0;
+        int word2_count = 0;
+
+        this.word1 = this.words.get(this.random.nextInt(this.words.size()));
+        Log.i(MainActivity.class.getSimpleName(), "First word is " + this.word1);
+
+
+        this.word2 = this.words.get(this.random.nextInt(this.words.size()));
+        Log.i(MainActivity.class.getSimpleName(), "Second word is " + this.word2);
+
+        char chosen;
+
+        while (word1_count < this.word1.length() && word2_count < this.word2.length()) {
+            if (this.random.nextBoolean()) {
+                chosen = this.word1.charAt(word1_count);
+                word1_count++;
+            }
+            else {
+                chosen = this.word2.charAt(word2_count);
+                word2_count++;
+            }
+
+            random.append(chosen);
+        }
+
+        while (word1_count < this.word1.length()) {
+            chosen = this.word1.charAt(word1_count);
+
+            random.append(chosen);
+
+            word1_count++;
+        }
+        while (word2_count < this.word2.length()) {
+            chosen = this.word2.charAt(word2_count);
+            random.append(chosen);
+
+            word2_count++;
+        }
+
+        messageBox.setText(random.toString());
+
+        for (int pos=random.length() - 1; pos >= 0; --pos)
+            this.stackedLayout.push(new LetterTile(this, random.charAt(pos)));
+
+        Log.i(MainActivity.class.getSimpleName(), this.stackedLayout.toString());
         return true;
     }
 
     public boolean onUndo(View view) {
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        if (!this.letterTileStack.empty()) {
+            LetterTile tile = this.letterTileStack.pop();
+
+            tile.moveToViewGroup(this.stackedLayout);
+        }
         return true;
     }
 }
