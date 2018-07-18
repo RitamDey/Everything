@@ -69,40 +69,42 @@ public class MainActivity extends Activity {
         LinearLayout verticalLayout = (LinearLayout) findViewById(R.id.vertical_layout);
         stackedLayout = new StackedLayout(this);
         verticalLayout.addView(stackedLayout, 3);
+        stackedLayout.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent event) {
+                int action  = event.getAction();
+                if (action == DragEvent.ACTION_DRAG_STARTED)
+                    return true;
+                else if (action == DragEvent.ACTION_DROP) {
+                    LetterTile tile = (LetterTile) event.getLocalState();
+                    tile.moveToViewGroup(stackedLayout);
 
-        View word1LinearLayout = findViewById(R.id.word1);
-        word1LinearLayout.setOnTouchListener(new TouchListener());
-        //word1LinearLayout.setOnDragListener(new DragListener());
-        View word2LinearLayout = findViewById(R.id.word2);
-        word2LinearLayout.setOnTouchListener(new TouchListener());
-        //word2LinearLayout.setOnDragListener(new DragListener());
-    }
+                    letterTileStack.remove(tile);
 
-    private class TouchListener implements View.OnTouchListener {
+                    if (!letterTileStack.empty())
+                        letterTileStack.peek().unfreeze();
 
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN && !stackedLayout.empty()) {
-                LetterTile tile = (LetterTile) stackedLayout.peek();
-                Log.i(TouchListener.class.getSimpleName(), tile.letter.toString());
-                tile.moveToViewGroup((ViewGroup) v);
-                if (stackedLayout.empty()) {
-                    TextView messageBox = (TextView) findViewById(R.id.message_box);
-                    messageBox.setText(String.format("%s %s", word1, word2));
+                    Log.i(MainActivity.class.getCanonicalName(), letterTileStack.toString());
+                    return true;
                 }
 
-                letterTileStack.push(tile);
-                return true;
+                return false;
             }
-            return false;
-        }
+        });
+
+        View word1LinearLayout = findViewById(R.id.word1);
+        word1LinearLayout.setOnDragListener(new DragListener());
+        View word2LinearLayout = findViewById(R.id.word2);
+        word2LinearLayout.setOnDragListener(new DragListener());
     }
+
 
     private class DragListener implements View.OnDragListener {
 
         public boolean onDrag(View v, DragEvent event) {
             int action = event.getAction();
-            switch (event.getAction()) {
+
+            switch (action) {
                 case DragEvent.ACTION_DRAG_STARTED:
                     v.setBackgroundColor(LIGHT_BLUE);
                     v.invalidate();
@@ -121,17 +123,27 @@ public class MainActivity extends Activity {
                     return true;
                 case DragEvent.ACTION_DROP:
                     // Dropped, reassign Tile to the target Layout
-                    LetterTile tile = (LetterTile) event.getLocalState();
+
+                    LetterTile tile = (LetterTile)((LinearLayout)v).getChildAt(
+                            ((LinearLayout)v).getChildCount() - 1
+                    );
+
+                    if (tile != null)
+                        tile.freeze();
+
+                    tile = (LetterTile) event.getLocalState();
                     tile.moveToViewGroup((ViewGroup) v);
+
                     if (stackedLayout.empty()) {
                         TextView messageBox = (TextView) findViewById(R.id.message_box);
                         messageBox.setText(String.format("%s %s", word1, word2));
                     }
-                    /*
-                     *
-                     *  YOUR CODE GOES HERE
-                     *
-                     */
+
+
+                    letterTileStack.push(tile);
+
+                    Log.i(MainActivity.class.getCanonicalName(), letterTileStack.toString());
+                    tile.unfreeze();
                     return true;
             }
             return false;

@@ -53,8 +53,14 @@ public class LetterTile extends TextView {
         } else {
             ViewGroup owner = (ViewGroup) parent;
             owner.removeView(this);
-            ((StackedLayout) targetView).push(this);
-            unfreeze();
+            if (targetView instanceof StackedLayout) {
+                ((StackedLayout) targetView).push(this);
+                unfreeze();
+            }
+            else if (targetView instanceof LinearLayout) {
+                ((LinearLayout)targetView).addView(this);
+                freeze();
+            }
         }
     }
 
@@ -68,11 +74,20 @@ public class LetterTile extends TextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        /*
-         *
-         *  YOUR CODE GOES HERE
-         *
-         */
+        if (!this.frozen && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            // Since it's the view that is being moved we don't need any clip data.
+            // Just set it empty text data
+            ClipData data = ClipData.newPlainText("", "");
+
+            // The drag shadow to indicate the on-going drag operation. Just use the default.
+            View.DragShadowBuilder shadow = new View.DragShadowBuilder(this);
+
+            this.startDrag(data, shadow, this, 0);
+        }
+
+        else
+            super.onTouchEvent(motionEvent);
+
         return super.onTouchEvent(motionEvent);
     }
 }
