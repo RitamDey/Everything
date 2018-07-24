@@ -3,14 +3,14 @@
 
     <item
         android:id="@+id/beginning"
-        android:title="Beginning"/>
+        android:title="@string/beginning_text"/>
 
     <item
         android:id="@+id/closest"
-        android:title="Closest"/>
+        android:title="@string/closest_text"/>
 
     <item
         android:id="@+id/smallest"
-        android:title="Smallest"/>
+        android:title="@string/smallest_text"/>
 
 </menu>

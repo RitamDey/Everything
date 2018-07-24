@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tap on map to set concert sites."
+            android:text="@string/set_concert_text"
             android:layout_weight="1"
             android:id="@+id/game_status" />
 
@@ -50,18 +50,16 @@
                 android:id="@+id/mode_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:text="Insert Mode" />
+                android:text="@string/insert_mode_text"
+                tools:ignore="ButtonStyle" />
 
             <Button
-                android:text="Reset"
+                android:text="@string/reset_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
                 android:id="@+id/button"
-                android:onClick="onReset" />
+                android:onClick="onReset"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 

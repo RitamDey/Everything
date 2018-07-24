@@ -15,6 +15,7 @@
 
 package com.google.engedu.touringmusician;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
@@ -32,33 +33,45 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         LinearLayout layout = (LinearLayout) findViewById(R.id.top_layout);
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT, 30.0f);
+
         map = new TourMap(this);
         map.setLayoutParams(params);
-        layout.addView(map, 0);
+
+        if (layout != null) {
+            layout.addView(map, 0);
+        }
+
         final Button modeButton = (Button) findViewById(R.id.mode_selector);
-        modeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popup = new PopupMenu(MainActivity.this, modeButton);
-                popup.getMenuInflater()
-                        .inflate(R.menu.modepopup, popup.getMenu());
 
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        map.setInsertMode(item.getTitle().toString());
-                        return true;
-                    }
-                });
+        if (modeButton != null) {
+            modeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopupMenu popup = new PopupMenu(MainActivity.this, modeButton);
 
-                popup.show();
-            }
-        });
+                    popup.getMenuInflater()
+                            .inflate(R.menu.modepopup, popup.getMenu());
+
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+                            map.setInsertMode(item.getTitle().toString());
+                            return true;
+                        }
+                    });
+
+                    popup.show();
+                }
+            });
+        }
     }
 
+    @SuppressLint("SetTextI18n")
     public void onReset(View v) {
         map.reset();
         TextView message = (TextView) findViewById(R.id.game_status);

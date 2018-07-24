@@ -15,6 +15,7 @@
 
 package com.google.engedu.touringmusician;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -41,43 +42,51 @@ public class TourMap extends View {
     }
 
     @Override
+    @SuppressLint("DrawAllocation")
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(mapImage, 0, 0, null);
         Paint pointPaint = new Paint();
         pointPaint.setColor(Color.RED);
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+
+        Paint linePaint = new Paint();
+        linePaint.setColor(Color.BLACK);
+
+        Point prev = null;
+        Point head = null;
+
         for (Point p : list) {
-            /**
-             **
-             **  YOUR CODE GOES HERE
-             **
-             **/
             canvas.drawCircle(p.x, p.y, 20, pointPaint);
+
+            if (prev != null)
+                canvas.drawLine(prev.x, prev.y, p.x, p.y, linePaint);
+            else
+                head = p;
+
+            prev = p;
         }
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        if (prev != null && head != null)
+            canvas.drawLine(prev.x, prev.y, head.x, head.y, linePaint);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 Point p = new Point((int) event.getX(), (int)event.getY());
-                if (insertMode.equals("Closest")) {
-                    list.insertNearest(p);
-                } else if (insertMode.equals("Smallest")) {
-                    list.insertSmallest(p);
-                } else {
-                    list.insertBeginning(p);
+                switch (insertMode) {
+                    case "Closest":
+                        list.insertNearest(p);
+                        break;
+                    case "Smallest":
+                        list.insertSmallest(p);
+                        break;
+                    default:
+                        list.insertBeginning(p);
+                        break;
                 }
+
                 TextView message = (TextView) ((Activity) getContext()).findViewById(R.id.game_status);
                 if (message != null) {
                     message.setText(String.format("Tour length is now %.2f", list.totalDistance()));

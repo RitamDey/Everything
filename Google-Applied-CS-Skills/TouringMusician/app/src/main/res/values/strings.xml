@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Touring Musician</string>
+    <string name="beginning_text">Beginning</string>
+    <string name="closest_text">Closest</string>
+    <string name="smallest_text">Smallest</string>
+    <string name="set_concert_text">Tap on map to set concert sites.</string>
+    <string name="insert_mode_text">Insert Mode</string>
+    <string name="reset_text">Reset</string>
 </resources>

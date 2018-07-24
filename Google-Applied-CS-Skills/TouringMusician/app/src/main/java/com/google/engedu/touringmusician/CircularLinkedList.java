@@ -17,6 +17,8 @@ package com.google.engedu.touringmusician;
 
 
 import android.graphics.Point;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.Iterator;
 
@@ -25,34 +27,50 @@ public class CircularLinkedList implements Iterable<Point> {
     private class Node {
         Point point;
         Node prev, next;
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+
+        Node(Point p) {
+            this.point = p;
+            this.prev = null;
+            this.next = null;
+        }
     }
 
-    Node head;
+    Node head = null;
 
     public void insertBeginning(Point p) {
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        Node point = new Node(p);
+
+        if (this.head == null) {
+            this.head = point;
+            this.head.next = this.head;
+            this.head.prev = this.head;
+        }
+        else {
+            point.next = this.head;
+            point.prev = this.head.prev;
+            this.head.prev.next = point;
+            this.head.prev = point;
+            this.head = point;
+        }
     }
 
     private float distanceBetween(Point from, Point to) {
-        return (float) Math.sqrt(Math.pow(from.y-to.y, 2) + Math.pow(from.x-to.x, 2));
+        return (float) Math.sqrt(Math.pow(from.y - to.y, 2) + Math.pow(from.x - to.x, 2));
     }
 
     public float totalDistance() {
         float total = 0;
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        Point prev = null;
+
+        for (Point elem: this) {
+            if (prev != null)
+                total += this.distanceBetween(prev, elem);
+
+            prev = elem;
+        }
+
+        total += this.distanceBetween(prev, this.head.point);
+
         return total;
     }
 
@@ -105,6 +123,7 @@ public class CircularLinkedList implements Iterable<Point> {
         }
     }
 
+    @NonNull
     @Override
     public Iterator<Point> iterator() {
         return new CircularLinkedListIterator();
