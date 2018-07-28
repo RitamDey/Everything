@@ -65,11 +65,12 @@ public class TourMap extends View {
 
             prev = p;
         }
+
         if (prev != null && head != null)
             canvas.drawLine(prev.x, prev.y, head.x, head.y, linePaint);
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "ClickableViewAccessibility"})
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
