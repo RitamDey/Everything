@@ -21,16 +21,9 @@ int main() {
         return 0;
     }
     
-    int res[col][row];
-    
-    for (int r=0; r < row; r++) {
-        for (int c=0; c < col; c++)
-            res[c][r] = matrix[r][c];
-    }
-    
     for (int r=0; r < col; ++r) {
         for (int c=0; c < row; ++c) {
-            if (res[r][c] != matrix[r][c]) {
+            if (matrix[c][r] != matrix[r][c]) {
                 puts("Not Symmetric");
                 return 0;
             }
