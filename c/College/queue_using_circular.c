@@ -36,19 +36,16 @@ node *push(node *list, int data) {
 }
 
 
-node *pop(node *list) {
+int pop(node *list) {
     if (list == NULL)
-        return NULL;
+        return -1;
 
-    int data = list->data;
-    node *next = list->next;
-    next->prev = list->prev;
-    list->prev->next = next;
-    free(list);
-    
-    printf("%d\n", data);
+    int data = list->prev->data;
+    node *prev = list->prev;
+    list->prev = prev->prev;
+    free(prev);
 
-    return next;
+    return data;
 }
 
 
@@ -59,10 +56,10 @@ int main() {
     list = push(list, 15);
     list = push(list, 16);
 
-    list = pop(list);
-    list = pop(list);
-    list = pop(list);
-    pop(list);
+    printf("%d\n", pop(list));
+    printf("%d\n", pop(list));
+    printf("%d\n", pop(list));
+    printf("%d\n", pop(list));
 
     return 0;
 }
