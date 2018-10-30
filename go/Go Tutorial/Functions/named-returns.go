@@ -14,7 +14,7 @@ func split(sum int) (x, y int) {
     x = sum - 5
     y = sum / 5
 
-    return  // This statmet is required to actually return value(s)
+    return  // This statment is required to actually return value(s)
 }
 
 
