@@ -123,7 +123,7 @@ public class CircularLinkedList implements Iterable<Point> {
 
         Node current;
 
-        public CircularLinkedListIterator() {
+        CircularLinkedListIterator() {
             current = head;
         }
 
