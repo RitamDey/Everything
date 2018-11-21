@@ -54,7 +54,7 @@ public class CircularLinkedList implements Iterable<Point> {
         }
     }
 
-    private float distanceBetween(Point from, Point to) {
+    private float distanceBetween(@NonNull Point from, @NonNull Point to) {
         return (float) Math.sqrt(Math.pow(from.y - to.y, 2) + Math.pow(from.x - to.x, 2));
     }
 
@@ -86,9 +86,9 @@ public class CircularLinkedList implements Iterable<Point> {
             return;
         }
 
-        float currDistance = Float.MAX_VALUE;
         Node currPoint = this.head;
         Node curr = this.head.next;
+        float currDistance = this.distanceBetween(curr.point, p);// Float.MAX_VALUE;
         float dist;
 
         while (curr != this.head) {
@@ -108,11 +108,27 @@ public class CircularLinkedList implements Iterable<Point> {
     }
 
     public void insertSmallest(Point p) {
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        Node point = new Node(p);
+
+        if (this.head == null) {
+            this.head = point;
+            this.head.next = point;
+            this.head.prev = point;
+            return;
+        }
+
+        if (this.head == this.head.next) {
+            point.prev = this.head;
+            point.next = this.head;
+            this.head.prev = point;
+            this.head.next = point;
+            return;
+        }
+
+        Node curr = this.head;
+        Node insertPoint = this.head;
+
+
     }
 
     public void reset() {
