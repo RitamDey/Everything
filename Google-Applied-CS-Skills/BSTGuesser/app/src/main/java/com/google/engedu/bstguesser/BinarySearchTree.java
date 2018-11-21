@@ -24,7 +24,7 @@ import java.util.jar.Pack200;
 public class BinarySearchTree {
     private TreeNode root = null;
 
-    public BinarySearchTree() {
+    BinarySearchTree() {
     }
 
     public void insert(int value) {
