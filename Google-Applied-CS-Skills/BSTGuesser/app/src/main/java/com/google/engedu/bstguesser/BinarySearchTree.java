@@ -51,11 +51,16 @@ public class BinarySearchTree {
 
     private TreeNode search(int value) {
         TreeNode current = root;
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+
+        while (current != null) {
+            if (current.getValue() == value)
+                break;
+            else if (current.getValue() < value)
+                current = current.left;
+            else
+                current = current.right;
+        }
+
         return current;
     }
 

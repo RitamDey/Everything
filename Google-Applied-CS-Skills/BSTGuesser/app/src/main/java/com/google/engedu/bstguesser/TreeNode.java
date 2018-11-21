@@ -29,7 +29,7 @@ public class TreeNode {
     private int x, y;
     private int color = Color.rgb(150, 150, 250);
 
-    public TreeNode(int value) {
+    TreeNode(int value) {
         this.value = value;
         this.height = 0;
         showValue = false;
@@ -38,11 +38,18 @@ public class TreeNode {
     }
 
     public void insert(int valueToInsert) {
-        /**
-         **
-         **  YOUR CODE GOES HERE
-         **
-         **/
+        if (this.value < valueToInsert) {
+            if (this.left != null)
+                this.left.insert(valueToInsert);
+            else
+                this.left = new TreeNode(valueToInsert);
+        }
+        else if (this.value > valueToInsert) {
+            if (this.right != null)
+                this.right.insert(valueToInsert);
+            else
+                this.right = new TreeNode(valueToInsert);
+        }
     }
 
     public int getValue() {
