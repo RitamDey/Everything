@@ -15,6 +15,7 @@
 
 package com.google.engedu.bstguesser;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 
+@SuppressLint("ViewConstructor")
 public class BinaryTreeView extends View {
 
     public static final int TREE_SIZE = 20;
@@ -67,6 +69,7 @@ public class BinaryTreeView extends View {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void updateMessage() {
         if (searchPosition < searchSequence.size())
             textView.setText("Looking for node " + searchSequence.get(searchPosition));
@@ -74,6 +77,7 @@ public class BinaryTreeView extends View {
             textView.setText("Done!");
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public boolean onTouchEvent(MotionEvent event) {
         if (tree != null && searchPosition < searchSequence.size()) {
             switch(event.getAction()) {

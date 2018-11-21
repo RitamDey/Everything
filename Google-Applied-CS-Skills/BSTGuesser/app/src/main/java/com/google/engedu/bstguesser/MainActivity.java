@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         layout.addView(treeView);
     }
 
-    public boolean onPressStart(View view) {
+    public void onPressStart(View view) {
         treeView.initialize();
-        return true;
+//        return true;
     }
 }
