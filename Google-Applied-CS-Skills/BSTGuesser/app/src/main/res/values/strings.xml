@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BST Guesser</string>
+    <string name="start">Start</string>
+    <string name="build_tree">Press \"Start\" to build a tree</string>
 </resources>
