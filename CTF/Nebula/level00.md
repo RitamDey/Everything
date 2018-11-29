@@ -10,8 +10,9 @@ We need to use the _find_ utility to list all the files and executable that is o
 
 The command needed is `find -depth -user flag00 / 2> /dev/null`.
 
-The option explanations:
-    * -depth: Instructs _find_ to recursively search all subdirectories
-    * -user: Instructs _find_ to list only the files and folders which _level00_ user owns
+The option explanations: <ul>
+    <li> `-depth`: Instructs _find_ to recursively search all subdirectories </li>
+    <li> `-user`: Instructs _find_ to list only the files and folders which _level00_ user owns </li>
+    </ul>
 
 The redirect `2> /dev/null` is used to redirect the permission denied errors to /dev/null. Shortens the output
