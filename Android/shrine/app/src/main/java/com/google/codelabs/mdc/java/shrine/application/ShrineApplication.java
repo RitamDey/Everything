@@ -1,10 +1,12 @@
 package com.google.codelabs.mdc.java.shrine.application;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.support.v7.app.AppCompatDelegate;
 
 public class ShrineApplication extends Application {
+    @SuppressLint("StaticFieldLeak")
     private static ShrineApplication instance;
     private static Context appContext;
 

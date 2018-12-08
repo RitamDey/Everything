@@ -22,7 +22,9 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="48dp"
             android:layout_marginBottom="16dp"
-            app:srcCompat="@drawable/shr_logo" />
+            app:srcCompat="@drawable/shr_logo"
+            android:contentDescription="@string/app_logo"
+            android:tint="?android:attr/textColorPrimary"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,12 +32,66 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="132dp"
             android:text="@string/shr_app_name"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
+            android:textAppearance="@style/TextAppearance.Shrine.Title" />
 
         <!-- Snippet from "Add text fields" section goes here. -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/shr_hint_username"
+            android:id="@+id/shr_username_input"
+            app:errorEnabled="true"
+            style="@style/Widget.Shrine.TextInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                android:id="@+id/shr_username_edit" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/password_text_input"
+            android:hint="@string/shr_hint_password"
+            app:errorEnabled="true"
+            style="@style/Widget.Shrine.TextInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/password_edit_text"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
 
         <!-- Snippet from "Add buttons" section goes here. -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/next_button"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/shr_button_next"
+                style="@style/Widget.Shrine.Button"/>
+
+            <android.support.design.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cancel_button"
+                style="@style/Widget.Shrine.Button.TextButton"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_toStartOf="@id/next_button"
+                android:layout_toLeftOf="@id/next_button"
+                android:text="@string/shr_button_cancel"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 </ScrollView>
