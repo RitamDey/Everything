@@ -18,7 +18,6 @@ package com.google.engedu.bstguesser;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 
 public class TreeNode {
     private static final int SIZE = 60;
@@ -38,13 +37,13 @@ public class TreeNode {
     }
 
     public void insert(int valueToInsert) {
-        if (this.value < valueToInsert) {
+        if (this.value > valueToInsert) {
             if (this.left != null)
                 this.left.insert(valueToInsert);
             else
                 this.left = new TreeNode(valueToInsert);
         }
-        else if (this.value > valueToInsert) {
+        else if (this.value < valueToInsert) {
             if (this.right != null)
                 this.right.insert(valueToInsert);
             else

@@ -28,12 +28,10 @@ public class BinarySearchTree {
     }
 
     public void insert(int value) {
-        if (root == null) {
+        if (root == null)
             root = new TreeNode(value);
-            return;
-        } else {
+        else
             root.insert(value);
-        }
     }
 
     public void positionNodes(int width) {
@@ -55,7 +53,7 @@ public class BinarySearchTree {
         while (current != null) {
             if (current.getValue() == value)
                 break;
-            else if (current.getValue() < value)
+            else if (current.getValue() > value)
                 current = current.left;
             else
                 current = current.right;
@@ -66,6 +64,7 @@ public class BinarySearchTree {
 
     public void invalidateNode(int targetValue) {
         TreeNode target = search(targetValue);
-        target.invalidate();
+        if (target != null)
+            target.invalidate();
     }
 }
