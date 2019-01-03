@@ -30,10 +30,10 @@ public class TreeNode {
 
     TreeNode(int value) {
         this.value = value;
-        this.height = 0;
-        showValue = false;
-        left = null;
-        right = null;
+        this.height = 1;
+        this.showValue = false;
+        this.left = null;
+        this.right = null;
     }
 
     public void insert(int valueToInsert) {
@@ -49,10 +49,25 @@ public class TreeNode {
             else
                 this.right = new TreeNode(valueToInsert);
         }
+        this.height = 1 + Math.max(this.getHeight(this.left), this.getHeight(this.right));
     }
 
     public int getValue() {
         return value;
+    }
+
+    public int getHeight(TreeNode node) {
+        if (node == null)
+            return 0;
+        return node.height;
+    }
+
+    private int balance() {
+        // Get the height of left subtree and right subtree
+        int left = (this.left != null)? this.left.height: 0;
+        int right = (this.right != null)? this.right.height: 0;
+
+        return left - right;
     }
 
     public void positionSelf(int x0, int x1, int y) {
