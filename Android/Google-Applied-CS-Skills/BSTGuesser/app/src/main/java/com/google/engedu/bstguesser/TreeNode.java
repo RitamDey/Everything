@@ -31,25 +31,46 @@ public class TreeNode {
     TreeNode(int value) {
         this.value = value;
         this.height = 1;
-        this.showValue = false;
+        this.showValue = true;
         this.left = null;
         this.right = null;
     }
 
-    public void insert(int valueToInsert) {
+    public TreeNode insert(int valueToInsert) {
         if (this.value > valueToInsert) {
             if (this.left != null)
-                this.left.insert(valueToInsert);
+                this.left = this.left.insert(valueToInsert);
             else
                 this.left = new TreeNode(valueToInsert);
         }
         else if (this.value < valueToInsert) {
             if (this.right != null)
-                this.right.insert(valueToInsert);
+                this.right = this.right.insert(valueToInsert);
             else
                 this.right = new TreeNode(valueToInsert);
         }
+
         this.height = 1 + Math.max(this.getHeight(this.left), this.getHeight(this.right));
+
+        int balance = this.getBalance();
+
+        if (balance > 1) {
+            if (valueToInsert < this.left.value)
+                return this.rightRotate(this);
+            else if (valueToInsert > this.left.value) {
+                this.left = this.leftRotate(this.left);
+                return this.rightRotate(this);
+            }
+        } else if (balance < -1) {
+            if (valueToInsert > this.right.value)
+                return this.leftRotate(this);
+            else if (valueToInsert < this.right.value) {
+                this.right = this.rightRotate(this.right);
+                return this.leftRotate(this);
+            }
+        }
+
+        return this;
     }
 
     public int getValue() {
@@ -62,7 +83,35 @@ public class TreeNode {
         return node.height;
     }
 
-    private int balance() {
+    private TreeNode leftRotate(TreeNode node) {
+        if (node == null)
+            return null;
+
+        TreeNode rightChild = node.right;
+        node.right = rightChild.left;
+        rightChild.left = node;
+
+        node.height = Math.max(this.getHeight(node.left), this.getHeight(node.right)) + 1;
+        rightChild.height = Math.max(this.getHeight(rightChild.right), this.getHeight(rightChild.left)) + 1;
+
+        return rightChild;
+    }
+
+    private TreeNode rightRotate(TreeNode node) {
+        if (node == null)
+            return null;
+
+        TreeNode leftChild = node.left;
+        node.left = leftChild.right;
+        leftChild.right = node;
+
+        node.height = Math.max(this.getHeight(node.left), this.getHeight(node.right)) + 1;
+        leftChild.height = Math.max(this.getHeight(leftChild.right), this.getHeight(leftChild.left)) + 1;
+
+        return leftChild;
+    }
+
+    private int getBalance() {
         // Get the height of left subtree and right subtree
         int left = (this.left != null)? this.left.height: 0;
         int right = (this.right != null)? this.right.height: 0;

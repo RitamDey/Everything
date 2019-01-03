@@ -2,4 +2,6 @@
     <string name="app_name">BST Guesser</string>
     <string name="start">Start</string>
     <string name="build_tree">Press \"Start\" to build a tree</string>
+    <string name="insert_single">Insert Single Number</string>
+    <string name="input_hint">Enter number to insert</string>
 </resources>

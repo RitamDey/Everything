@@ -31,7 +31,7 @@ public class BinarySearchTree {
         if (root == null)
             root = new TreeNode(value);
         else
-            root.insert(value);
+            root = root.insert(value);
     }
 
     public void positionNodes(int width) {
