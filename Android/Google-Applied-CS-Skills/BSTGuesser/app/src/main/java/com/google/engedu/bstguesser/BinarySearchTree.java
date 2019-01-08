@@ -17,16 +17,16 @@ package com.google.engedu.bstguesser;
 
 import android.graphics.Canvas;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.jar.Pack200;
-
 public class BinarySearchTree {
     private TreeNode root = null;
 
     BinarySearchTree() {
     }
 
+    /**
+     * Tell's the root node to insert a value. If root node is not present, the creates it
+     * @param value The value to inserted in the tree
+     */
     public void insert(int value) {
         if (root == null)
             root = new TreeNode(value);
@@ -47,6 +47,11 @@ public class BinarySearchTree {
         return root.click(x, y, target);
     }
 
+    /**
+     * Searches to find if current value is in Tree or not
+     * @param value The value to find
+     * @return The node, if value is present else null
+     */
     private TreeNode search(int value) {
         TreeNode current = root;
 

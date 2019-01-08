@@ -41,6 +41,5 @@ public class MainActivity extends AppCompatActivity {
 
     public void onPressStart(View view) {
         treeView.initialize();
-//        return true;
     }
 }

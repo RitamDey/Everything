@@ -28,14 +28,23 @@ public class TreeNode {
     private int x, y;
     private int color = Color.rgb(150, 150, 250);
 
+    /**
+     * Constructor for the class
+     * @param value The value of the node in the Tree
+     */
     TreeNode(int value) {
         this.value = value;
         this.height = 1;
-        this.showValue = true;
+        this.showValue = false;
         this.left = null;
         this.right = null;
     }
 
+    /**
+     * Inserts the value in the tree
+     * @param valueToInsert The value that needs to be inserted in the tree
+     * @return The current node or new rebalanced node
+     */
     public TreeNode insert(int valueToInsert) {
         if (this.value > valueToInsert) {
             if (this.left != null)
@@ -50,10 +59,28 @@ public class TreeNode {
                 this.right = new TreeNode(valueToInsert);
         }
 
+        // Update the height of the current node using the heights of its children
         this.height = 1 + Math.max(this.getHeight(this.left), this.getHeight(this.right));
 
+        // Get balanced factor to see if we need re-balancing
         int balance = this.getBalance();
 
+        /*
+         * There are only 4 types of rotations that can be done.
+         * Left Left Rotation -> Perform a single right rotation on the unbalanced node.
+         * Left Right Rotation -> Perform a left rotation on the unbalanced node's left child, the perform a right rotation on itself
+         * Right Right Rotation -> Perform a single left rotation on the unbalanced node.
+         * Right Left Rotation -> Perform a right rotation on the unbalanced node's right child, the perform a left rotation on itself
+         */
+
+        /* Identify cases for rotations/balancing.
+         *
+         * Left Left Case -> When balance factor > 1 and inserted value < left child's value
+         * Left Right Case -> When balance factor > 1 and inserted value > left child's value
+         *
+         * Right Right Case -> When balance factor < 1 and inserted value > right child's value
+         * Right Left Case -> When balanced factor < 1 and inserted value < right child's value
+         */
         if (balance > 1) {
             if (valueToInsert < this.left.value)
                 return this.rightRotate(this);
@@ -70,6 +97,7 @@ public class TreeNode {
             }
         }
 
+        // If we reached here, then it means we did a regular BST insertion, return the current node
         return this;
     }
 
@@ -77,12 +105,22 @@ public class TreeNode {
         return value;
     }
 
-    public int getHeight(TreeNode node) {
+    /**
+     * Helper method that returns a node's height
+     * @param node A node whose height needs to be returned
+     * @return The node's height
+     */
+    private int getHeight(TreeNode node) {
         if (node == null)
             return 0;
         return node.height;
     }
 
+    /**
+     * Performs a left rotation on the given node
+     * @param node The root to the current unbalanced subtree
+     * @return The root of the subtree after performing the left rotation
+     */
     private TreeNode leftRotate(TreeNode node) {
         if (node == null)
             return null;
@@ -91,12 +129,19 @@ public class TreeNode {
         node.right = rightChild.left;
         rightChild.left = node;
 
+        // Since only the position of the nodes changed in the tree,
+        // the unmoved child nodes have their heights unchanged. Use them to recalculate the heights
         node.height = Math.max(this.getHeight(node.left), this.getHeight(node.right)) + 1;
         rightChild.height = Math.max(this.getHeight(rightChild.right), this.getHeight(rightChild.left)) + 1;
 
         return rightChild;
     }
 
+    /**
+     * Performs a right rotation on the given node
+     * @param node The root to the current unbalanced subtree
+     * @return The root of the subtree after performing the right rotation
+     */
     private TreeNode rightRotate(TreeNode node) {
         if (node == null)
             return null;
@@ -105,14 +150,19 @@ public class TreeNode {
         node.left = leftChild.right;
         leftChild.right = node;
 
+        // Since only the position of the nodes changed in the tree,
+        // the unmoved child nodes have their heights unchanged. Use them to recalculate the heights
         node.height = Math.max(this.getHeight(node.left), this.getHeight(node.right)) + 1;
         leftChild.height = Math.max(this.getHeight(leftChild.right), this.getHeight(leftChild.left)) + 1;
 
         return leftChild;
     }
 
+    /**
+     * Calculates the current balance between left and right subtree
+     * @return The current balance of the node
+     */
     private int getBalance() {
-        // Get the height of left subtree and right subtree
         int left = (this.left != null)? this.left.height: 0;
         int right = (this.right != null)? this.right.height: 0;
 
@@ -186,6 +236,9 @@ public class TreeNode {
         return hit;
     }
 
+    /**
+     * As per as I understood reading the sourcecode, this method forces activity redraw
+     */
     public void invalidate() {
         color = Color.CYAN;
         showValue = true;
