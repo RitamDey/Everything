@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Ghost</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="challenge_button">Challenge</string>
+    <string name="reset_button">Reset</string>
+    <string name="game_status">Game Starts here</string>
+</resources>
