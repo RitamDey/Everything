@@ -8,7 +8,7 @@ Substitution ciphers are a simple replacement algorithm. In this example of a su
 
 This level contains an old form of cipher called a ‘Caesar Cipher’. A Caesar cipher shifts the alphabet by a set number. For example:
 
-plain:  a b c d e f g h i j k ...
+plain:  a b c d e f g h i j k ... <br>
 cipher: G H I J K L M N O P Q ...
 
 In this example, the letter ‘a’ in plaintext is replaced by a ‘G’ in the ciphertext so, for example, the plaintext ‘bad’ becomes ‘HGJ’ in ciphertext.
@@ -25,12 +25,12 @@ The encrypt binary will look for the keyfile in your current working directory. 
 
 Here is an example:
 
-krypton2@melinda:~$ mktemp -d
-/tmp/tmp.Wf2OnCpCDQ
-krypton2@melinda:~$ cd /tmp/tmp.Wf2OnCpCDQ
-krypton2@melinda:/tmp/tmp.Wf2OnCpCDQ$ ln -s /krypton/krypton2/keyfile.dat
-krypton2@melinda:/tmp/tmp.Wf2OnCpCDQ$ ls
-keyfile.dat
+krypton2@melinda:~$ mktemp -d <br>
+/tmp/tmp.Wf2OnCpCDQ <br>
+krypton2@melinda:~$ cd /tmp/tmp.Wf2OnCpCDQ <br>
+krypton2@melinda:/tmp/tmp.Wf2OnCpCDQ$ ln -s /krypton/krypton2/keyfile.dat <br>
+krypton2@melinda:/tmp/tmp.Wf2OnCpCDQ$ ls <br>
+keyfile.dat <br>
 
 
 ## Solution
@@ -39,4 +39,4 @@ Doing so we can calculate (leak ?) the key used in the encryption by using our c
 Once we get the key, use any online Caesar Cipher decryptor or write a decryptor, to decrypt the password in the file to get the password to <code>**Level 3**</code>
 
 
-My decryptor is [here] (../krypton2.py)
+My decryptor is [here] (https://github.com/RitamDey/My-Simple-Programs/blob/master/CTF/Krypton/krypton2.py)
