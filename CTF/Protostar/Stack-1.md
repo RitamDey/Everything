@@ -10,6 +10,7 @@ Hints
 <li>If you are unfamiliar with the hexadecimal being displayed, “man ascii” is your friend.</li>
 <li>Protostar is little endian</li>
 </ul>
+
 ```C
 #include <stdlib.h>
 #include <unistd.h>
@@ -48,7 +49,4 @@ We know: <ul>
 And we know our target value to overwrite in **modified** is **0x61626364**, which when converted from little-endian equals to **0x64636261**, which when decoded usin the ASCII table is **"dcba"**.
 
 Now we to overwrite **modified** with **"dcba"**, we can prefix it with a string of length 64, since **buffer** array is 64 long.
-Using command like
-```bash
-./stack1 $(python -c "print 'A' * 64 + 'dcba'")
-``` we can complete the level
+Using command like `./stack1 $(python -c "print 'A' * 64 + 'dcba'")` we can complete the level
