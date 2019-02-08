@@ -31,14 +31,14 @@ The disassembly of the **main()** function.
 ```Assembly
 0x080483f4 <main+0>:	push   ebp
 0x080483f5 <main+1>:	mov    ebp,esp
-0x080483f7 <main+3>:	and    esp,0xfffffff0
-0x080483fa <main+6>:	sub    esp,0x60
-0x080483fd <main+9>:	mov    DWORD PTR [esp+0x5c],0x0
-0x08048405 <main+17>:	lea    eax,[esp+0x1c]
-0x08048409 <main+21>:	mov    DWORD PTR [esp],eax
+0x080483f7 <main+3>:	and    esp,0xfffffff0  ; Algin stack addresses for 32-bit
+0x080483fa <main+6>:	sub    esp,0x60  ; Allocate 96 bytes memory as function stack
+0x080483fd <main+9>:	mov    DWORD PTR [esp+0x5c],0x0  ; Initialize the modified variable
+0x08048405 <main+17>:	lea    eax,[esp+0x1c]  ; Load the address for the base address of array buffer
+0x08048409 <main+21>:	mov    DWORD PTR [esp],eax  ; Copy the calculated address to the top of stack
 0x0804840c <main+24>:	call   0x804830c <gets@plt>
-0x08048411 <main+29>:	mov    eax,DWORD PTR [esp+0x5c]
-0x08048415 <main+33>:	test   eax,eax
+0x08048411 <main+29>:	mov    eax,DWORD PTR [esp+0x5c]  ; Copy the content of modified variable to register EAX
+0x08048415 <main+33>:	test   eax,eax  ; Test if register EAX is 0 or not
 0x08048417 <main+35>:	je     0x8048427 <main+51>
 0x08048419 <main+37>:	mov    DWORD PTR [esp],0x8048500
 0x08048420 <main+44>:	call   0x804832c <puts@plt>
