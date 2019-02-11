@@ -1,9 +1,9 @@
 # Natas 0 -> Natas 1
 
 ## Target
-Url: [http://natas0.natas.labs.overthewire.org/](http://natas0.natas.labs.overthewire.org/)
-Username: natas0
-Password: natas0
+Url: [http://natas0.natas.labs.overthewire.org/](http://natas0.natas.labs.overthewire.org/) <br>
+Username: natas0 <br>
+Password: natas0 <br>
 
 
 ## Next Password:

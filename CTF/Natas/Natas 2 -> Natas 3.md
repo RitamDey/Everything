@@ -2,9 +2,9 @@
 
 
 ## Target
-Url: [http://natas2.natas.labs.overthewire.org/](http://natas2.natas.labs.overthewire.org/)
-Username: natas2
-Password: ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi
+Url: [http://natas2.natas.labs.overthewire.org/](http://natas2.natas.labs.overthewire.org/) <br>
+Username: natas2 <br>
+Password: ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi <br>
 
 
 ## Next Password
