@@ -5,7 +5,7 @@
 ## Url: [https://ctf.lse.epita.fr/ex/1/](https://ctf.lse.epita.fr/ex/1/)
 
 
-The section of main we are interested can be found [here]().
+The section of main we are interested can be found [here](https://github.com/RitamDey/My-Simple-Programs/blob/master/CTF/LSE%20CTF/Easy%20Crack/focus-section.png).
 Now in the **LoadArguments** the only thing that is of particular interest to us is `mov	rdx, [rsi+8]`, which loads the second entry of the **argv** command-line arguments into rdx. Note that here only the address to start of the entry of **argv** is copied, not the actual array entries. We also see register eax being initialized to 0 and the address in register rdx to register rdi.
 
 Now moving to the next section, we see that the address of sector **unk_400808** being moved to register ecx, this section actually holds the value which we need to crack. Also register eax is set to 0, which is actually the initialization of the loop
