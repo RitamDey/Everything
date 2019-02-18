@@ -5,6 +5,7 @@
 Url: [http://natas2.natas.labs.overthewire.org/](http://natas2.natas.labs.overthewire.org/) <br>
 Username: natas2 <br>
 Password: ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi <br>
+Attack Type: Leaking Directory Listing <br>
 
 
 ## Next Password

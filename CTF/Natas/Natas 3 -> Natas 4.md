@@ -5,6 +5,7 @@
 Url: [http://natas3.natas.labs.overthewire.org](http://natas3.natas.labs.overthewire.org)
 Username: natas3
 Password: sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14
+Attack Type: Insecure directory listing on robots.txt <br/>
 
 
 ## Next Password

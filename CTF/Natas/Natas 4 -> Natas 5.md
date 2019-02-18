@@ -5,6 +5,7 @@
 Url: [http://natas4.natas.labs.overthewire.org/index.php](http://natas4.natas.labs.overthewire.org/index.php). <br>
 Username: natas4 <br>
 Password: Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ <br>
+Attack Type: HTTP Request Header Forging <br/>
 
 
 ## Next Password

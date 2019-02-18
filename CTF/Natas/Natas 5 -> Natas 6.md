@@ -5,6 +5,7 @@
 Url: [http://natas5.natas.labs.overthewire.org/](http://natas5.natas.labs.overthewire.org/) <br>
 Username: natas5 <br>
 Password: iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq <br>
+Attack Type: Session Cookie Forging <br/>
 
 
 ## Next Password

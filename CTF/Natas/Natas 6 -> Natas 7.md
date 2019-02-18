@@ -2,9 +2,10 @@
 
 
 ## Target
-Url: [http://natas5.natas.labs.overthewire.org/](http://natas5.natas.labs.overthewire.org/) <br>
+Url: [http://natas6.natas.labs.overthewire.org/](http://natas6.natas.labs.overthewire.org/) <br>
 Username: natas6 <br>
 Password: aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1 <br>
+Attack Type: Security through obscurity is no security <br/>
 
 
 ## Next Password
