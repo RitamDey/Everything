@@ -19,5 +19,5 @@ def calc_key(name, n1=ord('a'), n2=ord('n'), n3=ord('d')):
 
 
 if __name__ == '__main__':
-    calc_key(input())
+    calc_key("Ritam")
 
