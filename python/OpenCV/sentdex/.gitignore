@@ -1,7 +1,0 @@
-# Ignore all files
-*
-
-
-# But not the .py files
-!.gitignore
-!.py

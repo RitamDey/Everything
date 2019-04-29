@@ -1,8 +1,0 @@
-*.csv
-*.txt
-.ipynb_checkpoints/
-*.sh
-build/
-*.css
-*.dot
-Makefile
