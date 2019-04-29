@@ -30,11 +30,15 @@ class PermutationGenerator {
 
         ArrayList<String> results = generator.getPermutations();
 
-        System.out.printf(
-        "%s: %c\n%s: %c\n%s: %c\n", 
-        results.get(3), results.get(3).charAt(3),
-        results.get(10), results.get(10).charAt(3),
-        results.get(17), results.get(17).charAt(3));
+        System.out.println("--------------------- Using Decompiled Generator ----------------------");
+        System.out.println("Input for generator: India");
+        
+        System.out.printf("%s: %c\n%s: %c\n%s: %c\n", 
+            results.get(3), results.get(3).charAt(3),
+            results.get(10), results.get(10).charAt(3),
+            results.get(17), results.get(17).charAt(3)
+        );
+
         System.out.println(results.size());
     }
 }
