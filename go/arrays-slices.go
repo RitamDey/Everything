@@ -62,7 +62,4 @@ func main() {
 	s7 := []int{123, 456, 789}
 	s6 = append(s6, s7...)
 	fmt.Println(s6)
-
-	// Popping elements from slice
-	// elem := re
 }
