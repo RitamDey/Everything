@@ -1,4 +1,3 @@
 read expr
 
-
-echo `echo "scale=3;$expr" | bc -l`
+printf "%.3f\n" $( echo $expr | bc -l )
