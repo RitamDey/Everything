@@ -1,8 +1,0 @@
-On modern UNIX/Linux Systems, the real password are hashed in a file called /etc/shadow. The 2nd field in each entry of /etc/shadow contains the info to calculate hash of the password, seperated by "$".
-The first "$" is the algorithm used to hash, 1 for MD5, 6 for SHA-256 etc.
-The second "$" is the salt used for the hash.
-The third "$" is the actual hash of the pasword.
-
-
-
-If using john, the it is useful to first combine the passwd and shadow files using `unshadow` utility
