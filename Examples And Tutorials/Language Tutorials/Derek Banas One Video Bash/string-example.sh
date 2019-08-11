@@ -1,4 +1,4 @@
-str1 =""
+str1=""
 str2="Sad"
 str3="Happy"
 
