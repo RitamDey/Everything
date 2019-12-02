@@ -16,7 +16,7 @@ def processEpisode(urls):
             # Make and change to the new directory
             link = browser.find_element_by_xpath("//div[@style='float:right;'][2]/a").get_attribute("href")
             print(f"{ep} => {link}")
-            call(["wget", "--header", "Cookie: cf_clearance=f9aa953290bb30f839c889f574e76269b917cc23-1575183129-0-150; __cfduid=d0bcc2d347a2dbbd9c4682e3244e591a81575183129; BB_plg=pm; _ga=GA1.2.1706468009.1575183134; _gid=GA1.2.1377284622.1575183134; dom3ic8zudi28v8lr6fgphwffqoz0j6c=0e25db01-a70b-4b58-8918-564f18ffa042%3A1%3A1; __zlcmid=vXijCIw9adLc36; oigster=B2X2kHBdIGdzAxn4kHmhXDm1WDI5XNWgWtO4WNE=; jwplayer.captionLabel=Off; bbl=4; _gat_gtag_UA_55936626_2=1", "-O", ep + ".mp4", link])
+            call(["wget", "--header", "Cookie: cf_clearance=f9aa953290bb30f839c889f574e76269b917cc23-1575183129-0-150; __cfduid=d0bcc2d347a2dbbd9c4682e3244e591a81575183129; BB_plg=pm; _ga=GA1.2.1706468009.1575183134; _gid=GA1.2.1377284622.1575183134; dom3ic8zudi28v8lr6fgphwffqoz0j6c=0e25db01-a70b-4b58-8918-564f18ffa042%3A1%3A1; __zlcmid=vXijCIw9adLc36; oigster=B2X2kHBdIGdzAxn4kHmhXDm1WDI5XNWgWtO4WNE=; jwplayer.captionLabel=Off; bbl=4; _gat_gtag_UA_55936626_2=1", "--no-clobber", "--continue", "-O", ep + ".mp4", link])
  
 
 def main(url):
