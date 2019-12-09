@@ -7,7 +7,7 @@ NAME_REGEX = r"(?P<name><h2.*)"
 VIDEO_REGEX = r"<source.*480.*>"
 URL_REGEX = r"https.*\.mp4"
 
-html = requests.get("https://www.erome.com/a/ywy7azfA").text
+html = requests.get("https://www.erome.com/a/RogkSLVQ").text
 video = []
 url = []
 
@@ -21,5 +21,6 @@ for count, i in enumerate(findall(VIDEO_REGEX, html)):
     count += 1
 
 for i,j in zip(video, url):
-    subprocess.call(["wget", "--no-clobber", "--continue", "-O", i, j])
+    print(f"{i} -> {j}")
+    subprocess.call(["wget", "-q", "--show-progress", "--no-clobber", "--continue", "-O", i, j])
 
