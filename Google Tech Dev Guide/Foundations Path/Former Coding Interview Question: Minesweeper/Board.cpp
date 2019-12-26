@@ -71,7 +71,18 @@ int Board::columns() {
 
 
 ostream& operator<<(ostream& stream, Board& obj) {
+    stream << "*|";
+    for (int i=1; i <= obj.n_cols; i++)
+        stream << i << " ";
+    stream << endl;
+    for (int i=1; i <= obj.n_cols+1; i++)
+        stream << "= ";
+    stream << endl;
+
+    int i = 1;
+
     for_each(obj.board.begin(), obj.board.end(), [&](vector<int> r) {
+        stream << i++ << "|";
         for_each(r.begin(), r.end(), [&](int e) {
             stream << e << " ";
         });
