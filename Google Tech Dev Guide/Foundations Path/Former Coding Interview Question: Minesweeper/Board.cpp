@@ -17,7 +17,7 @@ Board::Board(int rows, int cols) {
 
 void Board::populate_mines() {
     // Randomly select number of mines
-    int n_mines = randint(1, static_cast<int>(this->n_cols * this->n_rows * 0.25));
+    int n_mines = randint(1, static_cast<int>(this->n_cols * this->n_rows * 0.1));
     cout << "Number of mines: " << n_mines << endl;
 
     while (n_mines--) {
