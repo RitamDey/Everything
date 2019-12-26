@@ -12,6 +12,7 @@ class Board {
     int n_cols;
     matrix board;
     void populate_mines();
+    void populate_neighbour(int r, int c);
 
     public:
     Board(int rows, int cols);

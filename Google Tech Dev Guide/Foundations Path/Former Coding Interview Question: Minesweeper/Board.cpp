@@ -26,7 +26,37 @@ void Board::populate_mines() {
         int rand_row = randint(1, this->n_rows) - 1;
 
         this->board[rand_row][rand_col] = 9;
+
+        this->populate_neighbour(rand_row, rand_col);
     }
+}
+
+
+void Board::populate_neighbour(int r, int c) {
+    if ((r - 1) >= 0 && this->board[r-1][c] != 9)
+        this->board[r-1][c] += 1;
+
+    if ((r + 1) <= (this->n_rows - 1) && this->board[r+1][c] != 9)
+        this->board[r+1][c] += 1;
+
+    if ((c + 1) <= (this->n_cols - 1) && this->board[r][c+1] != 9)
+        this->board[r][c+1] += 1;
+
+    if ((c - 1) >= 0 && this->board[r][c-1] != 9)
+        this->board[r][c-1] += 1;
+
+    if ((r - 1) >= 0 && (c - 1) >= 0 && this->board[r-1][c-1] != 9)
+        this->board[r-1][c-1] += 1;
+
+    if ((r + 1) <= (this->n_rows - 1) && (c + 1) <= (this->n_cols - 1) && this->board[r+1][c+1] != 9)
+            this->board[r+1][c+1] += 1;
+
+    if ((r - 1) >= 0 && (c + 1) <= (this->n_cols - 1) && this->board[r-1][c+1] != 9)
+            this->board[r-1][c+1] += 1;
+
+    if ((r + 1) <= (this->n_rows - 1) && (c - 1) >= 0 && this->board[r+1][c-1] != 9)
+            this->board[r+1][c-1] += 1;
+
 }
 
 
