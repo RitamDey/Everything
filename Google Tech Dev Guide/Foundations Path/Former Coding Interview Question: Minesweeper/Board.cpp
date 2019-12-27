@@ -36,7 +36,7 @@ Board::Board(int rows, int cols) {
     this->n_rows = rows;
     this->n_cols = cols;
 
-    board.assign(rows, vector<int>(cols));
+    board.assign(rows, vector<Cell>(cols));
     this->populate_mines();
 }
 
@@ -58,31 +58,46 @@ void Board::populate_mines() {
 }
 
 
-void Board::populate_neighbour(int r, int c) {
+vector<pair<int, int>> Board::neighbours(pair<int, int> cell) {
+    auto [r, c] = cell;
+    vector<pair<int, int>> result;
+
     if ((r - 1) >= 0)
-        this->board[r-1][c].update();
+        result.push_back(make_pair(r - 1, c));
 
     if ((r + 1) <= (this->n_rows - 1))
-        this->board[r+1][c].update();
+        result.push_back(make_pair(r + 1, c));
+    
+    if ((c - 1) >= 0)
+        result.push_back(make_pair(r, c - 1));
 
     if ((c + 1) <= (this->n_cols - 1))
-        this->board[r][c+1].update();
-
-    if ((c - 1) >= 0)
-        this->board[r][c-1].update();
+        result.push_back(make_pair(r, c + 1));
 
     if ((r - 1) >= 0 && (c - 1) >= 0)
-        this->board[r-1][c-1].update();
-
-    if ((r + 1) <= (this->n_rows - 1) && (c + 1) <= (this->n_cols - 1))
-            this->board[r+1][c+1].update();
+        result.push_back(make_pair(r - 1, c - 1));
 
     if ((r - 1) >= 0 && (c + 1) <= (this->n_cols - 1))
-            this->board[r-1][c+1].update();
+        result.push_back(make_pair(r - 1, c + 1));
 
     if ((r + 1) <= (this->n_rows - 1) && (c - 1) >= 0)
-            this->board[r+1][c-1].update();
+        result.push_back(make_pair(r + 1, c - 1));
 
+    if ((r + 1) <= (this->n_rows - 1) && (c + 1) <= (this->n_cols - 1))
+        result.push_back(make_pair(r + 1, c + 1));
+
+    return result;
+}
+
+
+void Board::populate_neighbour(int r, int c) {
+    vector<pair<int, int>> valid_neighbours = this->neighbours(make_pair(r, c));
+
+    for_each(valid_neighbours.begin(), valid_neighbours.end(), [this](pair<int, int> cell_pos) {
+        auto[r, c] = cell_pos;
+        Cell& cell = this->board[r][c];
+        cell.update();
+    });
 }
 
 
