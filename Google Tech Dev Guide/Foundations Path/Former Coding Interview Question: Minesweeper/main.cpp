@@ -14,4 +14,10 @@ int main() {
     Board obj(rows, cols);
 
     cout << obj;
+
+    /**if (obj.at(3, 1) == -2)
+        cout << "Discovered the bomb" << endl;
+**/
+    cout << "Discovered " << obj.at(0, 0) << " number of cells" << endl;
+    cout << obj;
 }

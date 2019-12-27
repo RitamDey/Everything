@@ -1,9 +1,8 @@
-#include "Board.h"
 #include <experimental/random>
 #include <algorithm>
-#include <iostream>
 #include <set>
 #include <utility>
+#include "Board.h"
 using namespace std::experimental;
 using namespace std;
 
@@ -116,4 +115,51 @@ ostream& operator<<(ostream& stream, Board& obj) {
         stream << endl;
     });
     return stream;
+}
+
+
+int Board::at(int row, int col) {
+    /**
+     * Set the user specified cell as discovered and start disovering other safe cells
+     * Returns the number of cell discovered.
+     * -1 if the arguments are out of bounds
+     * -2 if the arguments points to a bomb
+    **/
+    int cell_count = 0;
+    if ((row > this->n_rows - 1) || (col > this->n_cols - 1) || (row < 0) || (col < 0))
+        return -1;
+
+    Queue q;
+    q.enqueue(make_pair(row, col));
+    Cell& cell = this->board[row][col];
+
+    if (cell.is_bomb()) {
+        // User Clicked on a bomb. Terminate the game
+        cell.discover();
+        return -2;
+    } else if (cell.is_seen()) {
+        // User clicked on an already discovered cell. Do noting.
+        return 0;
+    }
+
+    while (!q.is_empty()) {
+        // Unpack the cell co-ordinates and mark it as discovered
+        auto [row, col] = q.dequeue();
+        this->board[row][col].discover();
+        cell = this->board[row][col];
+        cell_count++;
+
+        if (cell.get_count() > 0)
+            // No need to discover neighbours of cells whose counts are > 0, i.e non-zero
+            continue;
+
+        for (auto n: this->neighbours(make_pair(row, col))) {
+            cell = this->board[n.first][n.second];
+            if (!cell.is_seen() && !cell.is_bomb()) {
+                q.enqueue(n);
+            }
+        }
+    }
+
+    return cell_count;
 }
