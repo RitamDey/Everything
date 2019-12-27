@@ -108,9 +108,9 @@ ostream& operator<<(ostream& stream, Board& obj) {
 
     int i = 1;
 
-    for_each(obj.board.begin(), obj.board.end(), [&](vector<int> r) {
+    for_each(obj.board.begin(), obj.board.end(), [&](vector<Cell> r) {
         stream << i++ << "|";
-        for_each(r.begin(), r.end(), [&](int e) {
+        for_each(r.begin(), r.end(), [&](Cell e) {
             stream << e << " ";
         });
         stream << endl;
