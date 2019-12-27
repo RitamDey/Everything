@@ -1,7 +1,7 @@
 #ifndef MATRIX_CLASS_H
 #define MATRIX_CLASS_H
 #include <vector>
-#include <ostream>
+#include <iostream>
 #include "Cell.h"
 using namespace std;
 
@@ -14,6 +14,7 @@ class Board {
     matrix board;
     void populate_mines();
     void populate_neighbour(int r, int c);
+    vector<pair<int, int>> neighbours(pair<int, int> cell);
 
     public:
     Board(int rows, int cols);
