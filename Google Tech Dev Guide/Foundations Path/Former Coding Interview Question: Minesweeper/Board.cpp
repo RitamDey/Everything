@@ -2,8 +2,35 @@
 #include <experimental/random>
 #include <algorithm>
 #include <iostream>
+#include <set>
+#include <utility>
 using namespace std::experimental;
 using namespace std;
+
+
+class Queue {
+    private:
+    set<pair<int, int>> cell_queue;
+
+    public:
+    Queue() = default;
+    void enqueue(pair<int, int> cell) {
+        this->cell_queue.insert(cell);
+    }
+
+    pair<int, int> dequeue() {
+        set<pair<int, int>>::iterator begin = this->cell_queue.begin();
+        pair<int, int> cell = *begin;
+
+        this->cell_queue.erase(begin);
+
+        return cell;
+    }
+
+    bool is_empty() {
+        return this->cell_queue.empty();
+    }
+};
 
 
 Board::Board(int rows, int cols) {
