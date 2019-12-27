@@ -12,7 +12,6 @@ class Queue {
     set<pair<int, int>> cell_queue;
 
     public:
-    Queue() = default;
     void enqueue(pair<int, int> cell) {
         this->cell_queue.insert(cell);
     }
