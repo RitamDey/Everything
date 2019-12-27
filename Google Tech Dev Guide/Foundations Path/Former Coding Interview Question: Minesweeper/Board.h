@@ -2,11 +2,12 @@
 #define MATRIX_CLASS_H
 #include <vector>
 #include <ostream>
+#include "Cell.h"
 using namespace std;
 
 
 class Board {
-    using matrix = vector<vector<int>>;
+    using matrix = vector<vector<Cell>>;
     private:
     int n_rows;
     int n_cols;
