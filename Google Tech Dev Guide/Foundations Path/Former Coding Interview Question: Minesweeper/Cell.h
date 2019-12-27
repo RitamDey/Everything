@@ -13,7 +13,13 @@ class Cell {
     public:
     Cell(): count(0), bomb(false), discovered(false) {};
     void set_bomb();
+    bool is_bomb() {
+        return this->bomb;
+    }
     void update();
+    int get_count() {
+        return this->count;
+    }
     void discover() {
         this->discovered = true;
     }
