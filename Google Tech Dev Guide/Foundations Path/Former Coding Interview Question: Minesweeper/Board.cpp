@@ -52,7 +52,7 @@ void Board::populate_mines() {
         int rand_col = randint(1, this->n_cols) - 1;
         int rand_row = randint(1, this->n_rows) - 1;
 
-        this->board[rand_row][rand_col] = 9;
+        this->board[rand_row][rand_col].set_bomb();
 
         this->populate_neighbour(rand_row, rand_col);
     }
@@ -60,29 +60,29 @@ void Board::populate_mines() {
 
 
 void Board::populate_neighbour(int r, int c) {
-    if ((r - 1) >= 0 && this->board[r-1][c] != 9)
-        this->board[r-1][c] += 1;
+    if ((r - 1) >= 0)
+        this->board[r-1][c].update();
 
-    if ((r + 1) <= (this->n_rows - 1) && this->board[r+1][c] != 9)
-        this->board[r+1][c] += 1;
+    if ((r + 1) <= (this->n_rows - 1))
+        this->board[r+1][c].update();
 
-    if ((c + 1) <= (this->n_cols - 1) && this->board[r][c+1] != 9)
-        this->board[r][c+1] += 1;
+    if ((c + 1) <= (this->n_cols - 1))
+        this->board[r][c+1].update();
 
-    if ((c - 1) >= 0 && this->board[r][c-1] != 9)
-        this->board[r][c-1] += 1;
+    if ((c - 1) >= 0)
+        this->board[r][c-1].update();
 
-    if ((r - 1) >= 0 && (c - 1) >= 0 && this->board[r-1][c-1] != 9)
-        this->board[r-1][c-1] += 1;
+    if ((r - 1) >= 0 && (c - 1) >= 0)
+        this->board[r-1][c-1].update();
 
-    if ((r + 1) <= (this->n_rows - 1) && (c + 1) <= (this->n_cols - 1) && this->board[r+1][c+1] != 9)
-            this->board[r+1][c+1] += 1;
+    if ((r + 1) <= (this->n_rows - 1) && (c + 1) <= (this->n_cols - 1))
+            this->board[r+1][c+1].update();
 
-    if ((r - 1) >= 0 && (c + 1) <= (this->n_cols - 1) && this->board[r-1][c+1] != 9)
-            this->board[r-1][c+1] += 1;
+    if ((r - 1) >= 0 && (c + 1) <= (this->n_cols - 1))
+            this->board[r-1][c+1].update();
 
-    if ((r + 1) <= (this->n_rows - 1) && (c - 1) >= 0 && this->board[r+1][c-1] != 9)
-            this->board[r+1][c-1] += 1;
+    if ((r + 1) <= (this->n_rows - 1) && (c - 1) >= 0)
+            this->board[r+1][c-1].update();
 
 }
 
