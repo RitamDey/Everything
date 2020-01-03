@@ -1,0 +1,45 @@
+" Turn on absolute line numbering
+set nocompatible
+set number
+
+" Indentation settings
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set smartindent
+
+" Update the terminal title with the current file
+set title
+
+" Syntax highlight
+syntax on
+
+" Enable filetype detection
+filetype on
+filetype plugin on
+filetype indent on
+
+" Search highlighting
+set hlsearch
+set incsearch
+
+" Ask for confirmation if closing a modified file
+set confirm
+
+" Auto change working directory to that of open buffer's
+set autochdir
+
+" Load some PHP plugins
+source /home/stux/.vim/php.vim/syntax/php.vim
+let php_sql_query=1
+let php_html_in_strings=1
+let php_parent_error_close=1
+let php_parent_error_open=1
+let php_var_selector_is_identifier=1
+
+" Always show current postion
+set ruler
+
+" Always show a command status below the editor
+set laststatus=2
