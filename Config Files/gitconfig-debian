@@ -1,0 +1,11 @@
+[core]
+	editor = vim
+        excludesfile = ~/.gitignore
+[credential]
+	helper = store
+[user]
+	email = deyritam27031999@gmail.com
+	name = Ritam Dey
+[diff]
+	tool = meld
+	renames = copies
