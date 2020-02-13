@@ -31,7 +31,7 @@ set confirm
 set autochdir
 
 " Load some PHP plugins
-source /home/stux/.vim/php.vim/syntax/php.vim
+source ~/.vim/php.vim/syntax/php.vim
 let php_sql_query=1
 let php_html_in_strings=1
 let php_parent_error_close=1
