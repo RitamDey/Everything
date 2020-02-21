@@ -9,3 +9,5 @@
 *.rar
 *.tar
 *.zip
+.idea/
+META-INF/
