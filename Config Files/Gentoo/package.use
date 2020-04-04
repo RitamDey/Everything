@@ -1,0 +1,20 @@
+dev-lang/python	tk ipv6 readline xml ncurses
+app-editors/vim X gpm lua python ruby terminal
+sys-devel/gcc ssp vtv openmp pie cxx multilib
+sys-apps/kmod lzma zlib
+app-admin/sysklogd logrotate
+sys-fs/e2fsprogs fuse
+mate-base/mate base bluetooth extras notification themes
+app-editors/pluma python_single_target_python2_7
+dev-util/gtk-doc python_single_target_python2_7
+app-crypt/pinentry gnome-keyring
+mate-extra/mate-utils applet
+media-video/ffmpeg libdrm libxml2 lzma openh264 opus srt vorbis x265 webp vaapi vdpau
+media-plugins/alsa-plugins pulseaudio
+media-video/vlc srt x265 vaapi vdpau opus
+sys-libs/zlib minizip
+app-misc/screenfetch curl
+media-gfx/inkscape python_single_target_python2_7
+x11-themes/arc-theme mate
+net-p2p/transmission -qt5
+gnome-base/gvfs fuse mtp
