@@ -3,18 +3,52 @@ app-editors/vim X gpm lua python ruby terminal
 sys-devel/gcc ssp vtv openmp pie cxx multilib
 sys-apps/kmod lzma zlib
 app-admin/sysklogd logrotate
-sys-fs/e2fsprogs fuse
+#sys-fs/e2fsprogs fuse
 mate-base/mate base bluetooth extras notification themes
 app-editors/pluma python_single_target_python2_7
 dev-util/gtk-doc python_single_target_python2_7
-app-crypt/pinentry gnome-keyring
-mate-extra/mate-utils applet
-media-video/ffmpeg libdrm libxml2 lzma openh264 opus srt vorbis x265 webp vaapi vdpau
+#app-crypt/pinentry gnome-keyring
+media-video/ffmpeg libdrm libxml2 lzma openh264 opus webp 
 media-plugins/alsa-plugins pulseaudio
 media-video/vlc srt x265 vaapi vdpau opus
 sys-libs/zlib minizip
 app-misc/screenfetch curl
 media-gfx/inkscape python_single_target_python2_7
-x11-themes/arc-theme mate
+x11-themes/arc-theme xfce
 net-p2p/transmission -qt5
 gnome-base/gvfs fuse mtp
+sys-devel/gdb	client lzma python source-highlight xml xxhash vanilla
+net-print/cups python_single_target_python2_7
+dev-libs/libnatspec python_single_target_python2_7
+net-analyzer/wireshark androiddump http2 libxml2 lua lz4
+virtual/opencl -video_cards_amdgpu video_cards_i965
+app-emulation/virtualbox python_single_target_python2_7 -python_single_target_python3_6 -python_single_target_python3_7
+app-office/libreoffice-bin python_single_target_python3_6
+sys-libs/libcap-ng python_targets_python3_6
+media-libs/gexiv2 python_targets_python3_6
+dev-libs/libical vala
+dev-libs/gom python_targets_python3_6
+dev-python/pygobject python_targets_python3_6
+dev-python/pycairo python_targets_python3_6
+dev-python/setuptools python_targets_python3_6
+dev-python/certifi python_targets_python3_6
+gnome-extra/chrome-gnome-shell python_single_target_python3_6
+dev-python/requests python_targets_python3_6
+dev-python/chardet python_targets_python3_6
+dev-python/idna python_targets_python3_6
+dev-python/urllib3 python_targets_python3_6
+dev-python/cryptography python_targets_python3_6
+dev-python/pyopenssl python_targets_python3_6
+dev-python/six python_targets_python3_6
+dev-python/cffi python_targets_python3_6
+dev-python/pycparser python_targets_python3_6
+dev-python/ply python_targets_python3_6
+dev-python/PySocks python_targets_python3_6
+#net-misc/curl -curl_ssl_nss curl_ssl_openssl
+# required by net-libs/liboauth-1.0.3-r1::gentoo[curl,nss]
+# required by media-libs/grilo-0.3.11::gentoo[gtk]
+# required by media-video/totem-3.32.1-r2::gentoo
+# required by gnome-base/gnome-core-apps-3.32.2::gentoo
+# required by gnome-base/gnome-3.32.2::gentoo
+# required by gnome-base/gnome (argument)
+>=net-misc/curl-7.68.0 curl_ssl_nss

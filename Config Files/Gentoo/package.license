@@ -1,3 +1,7 @@
 sys-kernel/linux-firmware linux-fw-redistributable no-source-code
 www-client/google-chrome google-chrome
 dev-java/oracle-jdk-bin Oracle-BCLA-JavaSE
+dev-util/intel-ocl-sdk Intel-SDP
+app-emulation/virtualbox-extpack-oracle PUEL
+# required by >=virtualbox-bin-6.1.4 (argument)
+>=app-emulation/virtualbox-bin-6.1.4.136177-r1 PUEL

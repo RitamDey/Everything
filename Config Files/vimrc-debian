@@ -48,3 +48,12 @@ if exists('$TMUX')
     autocmd BufEnter * call system("tmux rename-window '" . expand("%:t") . "'")
     autocmd VimLeave * call system("tmux setw automatic-rename")
 endif
+
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Vundle manages vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+call vundle#end()
