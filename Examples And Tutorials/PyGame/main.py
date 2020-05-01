@@ -8,6 +8,9 @@ pygame.init()
 # Creates a screen of 800x600 dimensions
 screen = pygame.display.set_mode((800, 600))
 
+# Sets the bacground for the screen
+background = pygame.image.load("background.png")
+
 # Sets a title to the window
 pygame.display.set_caption("Space Invaders")
 
@@ -27,14 +30,19 @@ playerY_change = 0
 enemy_icon = pygame.image.load("enemy.png")
 enemyX = randint(0, 734)
 enemyY = randint(0, 534)
-enemyX_change = 0.3
+# N.B: Big change values are required since loading the background slows down the game loop
+enemyX_change = 2
 enemyY_change = 40
+
 
 
 running = True
 while running:
     # Sets and persists the background colour of the windows
     screen.fill((0, 0, 0))
+
+    # Set the background
+    screen.blit(background, (0, 0))
 
     # Gets all the events from the queue and sees if it's PyGame quit event
     for event in pygame.event.get():
@@ -50,13 +58,13 @@ while running:
                 running = False
 
             if event.key == pygame.K_LEFT:
-                playerX_change = -0.3
+                playerX_change = -2
             elif event.key == pygame.K_RIGHT:
-                playerX_change = 0.3
+                playerX_change = 2
             elif event.key == pygame.K_UP:
-                playerY_change = -0.3
+                playerY_change = -2
             elif event.key == pygame.K_DOWN:
-                playerY_change = 0.3
+                playerY_change = 2
         
         if event.type == pygame.KEYUP:
             # These are required to reset the movement paramters, otherwise the icon will keep moving
@@ -78,10 +86,10 @@ while running:
     # Bound logic for the enemy. Change the sign of the change to alter it's movement direction
     enemyX += enemyX_change
     if enemyX <= 0:
-        enemyX_change = 0.3
+        enemyX_change = 2
         enemyY += enemyY_change
     elif enemyX >= 736:
-        enemyX_change = -0.3
+        enemyX_change = -2
         enemyY += enemyY_change
 
     # Draw the player icon on the screen
