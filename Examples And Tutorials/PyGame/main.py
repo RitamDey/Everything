@@ -1,4 +1,5 @@
 import pygame
+from random import randint
 
 
 # Initialize the pygame. Needed before doing anything
@@ -21,9 +22,14 @@ playerY = 480.0
 playerX_change = 0
 playerY_change = 0
 
-def player(x, y):
-    # Draw the image on the screen
-    screen.blit(player_icon, (x, y))
+
+# Loads the icon for the enemy
+enemy_icon = pygame.image.load("enemy.png")
+enemyX = randint(0, 734)
+enemyY = randint(0, 534)
+enemyX_change = 0
+enemyY_change = 0
+
 
 running = True
 while running:
@@ -61,9 +67,20 @@ while running:
 
     # Call this function to draw the player on each iteration of the redraw
     playerX = (playerX + playerX_change) % 800
-    playerY = (playerY + playerY_change) % 600
-    player(playerX, playerY)
-    
+
+    # Bounds the player icon to the bounds of the screen
+    playerY += playerY_change
+    if playerY < 0.0:
+        playerY = 0.0
+    elif playerY > 536.0:
+        playerY = 536
+
+    # Draw the player icon on the screen
+    screen.blit(player_icon, (playerX, playerY))
+
+    # Draw the enemy icon on the screen
+    screen.blit(enemy_icon, (enemyX, enemyY))
+
     # Instructs PyGame to update the screen to reflect changes on the screen
     pygame.display.update()
 
