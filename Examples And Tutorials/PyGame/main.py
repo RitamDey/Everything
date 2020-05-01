@@ -27,8 +27,8 @@ playerY_change = 0
 enemy_icon = pygame.image.load("enemy.png")
 enemyX = randint(0, 734)
 enemyY = randint(0, 534)
-enemyX_change = 0
-enemyY_change = 0
+enemyX_change = 0.3
+enemyY_change = 40
 
 
 running = True
@@ -74,6 +74,15 @@ while running:
         playerY = 0.0
     elif playerY > 536.0:
         playerY = 536
+
+    # Bound logic for the enemy. Change the sign of the change to alter it's movement direction
+    enemyX += enemyX_change
+    if enemyX <= 0:
+        enemyX_change = 0.3
+        enemyY += enemyY_change
+    elif enemyX >= 736:
+        enemyX_change = -0.3
+        enemyY += enemyY_change
 
     # Draw the player icon on the screen
     screen.blit(player_icon, (playerX, playerY))
