@@ -11,3 +11,7 @@
 *.zip
 .idea/
 META-INF/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/CMakeFiles/
+**/.env
