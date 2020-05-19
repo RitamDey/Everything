@@ -1,0 +1,22 @@
+{
+    "files.autoSave": "onFocusChange",
+    "editor.fontSize": 18,
+    "workbench.colorTheme": "One Dark Pro",
+    "git.alwaysSignOff": true,
+    "git.postCommitCommand": "push",
+    "editor.fontFamily": "'Fira Code Medium', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontLigatures": true,
+    "java.semanticHighlighting.enabled": true,
+    "php.executablePath": "/opt/lampp/bin/php",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
