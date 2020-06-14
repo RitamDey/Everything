@@ -28,13 +28,20 @@ playerY_change = 0
 
 # Loads the icon for the enemy
 enemy_icon = pygame.image.load("enemy.png")
-enemyX = randint(0, 734)
+enemyX = randint(0, 134)
 enemyY = randint(0, 534)
 # N.B: Big change values are required since loading the background slows down the game loop
 enemyX_change = 2
 enemyY_change = 40
 
 
+# Loads the icon for the bullet
+bullet_icon = pygame.image.load("bullet.png")
+bulletX = playerX
+bulletY = playerY
+bulletY_change = 5
+# A bullet can be of 2 state. It's either "ready" to be fired or it has been "fire"d towards the enemy
+bullet_state = "ready"
 
 running = True
 while running:
@@ -48,24 +55,19 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
-        print(event)
         
         # Checks for the keystrokes from PyGame
         if event.type == pygame.KEYDOWN:
             # Checks for what key was pressed
             if event.unicode == 'q':
                 running = False
-
             if event.key == pygame.K_LEFT:
                 playerX_change = -2
             elif event.key == pygame.K_RIGHT:
                 playerX_change = 2
-            elif event.key == pygame.K_UP:
-                playerY_change = -2
-            elif event.key == pygame.K_DOWN:
-                playerY_change = 2
-        
+            elif event.key == pygame.K_SPACE:
+                bullet_state = "fire"
+
         if event.type == pygame.KEYUP:
             # These are required to reset the movement paramters, otherwise the icon will keep moving
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -91,6 +93,18 @@ while running:
     elif enemyX >= 736:
         enemyX_change = -2
         enemyY += enemyY_change
+
+    # If the bullet has been fired from the ship, then keep drawing on the screen with updated Y co-ordinates.
+    # If the bullet goes out of the screen, change state to ready and reset the Y co-ordinate of the bullet
+    # If the bullet is in ready state, then keep updating the bullet's X axis with the player's X axis to keep in track with player's position
+    if bullet_state == "fire":
+        screen.blit(bullet_icon, (bulletX, bulletY))
+        bulletY -= bulletY_change
+        if bulletY < 0:
+            bullet_state = "ready"
+            bulletY = playerY - 20
+    elif bullet_state == "ready":
+        bulletX = playerX + 15
 
     # Draw the player icon on the screen
     screen.blit(player_icon, (playerX, playerY))
