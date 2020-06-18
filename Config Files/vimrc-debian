@@ -47,5 +47,6 @@ call vundle#begin()
 
 " Vundle manages vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'udalov/kotlin-vim'
 
 call vundle#end()
