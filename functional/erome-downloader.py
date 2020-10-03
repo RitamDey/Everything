@@ -7,13 +7,12 @@ NAME_REGEX = r"(?P<name><h2.*)"
 VIDEO_REGEX = r"<source.*480.*>"
 URL_REGEX = r"https.*\.mp4"
 
-html = requests.get("https://www.erome.com/a/RogkSLVQ").text
+html = requests.get("https://www.erome.com/a/hKqfmLqy").text
 video = []
 url = []
 
 for i in findall(NAME_REGEX, html):
     video.append(i.split(">")[1].strip("</h2")+ ".mp4")
-
 
 for count, i in enumerate(findall(VIDEO_REGEX, html)):
     if count%2:

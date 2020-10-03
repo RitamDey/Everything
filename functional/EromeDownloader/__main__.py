@@ -44,4 +44,4 @@ for videos in etree.xpath("//div[@class='media-group']"):
 pprint.pprint(video)
 
 for vid in video:
-    subprocess.call(["/usr/bin/wget", "-O", vid+".mp4", video[vid]["url"]])
+    subprocess.call(["/usr/bin/wget", "--tries", "0" , "--no-clobber", "--continue", "-q", "--show-progress", "-O", vid+".mp4", video[vid]["url"]])
