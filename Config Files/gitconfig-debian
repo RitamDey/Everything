@@ -9,3 +9,5 @@
 [diff]
 	tool = meld
 	renames = copies
+[pull]
+	rebase = false
