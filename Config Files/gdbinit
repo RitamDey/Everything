@@ -1,0 +1,6 @@
+set disassembly-flavor intel
+
+define PrintAndExecute
+    x/i $rip
+    nexti
+end
