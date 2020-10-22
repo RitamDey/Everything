@@ -16,7 +16,8 @@ def scrape_album(url, name, verbosity):
     video = {}
     video_count = {"1080": 0, "480": 0}
 
-    print(f"Crawling {name}", end="\t")
+    if verbosity == 3:
+        print(f"Crawling {name}", end="\t")
 
     for videos in etree.xpath("//div[@class='media-group']"):
         name = videos.xpath("./div[@class='media-details']/h2/text()")
@@ -39,14 +40,15 @@ def scrape_album(url, name, verbosity):
         video[name]["url"] = video_url
         video[name]["format"] = video_format
 
-    print(f'Found {video_count["480"]} SD videos and {video_count["1080"]} HD videos. Total {video_count["1080"] + video_count["480"]}')
+    if verbosity == 3:
+        print(f'Found {video_count["480"]} SD videos and {video_count["1080"]} HD videos. Total {video_count["1080"] + video_count["480"]}')
     
     return video
 
 
-def scrape_page(url, verbosity):
+def scrape_page(page_url, verbosity):
     # Scrape each individual page and find the albums to download and sends it off for the videos to be extracted
-    page = requests.get(url).text
+    page = requests.get(page_url).text
     etree = etree_fromstring(page)
     albums_count = 0
     videos = {}
@@ -63,7 +65,8 @@ def scrape_page(url, verbosity):
         for future in as_completed(scraping_futures):
             videos.update(future.result())
     
-    print(f"{url} has {albums_count} albums")
+    if verbosity == 2:
+        print(f"{page_url} has {albums_count} albums")
     return videos
 
 
@@ -75,6 +78,7 @@ def scrape_profile(url, verbosity):
     
     pages = etree.xpath("//ul[@class='pagination']/li")
     pages = int(pages[-2].xpath("./a/text()")[0])
+
     print(f"Total pages {pages}")
     
     with ThreadPoolExecutor(max_workers=None) as executor:
@@ -106,6 +110,7 @@ if __name__ == "__main__":
     parser.add_argument("-f", "--folder", help="Download path", default=Path.cwd(), type=Path)
     parser.add_argument("-a", "--profile", help="Download entire profile", action="store_true")
     parser.add_argument("-p", "--pretend", help="Fake download the videos", action="store_true")
+    parser.add_argument("-v", "--verbose", help="Show what's being done", action="count")
     
     arguments = parser.parse_args()
     
@@ -116,18 +121,11 @@ if __name__ == "__main__":
         exit(1)
     
     videos = {}
-    download_fn = {"folder": arguments.folder}
-    
-    if arguments.pretend:
-        download_fn["fn"] = fake_download
-    else:
-        download_fn["fn"] = download_videos
     
     if arguments.profile:
-        videos = scrape_profile(arguments.url, download_fn)
+        videos = scrape_profile(arguments.url, arguments.verbose)
     else:
-        videos = scrape_album(arguments.url, arguments.url, download_fn)
-        print(videos)
+        videos = scrape_album(arguments.url, arguments.url, arguments.verbose)
     
     if arguments.pretend:
         fake_download(videos, arguments.folder)
