@@ -36,6 +36,9 @@ set ruler
 " Always show a command status below the editor
 set laststatus=2
 
+" Jump to the last position of the previously opned files
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
 if exists('$TMUX')
     autocmd BufEnter * call system("tmux rename-window '" . expand("%:t") . "'")
     autocmd VimLeave * call system("tmux setw automatic-rename")
