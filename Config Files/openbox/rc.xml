@@ -322,20 +322,40 @@
       </action>
     </keybind>
     <!-- Keybindings for running applications -->
+
+    <!-- Keybinding for starting file manager -->
     <keybind key="W-e">
       <action name="Execute">
-        <startupnotify>
+          <!--<startupnotify>
           <enabled>true</enabled>
           <name>Konqueror</name>
-        </startupnotify>
-        <command>kfmclient openProfile filemanagement</command>
+          </startupnotify>-->
+        <command>pcmanfm</command>
       </action>
     </keybind>
     <!-- Launch scrot when Print is pressed -->
     <keybind key="Print">
       <action name="Execute">
-        <command>scrot</command>
+        <command>scrot '%Y-%m-%d_scrot.png' -q 100 -e '/usr/bin/mv $f ~/Pictures/'</command>
       </action>
+    </keybind>
+    <!-- Keybinding for launching terminator -->
+    <keybind key="C-A-T">
+        <action name="Execute">
+            <command>terminator</command>
+        </action>
+    </keybind>
+    <!-- Keybinding to launch rofi on .desktop mode -->
+    <keybind key="W-R">
+        <action name="Execute">
+            <command>rofi -show drun</command>
+        </action>
+    </keybind>
+    <!-- Keybinding to lock the screen -->
+    <keybind key="W-L">
+        <action name="Execute">
+            <command>light-locker-command -l</command>
+        </action>
     </keybind>
   </keyboard>
   <mouse>
@@ -410,7 +430,7 @@
         <action name="Move"/>
       </mousebind>
       <mousebind button="Left" action="DoubleClick">
-        <action name="ToggleMaximize"/>
+        <action name="ToggleMaximizeFull"/>
       </mousebind>
       <mousebind button="Up" action="Click">
         <action name="if">
