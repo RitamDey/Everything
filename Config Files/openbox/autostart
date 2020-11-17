@@ -1,1 +1,10 @@
+# Start the panel
 tint2 &
+# Restore the wallpaper
+nitrogen --restore &
+# Start the NetworkManager applet
+nm-applet &
+# Turn off screensaver and set the screen-off time to 30min
+xset s off
+xset s 1800 1800
+
