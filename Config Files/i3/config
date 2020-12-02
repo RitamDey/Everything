@@ -19,6 +19,10 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 10
 
+
+# Start compton
+exec --no-startup-id compton --daemon
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -31,10 +35,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Set the keyboard layout to US
-exec setxkbmap -layout us
+exec_always setxkbmap -layout us
 
 # Enable tapping on the touchpad
-exec xinput set-prop "AlpsPS/2 ALPS GlidePoint" 'libinput Tapping Enabled' 1
+exec_always xinput set-prop "AlpsPS/2 ALPS GlidePoint" 'libinput Tapping Enabled' 1
 
 
 # Use pactl to adjust volume in PulseAudio.
@@ -192,3 +196,5 @@ bindsym $mod+e exec pcmanfm
 bar {
         status_command i3status
 }
+
+exec conky
