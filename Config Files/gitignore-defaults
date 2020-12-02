@@ -11,6 +11,7 @@
 *.zip
 *.cxx
 *.iml
+*.swp
 .idea/
 META-INF/
 **/CMakeCache.txt
@@ -25,3 +26,4 @@ META-INF/
 **/.jekyll-metadata
 **/vendor/
 **/build
+**/Session.vim
